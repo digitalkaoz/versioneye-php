@@ -1,0 +1,34 @@
+
+{
+    "alias": "versioneye.phar",
+    "chmod": "0755",
+    "compactors": [
+        "Herrera\\Box\\Compactor\\Json",
+        "Herrera\\Box\\Compactor\\Php"
+    ],
+    "directories": [
+        "src"
+    ],
+    "extract": true,
+    "files": [
+        "LICENSE"
+    ],
+    "finder": [
+        {
+            "name": "*.php",
+            "exclude": [
+                "tests", "Tests"
+            ],
+            "in": "vendor"
+        },
+        {
+            "name": "cacert.pem",
+            "in": "vendor"
+        }
+    ],
+    "git-commit": "git-commit",
+    "git-version": "git-version",
+    "main": "bin/versioneye",
+    "output": "versioneye.phar",
+    "stub": true
+}

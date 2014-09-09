@@ -1,0 +1,27 @@
+{
+    "name": "digitalkaoz/versioneye-php",
+    "description": "PHP CLI for the VersionEye API",
+
+    "require": {
+        "guzzlehttp/guzzle":        "~4",
+        "symfony/console":          "~2.3",
+        "phpdocumentor/reflection-docblock": "~2.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec":          "@dev",
+        "kherge/box":               "@stable",
+        "raulfraile/ladybug":       "@stable"
+    },
+
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robert Schönthal",
+            "email": "robert.schoenthal@gmail.com"
+        }
+    ],
+
+    "autoload" : {
+        "psr-4" : {"Rs\\VersionEye\\" : "src"}
+    }
+}
