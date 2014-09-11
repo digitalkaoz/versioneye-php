@@ -3,9 +3,7 @@
 
 namespace Rs\VersionEye\Http;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Message\Request;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Post\PostFile;
 
