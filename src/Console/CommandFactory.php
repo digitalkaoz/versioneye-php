@@ -44,6 +44,7 @@ class CommandFactory
     public function generateCommands()
     {
         $commands = array();
+        $token = $this->readConfigurationFile();
 
         foreach ($this->classes as $class) {
             $api = new \ReflectionClass($class);
@@ -53,7 +54,7 @@ class CommandFactory
                     continue;
                 }
 
-                $commands[] = $this->generateCommand($api->getShortName(), $method);
+                $commands[] = $this->generateCommand($api->getShortName(), $method, $token);
             }
         }
 
@@ -65,11 +66,12 @@ class CommandFactory
      *
      * @param  string            $name
      * @param  \ReflectionMethod $method
+     * @param  string token
      * @return Command
      */
-    private function generateCommand($name, \ReflectionMethod $method)
+    private function generateCommand($name, \ReflectionMethod $method, $token = null)
     {
-        $command = new Command(strtolower($name.':'.$this->dash($method->getName())));
+        $command = new Command(strtolower($name . ':' . $this->dash($method->getName())));
         $docBlock = new DocBlock($method->getDocComment());
 
         $command->setDefinition($this->buildDefinition($method));
@@ -83,9 +85,10 @@ class CommandFactory
      * builds the Input Definition based upon Api Method Parameters
      *
      * @param  \ReflectionMethod $method
+     * @param  string            $token
      * @return InputDefinition
      */
-    private function buildDefinition(\ReflectionMethod $method)
+    private function buildDefinition(\ReflectionMethod $method, $token = null)
     {
         $definition = new InputDefinition();
 
@@ -98,8 +101,6 @@ class CommandFactory
                 $definition->addArgument(new InputArgument($parameter->getName(), InputArgument::REQUIRED, null, null));
             }
         }
-
-        $token = $this->readConfigurationFile();
 
         $definition->addOption(new InputOption('token', null, InputOption::VALUE_REQUIRED, 'the auth token to use', $token));
 
@@ -166,12 +167,11 @@ class CommandFactory
         $file = trim(shell_exec('cd ~ && pwd')) . DIRECTORY_SEPARATOR . '.veye.rc';
 
         if (!file_exists($file)) {
-
             return;
         }
 
         $data = file_get_contents($file);
-        $data = parse_ini_string(str_replace(array(': ',':'), array('= ', ''), $data)); //stupid convert from .rc to .ini
+        $data = parse_ini_string(str_replace(array(': ', ':'), array('= ', ''), $data)); //stupid convert from .rc to .ini
 
         if (isset($data['api_key']) && $data['api_key']) {
             return trim($data['api_key']);
