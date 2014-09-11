@@ -99,7 +99,9 @@ class CommandFactory
             }
         }
 
-        $definition->addOption(new InputOption('token', null, InputOption::VALUE_REQUIRED));
+        $token = $this->readConfigurationFile();
+
+        $definition->addOption(new InputOption('token', null, InputOption::VALUE_REQUIRED, 'the auth token to use', $token));
 
         return $definition;
     }
@@ -152,5 +154,27 @@ class CommandFactory
     private function dash($name)
     {
         return strtolower(preg_replace(array('/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'), array('\\1-\\2', '\\1-\\2'), strtr($name, '-', '.')));
+    }
+
+    /**
+     * reads global information from the user config file ~/.veye.rc
+     *
+     * @return string
+     */
+    private function readConfigurationFile()
+    {
+        $file = trim(shell_exec('cd ~ && pwd')) . DIRECTORY_SEPARATOR . '.veye.rc';
+
+        if (!file_exists($file)) {
+
+            return;
+        }
+
+        $data = file_get_contents($file);
+        $data = parse_ini_string(str_replace(array(': ',':'), array('= ', ''), $data)); //stupid convert from .rc to .ini
+
+        if (isset($data['api_key']) && $data['api_key']) {
+            return trim($data['api_key']);
+        }
     }
 }
