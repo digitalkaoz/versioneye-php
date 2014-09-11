@@ -2,6 +2,15 @@
 
 see https://www.versioneye.com/api/v2/swagger_doc.json for API documentation
 
+[![Build Status](https://travis-ci.org/digitalkaoz/versioneye-php.svg?branch=master)](https://travis-ci.org/digitalkaoz/versioneye-php)
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
+
+[![Latest Stable Version](https://poser.pugx.org/digitalkaoz/versioneye-php/version.svg)](https://packagist.org/packages/digitalkaoz/versioneye-php)
+[![Latest Unstable Version](https://poser.pugx.org/digitalkaoz/versioneye-php/v/unstable.svg)](//packagist.org/packages/digitalkaoz/versioneye-php)
+[![Total Downloads](https://poser.pugx.org/digitalkaoz/versioneye-php/downloads.svg)](https://packagist.org/packages/digitalkaoz/versioneye-php)
+
 ##Installation
 
 ```
