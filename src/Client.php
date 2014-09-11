@@ -22,7 +22,7 @@ class Client
      */
     public function __construct(\GuzzleHttp\Client $client = null, $url = 'https://www.versioneye.com/api/v2/')
     {
-        $this->client = $client ?: new \GuzzleHttp\Client(array('base_url' => $url));
+        $this->client = $client ?: new \GuzzleHttp\Client(['base_url' => $url]);
     }
 
     /**

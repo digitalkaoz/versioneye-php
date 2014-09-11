@@ -50,7 +50,7 @@ class Projects extends BaseApi implements Api
      */
     public function create($file)
     {
-        return $this->request('projects', 'POST', array('upload' => $file));
+        return $this->request('projects', 'POST', ['upload' => $file]);
     }
 
     /**
@@ -62,7 +62,7 @@ class Projects extends BaseApi implements Api
      */
     public function update($project, $file)
     {
-        return $this->request('projects/'.$project, 'POST', array('project_file' => $file));
+        return $this->request('projects/'.$project, 'POST', ['project_file' => $file]);
     }
 
     /**

@@ -18,14 +18,14 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CommandFactory
 {
-    private $classes = array();
+    private $classes = [];
 
     /**
      * @param array $classes
      */
-    public function __construct(array $classes = array())
+    public function __construct(array $classes = [])
     {
-        $this->classes = $classes ?: array(
+        $this->classes = $classes ?: [
             'Rs\VersionEye\Api\Github',
             'Rs\VersionEye\Api\Me',
             'Rs\VersionEye\Api\Products',
@@ -33,7 +33,7 @@ class CommandFactory
             'Rs\VersionEye\Api\Services',
             'Rs\VersionEye\Api\Sessions',
             'Rs\VersionEye\Api\Users'
-        );
+        ];
     }
 
     /**
@@ -43,7 +43,7 @@ class CommandFactory
      */
     public function generateCommands()
     {
-        $commands = array();
+        $commands = [];
         $token = $this->readConfigurationFile();
 
         foreach ($this->classes as $class) {
@@ -127,7 +127,7 @@ class CommandFactory
 
             $api = $client->api(strtolower($name));
 
-            $args = array();
+            $args = [];
 
             foreach ($method->getParameters() as $parameter) {
                 if ($parameter->isDefaultValueAvailable()) {
@@ -139,7 +139,7 @@ class CommandFactory
                 }
             }
 
-            $result = call_user_func_array(array($api, $methodName), $args);
+            $result = call_user_func_array([$api, $methodName], $args);
 
             //TODO howto correctly output the given data?
             ladybug_dump_die($result);
@@ -154,7 +154,7 @@ class CommandFactory
      */
     private function dash($name)
     {
-        return strtolower(preg_replace(array('/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'), array('\\1-\\2', '\\1-\\2'), strtr($name, '-', '.')));
+        return strtolower(preg_replace(['/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'], ['\\1-\\2', '\\1-\\2'], strtr($name, '-', '.')));
     }
 
     /**
@@ -171,7 +171,7 @@ class CommandFactory
         }
 
         $data = file_get_contents($file);
-        $data = parse_ini_string(str_replace(array(': ', ':'), array('= ', ''), $data)); //stupid convert from .rc to .ini
+        $data = parse_ini_string(str_replace([': ', ':'], ['= ', ''],  $data)); //stupid convert from .rc to .ini
 
         if (isset($data['api_key']) && $data['api_key']) {
             return trim($data['api_key']);

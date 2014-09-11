@@ -37,7 +37,7 @@ abstract class BaseApi
      * @param  array  $params
      * @return array
      */
-    protected function request($url, $method = 'GET', array $params = array())
+    protected function request($url, $method = 'GET', array $params = [])
     {
         if ($this->token) {
             $url = $this->addAuthentication($url);
@@ -60,7 +60,7 @@ abstract class BaseApi
      */
     protected function transform($name)
     {
-        return str_replace(array('/', '.'), array(':', '~'), $name);
+        return str_replace(['/', '.'], [':', '~'], $name);
     }
 
     /**

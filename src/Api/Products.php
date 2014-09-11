@@ -21,11 +21,11 @@ class Products extends BaseApi implements Api
      */
     public function search($query, $language = null, $group = null, $page = null)
     {
-        $url = sprintf('products/search/%s?%s', $query, http_build_query(array(
+        $url = sprintf('products/search/%s?%s', $query, http_build_query([
             'lang' => $language,
             'g' => $group,
             'page' => $page
-        )));
+        ]));
 
         return $this->request($url);
     }
