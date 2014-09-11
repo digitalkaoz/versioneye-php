@@ -23,7 +23,7 @@ abstract class BaseApi
      * @param Client $client
      * @param string $token
      */
-    public function __construct(Client $client, $token)
+    public function __construct(Client $client, $token = null)
     {
         $this->client = $client;
         $this->token = $token;
@@ -39,7 +39,9 @@ abstract class BaseApi
      */
     protected function request($url, $method = 'GET', array $params = array())
     {
-        $url = $this->addAuthentication($url);
+        if ($this->token) {
+            $url = $this->addAuthentication($url);
+        }
 
         $request = $this->client->createRequest($method, $url);
 
@@ -84,10 +86,6 @@ abstract class BaseApi
      */
     private function addAuthentication($url)
     {
-        if (!$this->token) {
-            return $url;
-        }
-
         $delimiter = strstr($url, '?') ? '&' : '?';
 
         return sprintf('%s%sapi_key=%s', $url, $delimiter, $this->token);

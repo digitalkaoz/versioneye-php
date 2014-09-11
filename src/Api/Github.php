@@ -36,7 +36,7 @@ class Github extends BaseApi implements Api
      */
     public function sync($force = null)
     {
-        return $this->request(sprintf('github/sync?sync=%b', $force));
+        return $this->request(sprintf('github/sync?force=%b', $force));
     }
 
     /**
@@ -63,7 +63,7 @@ class Github extends BaseApi implements Api
      */
     public function show($repository)
     {
-        return $this->request('github/'.$repository);
+        return $this->request('github/'.$this->transform($repository));
     }
 
     /**

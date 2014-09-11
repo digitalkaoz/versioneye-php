@@ -45,16 +45,15 @@ class CommandFactory
     {
         $commands = array();
 
-        foreach ($this->classes as $api) {
-            $reflection = new \ReflectionClass($api);
-            $name = $reflection->getShortName();
+        foreach ($this->classes as $class) {
+            $api = new \ReflectionClass($class);
 
-            foreach ($reflection->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
-                if (strstr($method->getName(), '__')) {
+            foreach ($api->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
+                if (strstr($method->getName(), '__')) { //skip magics
                     continue;
                 }
 
-                $commands[] = $this->generateCommand($name, $method);
+                $commands[] = $this->generateCommand($api->getShortName(), $method);
             }
         }
 
