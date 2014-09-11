@@ -27,7 +27,7 @@ class Users extends BaseApi implements Api
      * @param  int    $page
      * @return array
      */
-    public function favorites($username, $page = null)
+    public function favorites($username, $page = 1)
     {
         return $this->request(sprintf('users/%s/favorites?page=%d', $username, $page));
     }
@@ -39,7 +39,7 @@ class Users extends BaseApi implements Api
      * @param  int    $page
      * @return array
      */
-    public function comments($username, $page = null)
+    public function comments($username, $page = 1)
     {
         return $this->request(sprintf('users/%s/comments?page=%d', $username, $page));
     }

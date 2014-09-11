@@ -50,7 +50,7 @@ class CommandFactory
             $api = new \ReflectionClass($class);
 
             foreach ($api->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
-                if (strstr($method->getName(), '__') || strstr($method->getName(), 'Output')) { //skip magics
+                if (strstr($method->getName(), '__')) { //skip magics
                     continue;
                 }
 
@@ -139,11 +139,17 @@ class CommandFactory
                 }
             }
 
-            $result = call_user_func_array([$api, $methodName], $args);
+            $response = call_user_func_array([$api, $methodName], $args);
 
-            $outputMethod = method_exists($api, $methodName.'Output') ? $methodName.'Output' : 'genericOutput';
+            $classParts = explode('\\', get_class($api));
+            $className = 'Rs\VersionEye\Output\\'.array_pop($classParts);
 
-            call_user_func([$api, $outputMethod], $input, $output, $result);
+            if (method_exists($className, $methodName)) {
+                (new $className())->{$methodName}($output, $response);
+            } else {
+                ladybug_dump_die($response); //TODO switch once all are implemented
+                //$output->writeln(print_r($response, true));
+            }
         };
     }
 

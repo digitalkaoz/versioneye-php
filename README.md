@@ -81,7 +81,7 @@ $ php versioneye-php.phar
 
 ##TODO
 
-* need a clever way for outputting results in a proper format for each api
+* complete output presentations of each api endpoint
 
 ##Tests
 

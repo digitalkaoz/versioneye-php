@@ -5,6 +5,7 @@ namespace Rs\VersionEye;
 use Rs\VersionEye\Http\BuzzClient;
 use Rs\VersionEye\Http\GuzzleClient;
 use Rs\VersionEye\Http\HttpClient;
+use Rs\VersionEye\Api\Api;
 
 /**
  * Client for interacting with the API
@@ -33,7 +34,7 @@ class Client
      * returns an api
      *
      * @param  string                    $name
-     * @return Api\Api
+     * @return Api
      * @throws \InvalidArgumentException
      */
     public function api($name)

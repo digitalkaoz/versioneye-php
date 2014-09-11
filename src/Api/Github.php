@@ -21,7 +21,7 @@ class Github extends BaseApi implements Api
      * @param  bool   $imported
      * @return array
      */
-    public function repos($language = null, $private = null, $organization = null, $type = null, $page = null, $imported = null)
+    public function repos($language = null, $private = null, $organization = null, $type = null, $page = 1, $imported = null)
     {
         return $this->request(sprintf('github?lang=%s&private=%b&org_name=%s&org_type=%s&page=%d&only_imported=%b',
             $language, $private, $organization, $type, $page, $imported
@@ -48,7 +48,7 @@ class Github extends BaseApi implements Api
      * @param  int    $page
      * @return array
      */
-    public function search($query, $languages = null, $users = null, $page = null)
+    public function search($query, $languages = null, $users = null, $page = 1)
     {
         return $this->request(sprintf('github/search?q=%s&langs=%s&users=%s&page=%d',
             $query, $languages, $users, $page
@@ -100,5 +100,4 @@ class Github extends BaseApi implements Api
     {
         return $this->request(sprintf('github/hook/%s', $project), 'POST');
     }
-
 }
