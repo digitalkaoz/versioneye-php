@@ -56,8 +56,8 @@ class ProductsSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_references(Client $client)
     {
-        $client->request('GET', 'products/php/symfony/references?page=0',[])->willReturn([]);
+        $client->request('GET', 'products/php/symfony/references?page=42',[])->willReturn([]);
 
-        $this->references('php', 'symfony')->shouldBeArray();
+        $this->references('php', 'symfony', 42)->shouldBeArray();
     }
 }
