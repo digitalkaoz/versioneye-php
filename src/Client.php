@@ -3,7 +3,8 @@
 namespace Rs\VersionEye;
 
 /**
- * Client
+ * Client for interacting with the API
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class Client
@@ -12,20 +13,22 @@ class Client
      * @var \GuzzleHttp\Client
      */
     private $client;
+
     private $token;
 
     /**
      * @param \GuzzleHttp\Client $client
+     * @param string             $url
      */
-    public function __construct(\GuzzleHttp\Client $client = null)
+    public function __construct(\GuzzleHttp\Client $client = null, $url = 'https://www.versioneye.com/api/v2/')
     {
-        $this->client = $client ?: new \GuzzleHttp\Client(array('base_url' => 'https://www.versioneye.com/api/v2/'));
+        $this->client = $client ?: new \GuzzleHttp\Client(array('base_url' => $url));
     }
 
     /**
      * returns an api
      *
-     * @param  string $name
+     * @param  string                    $name
      * @return Api\Api
      * @throws \InvalidArgumentException
      */

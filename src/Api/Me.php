@@ -1,14 +1,12 @@
 <?php
-/**
- * versioneye-php
- */
 
 namespace Rs\VersionEye\Api;
 
-
 /**
- * Me
+ * Me Api
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
+ * @see https://www.versioneye.com/api/v2/swagger_doc/me
  */
 class Me extends BaseApi implements Api
 {

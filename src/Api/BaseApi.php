@@ -1,21 +1,17 @@
 <?php
-/**
- * versioneye-php
- */
 
 namespace Rs\VersionEye\Api;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Message\Request;
 use GuzzleHttp\Post\PostFile;
-use Namshi\Cuzzle\Formatter\CurlFormatter;
-
 
 /**
  * BaseApi
+ *
  * @author Robert Schönthal <robert.schoenthal@sinnerschrader.com>
  */
-class BaseApi
+abstract class BaseApi
 {
     /**
      * @var Client
@@ -36,48 +32,64 @@ class BaseApi
     /**
      * performs the request
      *
-     * @param string $url
-     * @param string $method
-     * @param array $params
+     * @param  string $url
+     * @param  string $method
+     * @param  array  $params
      * @return array
      */
     protected function request($url, $method = 'GET', array $params = array())
     {
-        if ($this->token) {
-            if(strstr($url, '?')) {
-                $url .= '&api_key='.$this->token;
-            } else {
-                $url .= '?api_key='.$this->token;
-            }
-        }
+        $url = $this->addAuthentication($url);
 
         $request = $this->client->createRequest($method, $url);
 
         if ($params) {
-            foreach ($params as $name => $value) {
-                if (is_readable($value)) {
-                    //upload
-                    $request->getBody()->addFile(new PostFile($name, fopen($value, 'r')));
-                }
-            }
+            $this->addParameters($params, $request);
         }
 
-        $response = $this->client->send($request);
-
-        /** @var Response $response */
-        //echo (new CurlFormatter())->format($request);
-
-        return $response->json();
+        return $this->client->send($request)->json();
     }
 
     /**
      * converts names to the needed url path format
      *
-     * @param string $name
+     * @param  string $name
      * @return string
      */
     protected function transform($name)
     {
         return str_replace(array('/', '.'), array(':', '~'), $name);
+    }
+
+    /**
+     * add parameters to request if present (e.g. for file uploads)
+     *
+     * @param array   $params
+     * @param Request $request
+     */
+    private function addParameters(array $params, Request $request)
+    {
+        foreach ($params as $name => $value) {
+            if (is_readable($value)) { //upload
+                $request->getBody()->addFile(new PostFile($name, fopen($value, 'r')));
+            }
+        }
+    }
+
+    /**
+     * add authentication to url if present
+     *
+     * @param  string $url
+     * @return string
+     */
+    private function addAuthentication($url)
+    {
+        if (!$this->token) {
+            return $url;
+        }
+
+        $delimiter = strstr($url, '?') ? '&' : '?';
+
+        return sprintf('%s%sapi_key=%s', $url, $delimiter, $this->token);
     }
 }

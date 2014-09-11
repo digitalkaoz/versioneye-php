@@ -1,14 +1,12 @@
 <?php
-/**
- * versioneye-php
- */
 
 namespace Rs\VersionEye\Api;
 
-
 /**
- * Sessions
+ * Sessions API
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
+ * @see https://www.versioneye.com/api/v2/swagger_doc/sessions
  */
 class Sessions extends BaseApi implements Api
 {

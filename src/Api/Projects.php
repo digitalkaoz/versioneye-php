@@ -1,14 +1,12 @@
 <?php
-/**
- * versioneye-php
- */
 
 namespace Rs\VersionEye\Api;
 
-
 /**
- * Projects
+ * Projects API
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
+ * @see https://www.versioneye.com/api/v2/swagger_doc/projects
  */
 class Projects extends BaseApi implements Api
 {
@@ -25,7 +23,7 @@ class Projects extends BaseApi implements Api
     /**
      * shows the project's information
      *
-     * @param string $project
+     * @param  string $project
      * @return array
      */
     public function show($project)
@@ -36,7 +34,7 @@ class Projects extends BaseApi implements Api
     /**
      * delete given project
      *
-     * @param string $project
+     * @param  string $project
      * @return array
      */
     public function delete($project)
@@ -47,7 +45,7 @@ class Projects extends BaseApi implements Api
     /**
      * upload project file
      *
-     * @param string $file
+     * @param  string $file
      * @return array
      */
     public function create($file)
@@ -58,8 +56,8 @@ class Projects extends BaseApi implements Api
     /**
      * update project with new file
      *
-     * @param string $project
-     * @param string $file
+     * @param  string $project
+     * @param  string $file
      * @return array
      */
     public function update($project, $file)
@@ -70,7 +68,7 @@ class Projects extends BaseApi implements Api
     /**
      * get grouped view of licences for dependencies
      *
-     * @param string $project
+     * @param  string $project
      * @return array
      */
     public function licenses($project)
@@ -78,4 +76,4 @@ class Projects extends BaseApi implements Api
         return $this->request(sprintf('projects/%s/licenses', $project));
     }
 
-} 
+}

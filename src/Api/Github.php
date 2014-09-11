@@ -1,26 +1,24 @@
 <?php
-/**
- * versioneye-php
- */
 
 namespace Rs\VersionEye\Api;
 
-
 /**
- * Github
+ * Github Api
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
+ * @see https://www.versioneye.com/api/v2/swagger_doc/github
  */
 class Github extends BaseApi implements Api
 {
     /**
      * lists your's github repos
      *
-     * @param string $language
-     * @param bool $private
-     * @param string $organization
-     * @param string $type
-     * @param int $page
-     * @param bool $imported
+     * @param  string $language
+     * @param  bool   $private
+     * @param  string $organization
+     * @param  string $type
+     * @param  int    $page
+     * @param  bool   $imported
      * @return array
      */
     public function repos($language = null, $private = null, $organization = null, $type = null, $page = null, $imported = null)
@@ -33,7 +31,7 @@ class Github extends BaseApi implements Api
     /**
      * re-load github data
      *
-     * @param bool $force
+     * @param  bool  $force
      * @return array
      */
     public function sync($force = null)
@@ -44,10 +42,10 @@ class Github extends BaseApi implements Api
     /**
      * search github repositories on github
      *
-     * @param string $query
-     * @param string $languages
-     * @param string $users
-     * @param int $page
+     * @param  string $query
+     * @param  string $languages
+     * @param  string $users
+     * @param  int    $page
      * @return array
      */
     public function search($query, $languages = null, $users = null, $page = null)
@@ -60,7 +58,7 @@ class Github extends BaseApi implements Api
     /**
      * shows the detailed information for the repository
      *
-     * @param string $repository
+     * @param  string $repository
      * @return array
      */
     public function show($repository)
@@ -71,8 +69,8 @@ class Github extends BaseApi implements Api
     /**
      * imports project file from github
      *
-     * @param string $repository
-     * @param string $branch
+     * @param  string $repository
+     * @param  string $branch
      * @return array
      */
     public function import($repository, $branch = null)
@@ -83,8 +81,8 @@ class Github extends BaseApi implements Api
     /**
      * remove imported project
      *
-     * @param string $repository
-     * @param string $branch
+     * @param  string $repository
+     * @param  string $branch
      * @return array
      */
     public function delete($repository, $branch = null)
@@ -95,7 +93,7 @@ class Github extends BaseApi implements Api
     /**
      * GitHub Hook
      *
-     * @param string $project
+     * @param  string $project
      * @return array
      */
     public function hook($project)
@@ -103,4 +101,4 @@ class Github extends BaseApi implements Api
         return $this->request(sprintf('github/hook/%s', $project), 'POST');
     }
 
-} 
+}

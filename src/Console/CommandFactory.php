@@ -13,21 +13,26 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * CommandFactory
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class CommandFactory
 {
     private $classes = array();
 
+    /**
+     * @param array $classes
+     */
     public function __construct(array $classes = array())
     {
         $this->classes = $classes ?: array(
-            'Rs\VersionEye\Api\Services',
-            'Rs\VersionEye\Api\Products',
-            'Rs\VersionEye\Api\Sessions',
-            'Rs\VersionEye\Api\Me',
             'Rs\VersionEye\Api\Github',
-            'Rs\VersionEye\Api\Projects'
+            'Rs\VersionEye\Api\Me',
+            'Rs\VersionEye\Api\Products',
+            'Rs\VersionEye\Api\Projects',
+            'Rs\VersionEye\Api\Services',
+            'Rs\VersionEye\Api\Sessions',
+            'Rs\VersionEye\Api\Users'
         );
     }
 
@@ -59,8 +64,8 @@ class CommandFactory
     /**
      * creates a Command based on an Api Method
      *
-     * @param string $name
-     * @param \ReflectionMethod $method
+     * @param  string            $name
+     * @param  \ReflectionMethod $method
      * @return Command
      */
     private function generateCommand($name, \ReflectionMethod $method)
@@ -78,7 +83,7 @@ class CommandFactory
     /**
      * builds the Input Definition based upon Api Method Parameters
      *
-     * @param \ReflectionMethod $method
+     * @param  \ReflectionMethod $method
      * @return InputDefinition
      */
     private function buildDefinition(\ReflectionMethod $method)
@@ -103,8 +108,8 @@ class CommandFactory
     /**
      * creates the command execution code
      *
-     * @param string $name
-     * @param \ReflectionMethod $method
+     * @param  string            $name
+     * @param  \ReflectionMethod $method
      * @return callable
      */
     private function createCode($name, \ReflectionMethod $method)
@@ -142,7 +147,7 @@ class CommandFactory
     /**
      * dashifies a camelCase string
      *
-     * @param string $name
+     * @param  string $name
      * @return string
      */
     private function dash($name)

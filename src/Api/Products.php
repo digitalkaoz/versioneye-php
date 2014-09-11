@@ -2,8 +2,6 @@
 
 namespace Rs\VersionEye\Api;
 
-use GuzzleHttp\Client;
-
 /**
  * Products API
  *
@@ -35,8 +33,8 @@ class Products extends BaseApi implements Api
     /**
      * detailed information for specific package
      *
-     * @param string $language
-     * @param string $product
+     * @param  string $language
+     * @param  string $product
      * @return array
      */
     public function show($language, $product)
@@ -47,8 +45,8 @@ class Products extends BaseApi implements Api
     /**
      * check your following status
      *
-     * @param string $language
-     * @param string $product
+     * @param  string $language
+     * @param  string $product
      * @return array
      */
     public function followStatus($language, $product)
@@ -59,8 +57,8 @@ class Products extends BaseApi implements Api
     /**
      * follow your favorite software package
      *
-     * @param string $language
-     * @param string $product
+     * @param  string $language
+     * @param  string $product
      * @return array
      */
     public function follow($language, $product)
@@ -71,8 +69,8 @@ class Products extends BaseApi implements Api
     /**
      * unfollow given software package
      *
-     * @param string $language
-     * @param string $product
+     * @param  string $language
+     * @param  string $product
      * @return array
      */
     public function unfollow($language, $product)
@@ -83,9 +81,9 @@ class Products extends BaseApi implements Api
     /**
      * references
      *
-     * @param string $language
-     * @param string $product
-     * @param int $page
+     * @param  string $language
+     * @param  string $product
+     * @param  int    $page
      * @return array
      */
     public function references($language, $product, $page = null)
