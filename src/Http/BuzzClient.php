@@ -6,7 +6,6 @@ namespace Rs\VersionEye\Http;
 use Buzz\Browser;
 use Buzz\Message\Form\FormUpload;
 
-
 /**
  * BuzzClient
  *
@@ -34,9 +33,9 @@ class BuzzClient implements HttpClient
     /**
      * performs a HTTP Request to the API Endpoint
      *
-     * @param string $method
-     * @param string $url
-     * @param array  $params
+     * @param  string $method
+     * @param  string $url
+     * @param  array  $params
      * @return array
      */
     public function request($method, $url, array $params = [])
@@ -54,7 +53,7 @@ class BuzzClient implements HttpClient
     /**
      * modify parameters (e.g. for file uploads)
      *
-     * @param array   $params
+     * @param array $params
      */
     private function modifyParameters(array &$params)
     {

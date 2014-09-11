@@ -3,59 +3,58 @@
 namespace spec\Rs\VersionEye\Api;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Rs\VersionEye\Http\HttpClient as Client;
 
 class ProjectsSpec extends ObjectBehavior
 {
-    function let(Client $client)
+    public function let(Client $client)
     {
         $this->beConstructedWith($client);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Rs\VersionEye\Api\Projects');
         $this->shouldHaveType('Rs\VersionEye\Api\BaseApi');
         $this->shouldHaveType('Rs\VersionEye\Api\Api');
     }
 
-    function it_calls_the_correct_url_on_all(Client $client)
+    public function it_calls_the_correct_url_on_all(Client $client)
     {
         $client->request('GET', 'projects', [])->willReturn([]);
 
         $this->all()->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_show(Client $client)
+    public function it_calls_the_correct_url_on_show(Client $client)
     {
         $client->request('GET', 'projects/symfony', [])->willReturn([]);
 
         $this->show('symfony')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_licenses(Client $client)
+    public function it_calls_the_correct_url_on_licenses(Client $client)
     {
         $client->request('GET', 'projects/symfony/licenses', [])->willReturn([]);
 
         $this->licenses('symfony')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_delete(Client $client)
+    public function it_calls_the_correct_url_on_delete(Client $client)
     {
         $client->request('DELETE', 'projects/symfony', [])->willReturn([]);
 
         $this->delete('symfony')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_create(Client $client)
+    public function it_calls_the_correct_url_on_create(Client $client)
     {
         $client->request('POST', 'projects', ['upload' => 'path/to/file'])->willReturn([]);
 
         $this->create('path/to/file')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_update(Client $client)
+    public function it_calls_the_correct_url_on_update(Client $client)
     {
         $client->request('POST', 'projects/symfony', ['project_file' => 'path/to/file'])->willReturn([]);
 

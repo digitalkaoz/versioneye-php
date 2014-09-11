@@ -4,9 +4,10 @@
 namespace Rs\VersionEye\Http;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Message\Request;
+use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Post\PostFile;
-
 
 /**
  * GuzzleClient
@@ -16,15 +17,15 @@ use GuzzleHttp\Post\PostFile;
 class GuzzleClient implements HttpClient
 {
     /**
-     * @var Client
+     * @var ClientInterface
      */
     private $client;
 
     /**
-     * @param $url;
-     * @param Client $client
+     * @param                 $url    ;
+     * @param ClientInterface $client
      */
-    public function __construct($url, Client $client = null)
+    public function __construct($url, ClientInterface $client = null)
     {
         $this->client = $client ?: new \GuzzleHttp\Client(['base_url' => $url]);
     }
@@ -46,10 +47,10 @@ class GuzzleClient implements HttpClient
     /**
      * add parameters to request if present (e.g. for file uploads)
      *
-     * @param array   $params
-     * @param Request $request
+     * @param array            $params
+     * @param RequestInterface $request
      */
-    private function addParameters(array $params, Request $request)
+    private function addParameters(array $params, RequestInterface $request)
     {
         foreach ($params as $name => $value) {
             if (is_readable($value)) { //upload

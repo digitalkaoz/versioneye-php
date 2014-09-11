@@ -57,9 +57,9 @@ class Me extends BaseApi implements Api
     /**
      * output for the profile api
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function profileOutput(InputInterface $input, OutputInterface $output, array $response)
     {
@@ -74,9 +74,9 @@ class Me extends BaseApi implements Api
     /**
      * output for the favorites api
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function favoritesOutput(InputInterface $input, OutputInterface $output, array $response)
     {
@@ -94,9 +94,9 @@ class Me extends BaseApi implements Api
     /**
      * output for the comments api
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function commentsOutput(InputInterface $input, OutputInterface $output, array $response)
     {

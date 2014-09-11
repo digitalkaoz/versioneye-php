@@ -4,7 +4,6 @@ namespace Rs\VersionEye\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Request;
-use GuzzleHttp\Post\PostFile;
 use Rs\VersionEye\Http\HttpClient;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,7 +23,7 @@ abstract class BaseApi
 
     /**
      * @param HttpClient $client
-     * @param string $token
+     * @param string     $token
      */
     public function __construct(HttpClient $client, $token = null)
     {

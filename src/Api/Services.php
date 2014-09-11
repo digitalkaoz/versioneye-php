@@ -25,9 +25,9 @@ class Services extends BaseApi implements Api
     /**
      * output for the ping api
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function pingOutput(InputInterface $input, OutputInterface $output, array $response)
     {

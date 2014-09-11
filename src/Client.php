@@ -32,7 +32,7 @@ class Client
     /**
      * returns an api
      *
-     * @param  string $name
+     * @param  string                    $name
      * @return Api\Api
      * @throws \InvalidArgumentException
      */

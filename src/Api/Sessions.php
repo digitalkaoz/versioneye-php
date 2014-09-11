@@ -45,9 +45,9 @@ class Sessions extends BaseApi implements Api
     /**
      * output for show API
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function showOutput(InputInterface $input, OutputInterface $output, array $response)
     {
@@ -58,9 +58,9 @@ class Sessions extends BaseApi implements Api
     /**
      * output for open API
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function openOutput(InputInterface $input, OutputInterface $output, $response)
     {
@@ -74,9 +74,9 @@ class Sessions extends BaseApi implements Api
     /**
      * output for close API
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function closeOutput(InputInterface $input, OutputInterface $output, array $response)
     {
