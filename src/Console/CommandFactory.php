@@ -50,7 +50,7 @@ class CommandFactory
             $api = new \ReflectionClass($class);
 
             foreach ($api->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
-                if (strstr($method->getName(), '__')) { //skip magics
+                if (strstr($method->getName(), '__') || strstr($method->getName(), 'Output')) { //skip magics
                     continue;
                 }
 
@@ -141,8 +141,9 @@ class CommandFactory
 
             $result = call_user_func_array([$api, $methodName], $args);
 
-            //TODO howto correctly output the given data?
-            ladybug_dump_die($result);
+            $outputMethod = method_exists($api, $methodName.'Output') ? $methodName.'Output' : 'genericOutput';
+
+            call_user_func([$api, $outputMethod], $input, $output, $result);
         };
     }
 

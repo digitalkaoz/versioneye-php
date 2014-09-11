@@ -5,6 +5,8 @@ namespace Rs\VersionEye\Api;
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Request;
 use GuzzleHttp\Post\PostFile;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * BaseApi
@@ -27,6 +29,12 @@ abstract class BaseApi
     {
         $this->client = $client;
         $this->token = $token;
+    }
+
+    public function genericOutput(InputInterface $input, OutputInterface $output, $response)
+    {
+        //TODO remove
+        ladybug_dump_die($response);
     }
 
     /**
