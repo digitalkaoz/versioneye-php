@@ -39,7 +39,7 @@ class CommandFactory
     /**
      * generates Commands from all Api Methods
      *
-     * @return array
+     * @return Command[]
      */
     public function generateCommands()
     {
@@ -66,7 +66,7 @@ class CommandFactory
      *
      * @param  string            $name
      * @param  \ReflectionMethod $method
-     * @param  string token
+     * @param  string            $token
      * @return Command
      */
     private function generateCommand($name, \ReflectionMethod $method, $token = null)
@@ -112,7 +112,7 @@ class CommandFactory
      *
      * @param  string            $name
      * @param  \ReflectionMethod $method
-     * @return callable
+     * @return \Closure
      */
     private function createCode($name, \ReflectionMethod $method)
     {
