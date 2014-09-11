@@ -1,6 +1,6 @@
 #a PHP CLI/Library for the VersionEye API
 
-see https://www.versioneye.com/api/v2/swagger_doc.json for API documentation
+see https://www.versioneye.com/api/ for API documentation
 
 [![Build Status](https://travis-ci.org/digitalkaoz/versioneye-php.svg?branch=master)](https://travis-ci.org/digitalkaoz/versioneye-php)
 
@@ -20,10 +20,10 @@ $ composer require "digitalkaoz/versioneye-php" *
 
 ##Usage
 
-all API endpoints are implemented, see https://www.versioneye.com/api/ for their docs.
+all API endpoints are implemented, see https://www.versioneye.com/api/v2/swagger_doc.json for their detailed docs.
 
 
-###programmatic:
+### programmatic:
 
 ```php
 <?php
@@ -61,17 +61,21 @@ the file would look like:
 :api_key: YOUR_API_TOKEN
 ```
 
-now you dont have to pass your token on each call
-##TODO
+now you dont have to pass your token on each call!
 
-* need a clever way for outputting results in a proper format for each api
 
 ##CLI Tool
+
+to build a standalone phar, simply execute the following commands.
 
 ```
 $ vendor/bin/box build
 $ php versioneye-php.phar
 ```
+
+##TODO
+
+* need a clever way for outputting results in a proper format for each api
 
 ##Tests
 
