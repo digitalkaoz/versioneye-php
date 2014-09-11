@@ -2,6 +2,10 @@
 
 namespace Rs\VersionEye;
 
+use Rs\VersionEye\Http\BuzzClient;
+use Rs\VersionEye\Http\GuzzleClient;
+use Rs\VersionEye\Http\HttpClient;
+
 /**
  * Client for interacting with the API
  *
@@ -10,25 +14,25 @@ namespace Rs\VersionEye;
 class Client
 {
     /**
-     * @var \GuzzleHttp\Client
+     * @var HttpClient
      */
     private $client;
 
     private $token;
 
     /**
-     * @param \GuzzleHttp\Client $client
-     * @param string             $url
+     * @param HttpClient $client
+     * @param string     $url
      */
-    public function __construct(\GuzzleHttp\Client $client = null, $url = 'https://www.versioneye.com/api/v2/')
+    public function __construct(HttpClient $client = null, $url = 'https://www.versioneye.com/api/v2/')
     {
-        $this->client = $client ?: new \GuzzleHttp\Client(['base_url' => $url]);
+        $this->initializeClient($url, $client);
     }
 
     /**
      * returns an api
      *
-     * @param  string                    $name
+     * @param  string $name
      * @return Api\Api
      * @throws \InvalidArgumentException
      */
@@ -51,5 +55,24 @@ class Client
     public function authorize($token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * initializes the http client
+     *
+     * @param string     $url
+     * @param HttpClient $client
+     */
+    private function initializeClient($url, HttpClient $client = null)
+    {
+        if ($client) {
+            $this->client = $client;
+        } elseif (!$client && class_exists('\GuzzleHttp\Client')) {
+            $this->client = new GuzzleClient($url);
+        } elseif (!$client && class_exists('Buzz\Browser')) {
+            $this->client = new BuzzClient($url);
+        } else {
+            throw new \RuntimeException('no suitable HTTP adapter found');
+        }
     }
 }

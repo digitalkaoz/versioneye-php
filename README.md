@@ -14,7 +14,13 @@ see https://www.versioneye.com/api/ for API documentation
 
 ##Installation
 
+first you have to decide which `http adapter` to use. The library supports `guzzlehttp/guzzle` and `kriswallsmith/buzz`. Where guzzle is preferred.
+
+
 ```
+$ composer require "guzzlehttp/guzzle" ~4 //or
+$ composer require "kriswallsmith/buzz" 0.10
+
 $ composer require "digitalkaoz/versioneye-php" *
 ```
 

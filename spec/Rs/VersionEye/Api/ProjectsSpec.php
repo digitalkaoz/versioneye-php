@@ -2,12 +2,9 @@
 
 namespace spec\Rs\VersionEye\Api;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Message\Request;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Post\PostBody;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rs\VersionEye\Http\HttpClient as Client;
 
 class ProjectsSpec extends ObjectBehavior
 {
@@ -23,78 +20,46 @@ class ProjectsSpec extends ObjectBehavior
         $this->shouldHaveType('Rs\VersionEye\Api\Api');
     }
 
-    function it_calls_the_correct_url_on_all(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_all(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'projects')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'projects', [])->willReturn([]);
 
         $this->all()->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_show(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_show(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'projects/symfony')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'projects/symfony', [])->willReturn([]);
 
         $this->show('symfony')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_licenses(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_licenses(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'projects/symfony/licenses')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'projects/symfony/licenses', [])->willReturn([]);
 
         $this->licenses('symfony')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_delete(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_delete(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('DELETE', 'projects/symfony')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('DELETE', 'projects/symfony', [])->willReturn([]);
 
         $this->delete('symfony')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_create(Client $client, Request $request, Response $response, PostBody $body)
+    function it_calls_the_correct_url_on_create(Client $client)
     {
-        $request->getBody()->shouldBeCalled()->willReturn($body);
-        $body->addFile(Argument::type('GuzzleHttp\Post\PostFile'))->shouldBeCalled();
+        $client->request('POST', 'projects', ['upload' => 'path/to/file'])->willReturn([]);
 
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('POST', 'projects')->willReturn($request);
-        $client->send($request)->willReturn($response);
-
-        $file = tempnam(sys_get_temp_dir(), 'versioneye');
-
-        $this->create($file)->shouldBeArray();
-
-        @unlink($file);
+        $this->create('path/to/file')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_update(Client $client, Request $request, Response $response, PostBody $body)
+    function it_calls_the_correct_url_on_update(Client $client)
     {
-        $request->getBody()->shouldBeCalled()->willReturn($body);
-        $body->addFile(Argument::type('GuzzleHttp\Post\PostFile'))->shouldBeCalled();
+        $client->request('POST', 'projects/symfony', ['project_file' => 'path/to/file'])->willReturn([]);
 
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('POST', 'projects/symfony')->willReturn($request);
-        $client->send($request)->willReturn($response);
-
-        $file = tempnam(sys_get_temp_dir(), 'versioneye');
-
-        $this->update('symfony', $file)->shouldBeArray();
-
-        @unlink($file);
+        $this->update('symfony', 'path/to/file')->shouldBeArray();
     }
 
 }

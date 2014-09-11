@@ -4,14 +4,20 @@
 
     "require": {
         "php":                                  ">=5.4",
-        "guzzlehttp/guzzle":                    "~4",
         "symfony/console":                      "~2.3",
         "phpdocumentor/reflection-docblock":    "~2.0"
     },
     "require-dev": {
+        "guzzlehttp/guzzle":        "~4",
+        "kriswallsmith/buzz":       "~0.10",
         "phpspec/phpspec":          "@dev",
         "kherge/box":               "@stable",
         "raulfraile/ladybug":       "@stable"
+    },
+
+    "suggest": {
+        "guzzlehttp/guzzle":        "for using guzzle for http",
+        "kriswallsmith/buzz":       "for using buzz for http"
     },
 
     "license": "MIT",

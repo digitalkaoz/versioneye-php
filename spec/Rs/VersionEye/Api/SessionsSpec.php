@@ -2,11 +2,9 @@
 
 namespace spec\Rs\VersionEye\Api;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Message\Request;
-use GuzzleHttp\Message\Response;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rs\VersionEye\Http\HttpClient as Client;
 
 class SessionsSpec extends ObjectBehavior
 {
@@ -22,32 +20,23 @@ class SessionsSpec extends ObjectBehavior
         $this->shouldHaveType('Rs\VersionEye\Api\Api');
     }
 
-    function it_calls_the_correct_url_on_show(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_show(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'sessions')->willReturn($request);
-        $client->send($request)->willReturn($response);
-
+        $client->request('GET', 'sessions', [])->willReturn([]);
+        
         $this->show()->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_create(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_create(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('POST', 'sessions')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('POST', 'sessions', [])->willReturn([]);
 
         $this->open()->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_close(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_close(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('DELETE', 'sessions')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('DELETE', 'sessions', [])->willReturn([]);
 
         $this->close()->shouldBeArray();
     }

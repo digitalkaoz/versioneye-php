@@ -2,11 +2,9 @@
 
 namespace spec\Rs\VersionEye\Api;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Message\Request;
-use GuzzleHttp\Message\Response;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rs\VersionEye\Http\HttpClient as Client;
 
 class GithubSpec extends ObjectBehavior
 {
@@ -22,72 +20,51 @@ class GithubSpec extends ObjectBehavior
         $this->shouldHaveType('Rs\VersionEye\Api\Api');
     }
 
-    function it_calls_the_correct_url_on_repos(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_repos(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'github?lang=php&private=1&org_name=digitalkaoz&org_type=private&page=42&only_imported=1&api_key=4711')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'github?lang=php&private=1&org_name=digitalkaoz&org_type=private&page=42&only_imported=1&api_key=4711', [])->willReturn([]);
 
         $this->repos('php', true, 'digitalkaoz', 'private', 42, true)->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_sync(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_sync(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'github/sync?force=1&api_key=4711')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'github/sync?force=1&api_key=4711', [])->willReturn([]);
 
         $this->sync(true)->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_search(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_search(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'github/search?q=symfony&langs=php&users=fabpot&page=12&api_key=4711')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'github/search?q=symfony&langs=php&users=fabpot&page=12&api_key=4711', [])->willReturn([]);
 
         $this->search('symfony', 'php', 'fabpot', 12)->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_show(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_show(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'github/symfony:symfony?api_key=4711')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'github/symfony:symfony?api_key=4711', [])->willReturn([]);
 
         $this->show('symfony/symfony')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_import(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_import(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('POST', 'github/symfony:symfony?branch=develop&api_key=4711')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('POST', 'github/symfony:symfony?branch=develop&api_key=4711', [])->willReturn([]);
 
         $this->import('symfony/symfony', 'develop')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_delete(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_delete(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('DELETE', 'github/symfony:symfony?branch=develop&api_key=4711')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('DELETE', 'github/symfony:symfony?branch=develop&api_key=4711', [])->willReturn([]);
 
         $this->delete('symfony/symfony', 'develop')->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_hook(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_hook(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('POST', 'github/hook/project_id?api_key=4711')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('POST', 'github/hook/project_id?api_key=4711', [])->willReturn([]);
 
         $this->hook('project_id')->shouldBeArray();
     }

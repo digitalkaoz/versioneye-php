@@ -2,11 +2,9 @@
 
 namespace spec\Rs\VersionEye\Api;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Message\Request;
-use GuzzleHttp\Message\Response;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rs\VersionEye\Http\HttpClient as Client;
 
 class MeSpec extends ObjectBehavior
 {
@@ -22,42 +20,30 @@ class MeSpec extends ObjectBehavior
         $this->shouldHaveType('Rs\VersionEye\Api\Api');
     }
 
-    function it_calls_the_correct_url_on_profile(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_profile(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'me')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'me', [])->willReturn([]);
 
         $this->profile()->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_favorites(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_favorites(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'me/favorites')->willReturn($request);
-        $client->send($request)->willReturn($response);
-
+        $client->request('GET', 'me/favorites', [])->willReturn([]);
+        
         $this->favorites()->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_comments(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_comments(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'me/comments')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'me/comments', [])->willReturn([]);
 
         $this->comments()->shouldBeArray();
     }
 
-    function it_calls_the_correct_url_on_notifications(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_notifications(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'me/notifications')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'me/notifications', [])->willReturn([]);
 
         $this->notifications()->shouldBeArray();
     }

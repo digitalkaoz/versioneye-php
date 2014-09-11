@@ -5,6 +5,7 @@ namespace Rs\VersionEye\Api;
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Request;
 use GuzzleHttp\Post\PostFile;
+use Rs\VersionEye\Http\HttpClient;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -16,16 +17,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 abstract class BaseApi
 {
     /**
-     * @var Client
+     * @var HttpClient
      */
     protected $client;
     private $token;
 
     /**
-     * @param Client $client
+     * @param HttpClient $client
      * @param string $token
      */
-    public function __construct(Client $client, $token = null)
+    public function __construct(HttpClient $client, $token = null)
     {
         $this->client = $client;
         $this->token = $token;
@@ -48,16 +49,12 @@ abstract class BaseApi
     protected function request($url, $method = 'GET', array $params = [])
     {
         if ($this->token) {
-            $url = $this->addAuthentication($url);
+            $delimiter = strstr($url, '?') ? '&' : '?';
+
+            $url = sprintf('%s%sapi_key=%s', $url, $delimiter, $this->token);
         }
 
-        $request = $this->client->createRequest($method, $url);
-
-        if ($params) {
-            $this->addParameters($params, $request);
-        }
-
-        return $this->client->send($request)->json();
+        return $this->client->request($method, $url, $params);
     }
 
     /**
@@ -69,33 +66,5 @@ abstract class BaseApi
     protected function transform($name)
     {
         return str_replace(['/', '.'], [':', '~'], $name);
-    }
-
-    /**
-     * add parameters to request if present (e.g. for file uploads)
-     *
-     * @param array   $params
-     * @param Request $request
-     */
-    private function addParameters(array $params, Request $request)
-    {
-        foreach ($params as $name => $value) {
-            if (is_readable($value)) { //upload
-                $request->getBody()->addFile(new PostFile($name, fopen($value, 'r')));
-            }
-        }
-    }
-
-    /**
-     * add authentication to url if present
-     *
-     * @param  string $url
-     * @return string
-     */
-    private function addAuthentication($url)
-    {
-        $delimiter = strstr($url, '?') ? '&' : '?';
-
-        return sprintf('%s%sapi_key=%s', $url, $delimiter, $this->token);
     }
 }

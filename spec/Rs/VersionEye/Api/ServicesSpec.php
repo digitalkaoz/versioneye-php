@@ -2,11 +2,9 @@
 
 namespace spec\Rs\VersionEye\Api;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Message\Request;
-use GuzzleHttp\Message\Response;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Rs\VersionEye\Http\HttpClient as Client;
 
 class ServicesSpec extends ObjectBehavior
 {
@@ -22,12 +20,9 @@ class ServicesSpec extends ObjectBehavior
         $this->shouldHaveType('Rs\VersionEye\Api\Api');
     }
 
-    function it_calls_the_correct_url_on_ping(Client $client, Request $request, Response $response)
+    function it_calls_the_correct_url_on_ping(Client $client)
     {
-        $response->json()->shouldBeCalled()->willReturn(array());
-
-        $client->createRequest('GET', 'services/ping')->willReturn($request);
-        $client->send($request)->willReturn($response);
+        $client->request('GET', 'services/ping', [])->willReturn([]);
 
         $this->ping()->shouldBeArray();
     }
