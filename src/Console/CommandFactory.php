@@ -26,7 +26,8 @@ class CommandFactory
             'Rs\VersionEye\Api\Products',
             'Rs\VersionEye\Api\Sessions',
             'Rs\VersionEye\Api\Me',
-            'Rs\VersionEye\Api\Github'
+            'Rs\VersionEye\Api\Github',
+            'Rs\VersionEye\Api\Projects'
         );
     }
 

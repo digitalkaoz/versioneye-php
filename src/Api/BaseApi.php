@@ -7,6 +7,7 @@ namespace Rs\VersionEye\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
+use GuzzleHttp\Post\PostFile;
 use Namshi\Cuzzle\Formatter\CurlFormatter;
 
 
@@ -51,6 +52,16 @@ class BaseApi
         }
 
         $request = $this->client->createRequest($method, $url);
+
+        if ($params) {
+            foreach ($params as $name => $value) {
+                if (is_readable($value)) {
+                    //upload
+                    $request->getBody()->addFile(new PostFile($name, fopen($value, 'r')));
+                }
+            }
+        }
+
         $response = $this->client->send($request);
 
         /** @var Response $response */
