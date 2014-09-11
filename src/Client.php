@@ -12,6 +12,7 @@ class Client
      * @var \GuzzleHttp\Client
      */
     private $client;
+    private $token;
 
     /**
      * @param \GuzzleHttp\Client $client
@@ -24,16 +25,28 @@ class Client
     /**
      * returns an api
      *
-     * @param  string                    $name
+     * @param  string $name
      * @return Api\Api
      * @throws \InvalidArgumentException
      */
     public function api($name)
     {
-        switch ($name) {
-            case 'services' : return new Api\Services($this->client); break;
-            case 'products' : return new Api\Products($this->client); break;
-            default : throw new \InvalidArgumentException('unknown api "'.$name.'" requested');
+        $class = 'Rs\\VersionEye\\Api\\' . ucfirst($name);
+
+        if (class_exists($class)) {
+            return new $class($this->client, $this->token);
+        } else {
+            throw new \InvalidArgumentException('unknown api "' . $name . '" requested');
         }
+    }
+
+    /**
+     * authorizes a api
+     *
+     * @param $token
+     */
+    public function authorize($token)
+    {
+        $this->token = $token;
     }
 }

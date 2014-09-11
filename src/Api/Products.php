@@ -10,21 +10,8 @@ use GuzzleHttp\Client;
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  * @see https://www.versioneye.com/api/v2/swagger_doc/products
  */
-class Products implements Api
+class Products extends BaseApi implements Api
 {
-    /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * @param Client $client
-     */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * search packages
      *
@@ -36,11 +23,74 @@ class Products implements Api
      */
     public function search($query, $language = null, $group = null, $page = null)
     {
-        return $this->client->get(sprintf('products/search/%s?%s', $query, http_build_query(array(
+        $url = sprintf('products/search/%s?%s', $query, http_build_query(array(
             'lang' => $language,
             'g' => $group,
             'page' => $page
-        ))))->json()
-        ;
+        )));
+
+        return $this->request($url);
     }
+
+    /**
+     * detailed information for specific package
+     *
+     * @param string $language
+     * @param string $product
+     * @return array
+     */
+    public function show($language, $product)
+    {
+        return $this->request(sprintf('products/%s/%s', $language, $this->transform($product)));
+    }
+
+    /**
+     * check your following status
+     *
+     * @param string $language
+     * @param string $product
+     * @return array
+     */
+    public function followStatus($language, $product)
+    {
+        return $this->request(sprintf('products/%s/%s/follow', $language, $this->transform($product)));
+    }
+
+    /**
+     * follow your favorite software package
+     *
+     * @param string $language
+     * @param string $product
+     * @return array
+     */
+    public function follow($language, $product)
+    {
+        return $this->request(sprintf('products/%s/%s/follow', $language, $this->transform($product)), 'POST');
+    }
+
+    /**
+     * unfollow given software package
+     *
+     * @param string $language
+     * @param string $product
+     * @return array
+     */
+    public function unfollow($language, $product)
+    {
+        return $this->request(sprintf('products/%s/%s/follow', $language, $this->transform($product)), 'DELETE');
+    }
+
+    /**
+     * references
+     *
+     * @param string $language
+     * @param string $product
+     * @param int $page
+     * @return array
+     */
+    public function references($language, $product, $page = null)
+    {
+        return $this->request(sprintf('products/%s/%s/references?page=%d', $language, $this->transform($product), $page), 'GET');
+    }
+
 }

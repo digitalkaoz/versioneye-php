@@ -8,21 +8,8 @@ use GuzzleHttp\Client;
  * ServicesApi
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
-class Services implements Api
+class Services extends BaseApi implements Api
 {
-    /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * @param Client $client
-     */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * Answers to request with basic pong.
      *
@@ -30,6 +17,6 @@ class Services implements Api
      */
     public function ping()
     {
-        return $this->client->get('services/ping')->json();
+        return $this->request('services/ping');
     }
 }

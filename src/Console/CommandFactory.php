@@ -6,6 +6,7 @@ use phpDocumentor\Reflection\DocBlock;
 use Rs\VersionEye\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -22,9 +23,18 @@ class CommandFactory
     {
         $this->classes = $classes ?: array(
             'Rs\VersionEye\Api\Services',
-            'Rs\VersionEye\Api\Products'
+            'Rs\VersionEye\Api\Products',
+            'Rs\VersionEye\Api\Sessions',
+            'Rs\VersionEye\Api\Me',
+            'Rs\VersionEye\Api\Github'
         );
     }
+
+    /**
+     * generates Commands from all Api Methods
+     *
+     * @return array
+     */
     public function generateCommands()
     {
         $commands = array();
@@ -45,31 +55,69 @@ class CommandFactory
         return $commands;
     }
 
+    /**
+     * creates a Command based on an Api Method
+     *
+     * @param string $name
+     * @param \ReflectionMethod $method
+     * @return Command
+     */
     private function generateCommand($name, \ReflectionMethod $method)
     {
         $command = new Command(strtolower($name.':'.$this->dash($method->getName())));
         $docBlock = new DocBlock($method->getDocComment());
 
-        $definition = array();
+        $command->setDefinition($this->buildDefinition($method));
+        $command->setDescription($docBlock->getShortDescription());
+        $command->setCode($this->createCode($name, $method));
+
+        return $command;
+    }
+
+    /**
+     * builds the Input Definition based upon Api Method Parameters
+     *
+     * @param \ReflectionMethod $method
+     * @return InputDefinition
+     */
+    private function buildDefinition(\ReflectionMethod $method)
+    {
+        $definition = new InputDefinition();
+
         foreach ($method->getParameters() as $parameter) {
             if ($parameter->isDefaultValueAvailable()) {
                 //option
-                $arg = new InputOption($parameter->getName(),null ,InputOption::VALUE_REQUIRED, null, $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null);
+                $definition->addOption(new InputOption($parameter->getName(), null, InputOption::VALUE_REQUIRED, null, $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null));
             } else {
                 //argument
-                $arg = new InputArgument($parameter->getName(), InputArgument::REQUIRED, null, null);
+                $definition->addArgument(new InputArgument($parameter->getName(), InputArgument::REQUIRED, null, null));
             }
-
-            $definition[] = $arg;
         }
 
-        $command->setDefinition($definition);
-        $command->setDescription($docBlock->getShortDescription());
+        $definition->addOption(new InputOption('token', null, InputOption::VALUE_REQUIRED));
 
-        $command->setCode(function (InputInterface $input, OutputInterface $output) use ($name, $method) {
+        return $definition;
+    }
+
+    /**
+     * creates the command execution code
+     *
+     * @param string $name
+     * @param \ReflectionMethod $method
+     * @return callable
+     */
+    private function createCode($name, \ReflectionMethod $method)
+    {
+        return function (InputInterface $input, OutputInterface $output) use ($name, $method) {
             $methodName = $method->getName();
 
-            $api = (new Client())->api(strtolower($name));
+            $client = new Client();
+
+            if ($input->getOption('token')) {
+                $client->authorize($input->getOption('token'));
+            }
+
+            $api = $client->api(strtolower($name));
 
             $args = array();
 
@@ -87,14 +135,17 @@ class CommandFactory
 
             //TODO howto correctly output the given data?
             ladybug_dump_die($result);
-        });
-
-        return $command;
+        };
     }
 
+    /**
+     * dashifies a camelCase string
+     *
+     * @param string $name
+     * @return string
+     */
     private function dash($name)
     {
         return strtolower(preg_replace(array('/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'), array('\\1-\\2', '\\1-\\2'), strtr($name, '-', '.')));
     }
-
 }

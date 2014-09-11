@@ -5,7 +5,8 @@
     "require": {
         "guzzlehttp/guzzle":        "~4",
         "symfony/console":          "~2.3",
-        "phpdocumentor/reflection-docblock": "~2.0"
+        "phpdocumentor/reflection-docblock": "~2.0",
+        "namshi/cuzzle":            "~0.1"
     },
     "require-dev": {
         "phpspec/phpspec":          "@dev",
