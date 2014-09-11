@@ -20,7 +20,7 @@ class GuzzleClient implements HttpClient
     private $client;
 
     /**
-     * @param                 $url    ;
+     * @param string          $url
      * @param ClientInterface $client
      */
     public function __construct($url, ClientInterface $client = null)
