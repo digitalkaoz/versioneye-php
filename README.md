@@ -4,6 +4,7 @@ see https://www.versioneye.com/api/v2/swagger_doc.json for API documentation
 
 [![Build Status](https://travis-ci.org/digitalkaoz/versioneye-php.svg?branch=master)](https://travis-ci.org/digitalkaoz/versioneye-php)
 
+[![Dependency Status](https://www.versioneye.com/user/projects/5411b8a68d7ae10d4c009233/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5411b8a68d7ae10d4c009233)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
 

@@ -74,7 +74,7 @@ class CommandFactory
         $command = new Command(strtolower($name . ':' . $this->dash($method->getName())));
         $docBlock = new DocBlock($method->getDocComment());
 
-        $command->setDefinition($this->buildDefinition($method));
+        $command->setDefinition($this->buildDefinition($method, $token));
         $command->setDescription($docBlock->getShortDescription());
         $command->setCode($this->createCode($name, $method));
 
