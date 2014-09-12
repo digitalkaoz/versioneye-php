@@ -5,7 +5,6 @@
 
 namespace Rs\VersionEye\Http;
 
-
 /**
  * CommunicationException
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
@@ -13,4 +12,4 @@ namespace Rs\VersionEye\Http;
 class CommunicationException extends \RuntimeException
 {
 
-} 
+}

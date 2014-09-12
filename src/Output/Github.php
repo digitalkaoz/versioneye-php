@@ -4,7 +4,6 @@ namespace Rs\VersionEye\Output;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 /**
  * Github
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
@@ -15,7 +14,7 @@ class Github
      * output for sync api
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function sync(OutputInterface $output, array $response)
     {
@@ -30,7 +29,7 @@ class Github
      * output for hook api
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function hook(OutputInterface $output, array $response)
     {
@@ -45,7 +44,7 @@ class Github
      * output for repos api
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function repos(OutputInterface $output, array $response)
     {
@@ -70,7 +69,7 @@ class Github
      * output for show api
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function import(OutputInterface $output, array $response)
     {
@@ -81,7 +80,7 @@ class Github
      * output for import api
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function show(OutputInterface $output, array $response)
     {
@@ -92,7 +91,7 @@ class Github
      * output for import/show
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     private function showOutput(OutputInterface $output, array $response)
     {

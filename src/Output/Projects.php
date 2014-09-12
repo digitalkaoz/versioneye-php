@@ -116,7 +116,7 @@ class Projects
      * default output for create/show/update
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     private function output(OutputInterface $output, array $response)
     {

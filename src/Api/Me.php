@@ -44,7 +44,6 @@ class Me extends BaseApi implements Api
      * shows unread notifications of authorized user
      *
      * @return array
-     * @todo write output formatter (cant get some notifications)
      */
     public function notifications()
     {

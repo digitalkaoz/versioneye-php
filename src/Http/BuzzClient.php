@@ -53,7 +53,7 @@ class BuzzClient implements HttpClient
             $data = json_decode($response->getBody(), true);
             $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
             throw new CommunicationException($response->getStatusCode().' : '.$message);
-        } elseif($response->isClientError()) {
+        } elseif ($response->isClientError()) {
             $data = json_decode($response->getContent(), true);
             throw new CommunicationException($response->getStatusCode().' : '.$data['error']);
         }

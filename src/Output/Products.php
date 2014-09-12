@@ -4,7 +4,6 @@ namespace Rs\VersionEye\Output;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 /**
  * Products
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
@@ -15,7 +14,7 @@ class Products
      * output for the search API
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function search(OutputInterface $output, array $response)
     {
@@ -26,7 +25,7 @@ class Products
      * output for the show API
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function show(OutputInterface $output, array $response)
     {
@@ -44,7 +43,7 @@ class Products
      * output for the follow status API
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function followStatus(OutputInterface $output, array $response)
     {
@@ -59,7 +58,7 @@ class Products
      * output for the follow API
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function follow(OutputInterface $output, array $response)
     {
@@ -74,7 +73,7 @@ class Products
      * output for the unfollow API
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function unfollow(OutputInterface $output, array $response)
     {
@@ -89,7 +88,7 @@ class Products
      * output for the references API
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     public function references(OutputInterface $output, array $response)
     {
@@ -100,7 +99,7 @@ class Products
      * output for search/references
      *
      * @param OutputInterface $output
-     * @param array $response
+     * @param array           $response
      */
     private function showList(OutputInterface $output, array $response)
     {
@@ -119,4 +118,4 @@ class Products
 
         $table->render();
     }
-} 
+}

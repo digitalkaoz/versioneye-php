@@ -62,7 +62,7 @@ abstract class BaseApi
     /**
      * removes empty query string parameters
      *
-     * @param string $query
+     * @param  string $query
      * @return string
      */
     private function sanitizeQuery($query)
@@ -78,8 +78,8 @@ abstract class BaseApi
 
         $final = array();
 
-        if(!empty($vars)) {
-            foreach($vars as $var) {
+        if (!empty($vars)) {
+            foreach ($vars as $var) {
                 $parts = explode('=', $var);
 
                 $key = $parts[0];
