@@ -19,7 +19,7 @@ first you have to decide which `http adapter` to use. The library supports `guzz
 
 ```
 $ composer require "guzzlehttp/guzzle" ~4 //or
-$ composer require "kriswallsmith/buzz" 0.10
+$ composer require "kriswallsmith/buzz" ~0.10
 
 $ composer require "digitalkaoz/versioneye-php" *
 ```
