@@ -36,15 +36,16 @@ all API endpoints are implemented, see https://www.versioneye.com/api/v2/swagger
 
 use Rs\VersionEye\Client;
 
-$api = (new Client())->api('services'); // Rs\VersionEye\Api\Services
+$api = (new Client())->api('services');     // Rs\VersionEye\Api\Services
 $api->ping(); //array
 
 //other implemented APIs
-$api = (new Client())->api('github'); // Rs\VersionEye\Api\Github
-$api = (new Client())->api('me'); // Rs\VersionEye\Api\Me
-$api = (new Client())->api('products'); // Rs\VersionEye\Api\Products
-$api = (new Client())->api('sessions'); // Rs\VersionEye\Api\Sessions
-$api = (new Client())->api('users'); // Rs\VersionEye\Api\Users
+$api = (new Client())->api('github');       // Rs\VersionEye\Api\Github
+$api = (new Client())->api('me');           // Rs\VersionEye\Api\Me
+$api = (new Client())->api('projects');     // Rs\VersionEye\Api\Projects
+$api = (new Client())->api('products');     // Rs\VersionEye\Api\Products
+$api = (new Client())->api('sessions');     // Rs\VersionEye\Api\Sessions
+$api = (new Client())->api('users');        // Rs\VersionEye\Api\Users
 
 ```
 
