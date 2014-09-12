@@ -25,6 +25,7 @@ class BuzzClientSpec extends ObjectBehavior
     {
         $client->submit('http://lolcathost/bar', [], 'GET')->shouldBeCalled()->willReturn($response);
 
+        $response->isSuccessful()->shouldBeCalled()->willReturn(true);
         $response->getContent()->shouldBeCalled()->willReturn('[]');
 
         $this->request('GET', 'bar')->shouldBeArray();
@@ -34,6 +35,7 @@ class BuzzClientSpec extends ObjectBehavior
     {
         $client->submit('http://lolcathost/bar', [], 'PUT')->shouldBeCalled()->willReturn($response);
 
+        $response->isSuccessful()->shouldBeCalled()->willReturn(true);
         $response->getContent()->shouldBeCalled()->willReturn('[]');
 
         $this->request('PUT', 'bar')->shouldBeArray();
@@ -43,6 +45,7 @@ class BuzzClientSpec extends ObjectBehavior
     {
         $client->submit('http://lolcathost/bar', [], 'DELETE')->shouldBeCalled()->willReturn($response);
 
+        $response->isSuccessful()->shouldBeCalled()->willReturn(true);
         $response->getContent()->shouldBeCalled()->willReturn('[]');
 
         $this->request('DELETE', 'bar')->shouldBeArray();
@@ -56,6 +59,7 @@ class BuzzClientSpec extends ObjectBehavior
             return is_array($arg) && isset($arg['foo']) && $arg['foo'] instanceof FormUpload;
         }), 'POST')->shouldBeCalled()->willReturn($response);
 
+        $response->isSuccessful()->shouldBeCalled()->willReturn(true);
         $response->getContent()->shouldBeCalled()->willReturn('[]');
 
         $this->request('POST', 'bar', ['foo' => $file])->shouldBeArray();

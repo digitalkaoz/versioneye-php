@@ -16,6 +16,7 @@ interface HttpClient
      * @param  string $url
      * @param  array  $params
      * @return array
+     * @throws CommunicationException
      */
     public function request($method, $url, array $params = []);
 }

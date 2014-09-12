@@ -14,7 +14,7 @@ see https://www.versioneye.com/api/ for API documentation
 
 ##Installation
 
-first you have to decide which `http adapter` to use. The library supports `guzzlehttp/guzzle` and `kriswallsmith/buzz`. Where guzzle is preferred.
+first you have to decide which `http adapter` to use. The library supports `guzzlehttp/guzzle` and `kriswallsmith/buzz`. Where guzzle is default.
 
 
 ```
@@ -82,6 +82,7 @@ $ php versioneye-php.phar
 ##TODO
 
 * complete output presentations of each api endpoint
+* paging results
 
 ##Tests
 

@@ -43,6 +43,8 @@ abstract class BaseApi
             $url = sprintf('%s%sapi_key=%s', $url, $delimiter, $this->token);
         }
 
+        $url = $this->sanitizeQuery($url);
+
         return $this->client->request($method, $url, $params);
     }
 
@@ -55,5 +57,39 @@ abstract class BaseApi
     protected function transform($name)
     {
         return str_replace(['/', '.'], [':', '~'], $name);
+    }
+
+    /**
+     * removes empty query string parameters
+     *
+     * @param string $query
+     * @return string
+     */
+    private function sanitizeQuery($query)
+    {
+        $parts = parse_url($query);
+        $path = $parts['path'];
+
+        if (!isset($parts['query'])) {
+            return $query;
+        }
+
+        $vars = explode('&', $parts['query']);
+
+        $final = array();
+
+        if(!empty($vars)) {
+            foreach($vars as $var) {
+                $parts = explode('=', $var);
+
+                $key = $parts[0];
+                $val = $parts[1];
+
+                if(!array_key_exists($key, $final) && !empty($val))
+                    $final[$key] = $val;
+            }
+        }
+
+        return $path.'?'.http_build_query($final);
     }
 }

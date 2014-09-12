@@ -47,7 +47,16 @@ class BuzzClient implements HttpClient
         }
         $response = $this->client->submit($url, $params, $method);
 
-        return json_decode($response->getContent(), true);
+        if ($response->isSuccessful()) {
+            return json_decode($response->getContent(), true);
+        } elseif ($response->isServerError()) {
+            $data = json_decode($response->getBody(), true);
+            $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
+            throw new CommunicationException($response->getStatusCode().' : '.$message);
+        } elseif($response->isClientError()) {
+            $data = json_decode($response->getContent(), true);
+            throw new CommunicationException($response->getStatusCode().' : '.$data['error']);
+        }
     }
 
     /**

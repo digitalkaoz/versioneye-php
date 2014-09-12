@@ -4,6 +4,8 @@
 namespace Rs\VersionEye\Http;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Post\PostFile;
 
@@ -39,7 +41,16 @@ class GuzzleClient implements HttpClient
             $this->addParameters($params, $request);
         }
 
-        return $this->client->send($request)->json();
+        try {
+            return $this->client->send($request)->json();
+        } catch (ClientException $e) {
+            $data = json_decode($e->getResponse()->getBody(), true);
+            throw new CommunicationException($e->getResponse()->getStatusCode().' : '.$data['error']);
+        } catch (ServerException $e) {
+            $data = json_decode($e->getResponse()->getBody(), true);
+            $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
+            throw new CommunicationException($e->getResponse()->getStatusCode().' : '.$message);
+        }
     }
 
     /**

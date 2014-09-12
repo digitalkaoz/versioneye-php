@@ -147,8 +147,8 @@ class CommandFactory
             if (method_exists($className, $methodName)) {
                 (new $className())->{$methodName}($output, $response);
             } else {
-                ladybug_dump_die($response); //TODO switch once all are implemented
-                //$output->writeln(print_r($response, true));
+                //ladybug_dump_die($response); //TODO switch once all are implemented
+                $output->writeln(print_r($response, true));
             }
         };
     }
