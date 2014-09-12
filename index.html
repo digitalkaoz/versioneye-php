@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Versioneye-php by digitalkaoz</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Versioneye-php</h1>
+        <p>a PHP CLI tool and library for interacting with the VersionEye API</p>
+        <p class="view"><a href="https://github.com/digitalkaoz/versioneye-php">View the Project on GitHub <small>digitalkaoz/versioneye-php</small></a></p>
+        <ul>
+          <li><a href="https://github.com/digitalkaoz/versioneye-php/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/digitalkaoz/versioneye-php/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/digitalkaoz/versioneye-php">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="a-php-clilibrary-for-the-versioneye-api" class="anchor" href="#a-php-clilibrary-for-the-versioneye-api"><span class="octicon octicon-link"></span></a>a PHP CLI/Library for the VersionEye API</h1>
+
+<p>see <a href="https://www.versioneye.com/api/">https://www.versioneye.com/api/</a> for API documentation</p>
+
+<p><a href="https://travis-ci.org/digitalkaoz/versioneye-php"><img src="https://travis-ci.org/digitalkaoz/versioneye-php.svg?branch=master" alt="Build Status"></a></p>
+
+<p><a href="https://www.versioneye.com/user/projects/5411b8a68d7ae10d4c009233"><img src="https://www.versioneye.com/user/projects/5412a7388d7ae1d531009793/badge.svg?style=flat" alt="Dependency Status"></a>
+<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/coverage.png?b=master" alt="Code Coverage"></a>
+<a href="https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0"><img src="https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0/mini.png" alt="SensioLabsInsight"></a></p>
+
+<p><a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://poser.pugx.org/digitalkaoz/versioneye-php/version.svg" alt="Latest Stable Version"></a>
+<a href="//packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://poser.pugx.org/digitalkaoz/versioneye-php/v/unstable.svg" alt="Latest Unstable Version"></a>
+<a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://poser.pugx.org/digitalkaoz/versioneye-php/downloads.svg" alt="Total Downloads"></a></p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>first you have to decide which <code>http adapter</code> to use. The library supports <code>guzzlehttp/guzzle</code> and <code>kriswallsmith/buzz</code>. Where guzzle is default.</p>
+
+<pre><code>$ composer require "guzzlehttp/guzzle" ~4 //or
+$ composer require "kriswallsmith/buzz" ~0.10
+
+$ composer require "digitalkaoz/versioneye-php" *
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>all API endpoints are implemented, see <a href="https://www.versioneye.com/api/v2/swagger_doc.json">https://www.versioneye.com/api/v2/swagger_doc.json</a> for their detailed docs.</p>
+
+<h3>
+<a name="programmatic" class="anchor" href="#programmatic"><span class="octicon octicon-link"></span></a>programmatic:</h3>
+
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">Rs\VersionEye\Client</span><span class="p">;</span>
+
+<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'services'</span><span class="p">);</span>     <span class="c1">// Rs\VersionEye\Api\Services</span>
+<span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ping</span><span class="p">();</span> <span class="c1">//array</span>
+
+<span class="c1">//other implemented APIs</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'github'</span><span class="p">);</span>       <span class="c1">// Rs\VersionEye\Api\Github</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'me'</span><span class="p">);</span>           <span class="c1">// Rs\VersionEye\Api\Me</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'projects'</span><span class="p">);</span>     <span class="c1">// Rs\VersionEye\Api\Projects</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'products'</span><span class="p">);</span>     <span class="c1">// Rs\VersionEye\Api\Products</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'sessions'</span><span class="p">);</span>     <span class="c1">// Rs\VersionEye\Api\Sessions</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'users'</span><span class="p">);</span>        <span class="c1">// Rs\VersionEye\Api\Users</span>
+
+</pre></div>
+
+<h3>
+<a name="cli" class="anchor" href="#cli"><span class="octicon octicon-link"></span></a>cli:</h3>
+
+<pre><code>$ bin/versioneye services:ping
+$ bin/versioneye products:search symfony
+</code></pre>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>to store your generated API Token globally you can create a global config file in your home directory:</p>
+
+<p><code>~/.veye.rc</code> we share the same config file with the ruby cli <a href="https://github.com/versioneye/veye">https://github.com/versioneye/veye</a></p>
+
+<p>the file would look like:</p>
+
+<pre lang="rc"><code>:api_key: YOUR_API_TOKEN
+</code></pre>
+
+<p>now you dont have to pass your token on each call!</p>
+
+<h2>
+<a name="cli-tool" class="anchor" href="#cli-tool"><span class="octicon octicon-link"></span></a>CLI Tool</h2>
+
+<p>to build a standalone phar, simply execute the following commands.</p>
+
+<pre><code>$ vendor/bin/box build
+$ php versioneye-php.phar
+</code></pre>
+
+<h2>
+<a name="commands" class="anchor" href="#commands"><span class="octicon octicon-link"></span></a>Commands:</h2>
+
+<p>The Commands are autogenerated by introspecting the API Implementations. Each Public Method is a Command, each Method Parameter will be translated into a InputArgument or InputOption.</p>
+
+<pre><code>github
+  github:delete            remove imported project
+  github:hook              GitHub Hook
+  github:import            imports project file from github
+  github:repos             lists your's github repos
+  github:search            search github repositories on github
+  github:show              shows the detailed information for the repository
+  github:sync              re-load github data
+me
+  me:comments              shows comments of authorized user
+  me:favorites             shows favorite packages for authorized user
+  me:notifications         shows unread notifications of authorized user
+  me:profile               shows profile of authorized user
+products
+  products:follow          follow your favorite software package
+  products:follow-status   check your following status
+  products:references      references
+  products:search          search packages
+  products:show            detailed information for specific package
+  products:unfollow        unfollow given software package
+projects
+  projects:all             shows user`s projects
+  projects:create          upload project file
+  projects:delete          delete given project
+  projects:licenses        get grouped view of licences for dependencies
+  projects:show            shows the project's information
+  projects:update          update project with new file
+services
+  services:ping            Answers to request with basic pong.
+sessions
+  sessions:close           delete current session aka log out.
+  sessions:open            creates new sessions
+  sessions:show            returns session info for authorized users
+users
+  users:comments           shows user's comments
+  users:favorites          shows user's favorite packages
+  users:show               shows profile of given user_id
+</code></pre>
+
+<h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>complete output presentations of each api endpoint</li>
+<li>paging results</li>
+</ul><h2>
+<a name="tests" class="anchor" href="#tests"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<pre><code>$ vendor/bin/phpspec run
+</code></pre>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/digitalkaoz">digitalkaoz</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
