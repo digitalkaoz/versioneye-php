@@ -15,7 +15,7 @@ class Application extends BaseApplication
 {
     public function __construct()
     {
-        parent::__construct('versioneye', '@@version@@');
+        parent::__construct('versioneye', '@git-version@');
     }
 
     /**

@@ -4,7 +4,7 @@ see https://www.versioneye.com/api/ for API documentation
 
 [![Build Status](https://travis-ci.org/digitalkaoz/versioneye-php.svg?branch=master)](https://travis-ci.org/digitalkaoz/versioneye-php)
 
-[![Dependency Status](https://www.versioneye.com/user/projects/5411b8a68d7ae10d4c009233/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5411b8a68d7ae10d4c009233)
+[![Dependency Status](https://www.versioneye.com/user/projects/5412a7388d7ae1d531009793/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5411b8a68d7ae10d4c009233)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
 
@@ -78,6 +78,47 @@ to build a standalone phar, simply execute the following commands.
 $ vendor/bin/box build
 $ php versioneye-php.phar
 ```
+
+## Commands:
+
+    github
+      github:delete            remove imported project
+      github:hook              GitHub Hook
+      github:import            imports project file from github
+      github:repos             lists your's github repos
+      github:search            search github repositories on github
+      github:show              shows the detailed information for the repository
+      github:sync              re-load github data
+    me
+      me:comments              shows comments of authorized user
+      me:favorites             shows favorite packages for authorized user
+      me:notifications         shows unread notifications of authorized user
+      me:profile               shows profile of authorized user
+    products
+      products:follow          follow your favorite software package
+      products:follow-status   check your following status
+      products:references      references
+      products:search          search packages
+      products:show            detailed information for specific package
+      products:unfollow        unfollow given software package
+    projects
+      projects:all             shows user`s projects
+      projects:create          upload project file
+      projects:delete          delete given project
+      projects:licenses        get grouped view of licences for dependencies
+      projects:show            shows the project's information
+      projects:update          update project with new file
+    services
+      services:ping            Answers to request with basic pong.
+    sessions
+      sessions:close           delete current session aka log out.
+      sessions:open            creates new sessions
+      sessions:show            returns session info for authorized users
+    users
+      users:comments           shows user's comments
+      users:favorites          shows user's favorite packages
+      users:show               shows profile of given user_id
+
 
 ##TODO
 
