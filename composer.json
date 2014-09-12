@@ -10,9 +10,8 @@
     "require-dev": {
         "guzzlehttp/guzzle":        "~4",
         "kriswallsmith/buzz":       "~0.10",
-        "phpspec/phpspec":          "@dev",
-        "kherge/box":               "@stable",
-        "raulfraile/ladybug":       "@stable"
+
+        "phpspec/phpspec":          "@dev"
     },
 
     "suggest": {
