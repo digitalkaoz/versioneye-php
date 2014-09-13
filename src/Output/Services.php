@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Services
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
-class Services
+class Services extends BaseOutput
 {
     /**
      * output for the ping api
@@ -18,11 +18,6 @@ class Services
      */
     public function ping(OutputInterface $output, array $response)
     {
-        if (true == $response['success']) {
-            $output->writeln('<info>'.$response['message'].'</info>');
-        } else {
-            $output->writeln('<error>'.$response['message'].'</error>');
-        }
+        $this->printBoolean($output, $response['message'], $response['message'], true == $response['success']);
     }
-
 }

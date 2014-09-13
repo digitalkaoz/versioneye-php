@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Projects
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
-class Projects
+class Projects extends BaseOutput
 {
     /**
      * output for projects API
@@ -20,25 +20,18 @@ class Projects
      */
     public function all(OutputInterface $output, array $response)
     {
-        $table = new Table($output);
+        $this->printTable($output,
+            ['Id', 'Key', 'Name', 'Type', 'Public', 'Dependencies', 'Outdated', 'Updated At'],
+            ['id', 'project_key', 'name', 'project_type', 'public', 'dep_number', 'out_number', 'updated_at'],
+            $response,
+            function($key, $value) {
+                if ('out_number' !== $key) {
+                    return $value;
+                }
 
-        $table->setHeaders(['id','key', 'name', 'type', 'public', 'deps', 'outdated', 'created', 'updated']);
-
-        foreach ($response as $project) {
-            $table->addRow([
-                $project['id'],
-                $project['project_key'],
-                $project['name'],
-                $project['project_type'],
-                $project['public'] ? 'yes' : 'no',
-                $project['dep_number'],
-                $project['out_number'] > 0 ? '<error>yes</error>' : '<info>no</info>',
-                $project['created_at'],
-                $project['updated_at']
-            ]);
-        }
-
-        $table->render();
+                return $value > 0 ? '<error>'.$value.'</error>' : '<info>No</info>';
+            }
+        );
     }
 
     /**
@@ -105,11 +98,7 @@ class Projects
      */
     public function delete(OutputInterface $output, array $response)
     {
-        if (true == $response['success']) {
-            $output->writeln('<info>'.$response['message'].'</info>');
-        } else {
-            $output->writeln('<error>'.$response['message'].'</error>');
-        }
+        $this->printBoolean($output, $response['message'], $response['message'], true == $response['success']);
     }
 
     /**
@@ -120,29 +109,30 @@ class Projects
      */
     private function output(OutputInterface $output, array $response)
     {
-        $output->writeln('<comment>Name</comment>       : <info>' . $response['name'] . '</info>');
-        $output->writeln('<comment>ID</comment>         : <info>' . $response['id'] . '</info>');
-        $output->writeln('<comment>Key</comment>        : <info>' . $response['project_key'] . '</info>');
-        $output->writeln('<comment>Type</comment>       : <info>' . $response['project_type'] . '</info>');
-        $output->writeln('<comment>Public</comment>     : <info>' . ($response['public'] ? 'yes' : 'no') . '</info>');
-        $output->writeln('<comment>Outdated</comment>   : '.($response['out_number'] > 0 ? '<error>yes</error>' : '<info>no</info>'));
-        $output->writeln('<comment>Created At</comment> : <info>' . $response['created_at'] . '</info>');
-        $output->writeln('<comment>Updated At</comment> : <info>' . $response['updated_at']. '</info>');
+        $this->printList($output,
+            ['Name', 'Id', 'Key', 'Type', 'Public', 'Outdated', 'Updated At'],
+            ['name', 'id', 'project_key', 'project_type', 'public', 'out_number', 'updated_at'],
+            $response,
+            function($key, $value) {
+                if ('Outdated' !== $key) {
+                    return $value;
+                }
 
-        $table = new Table($output);
+                return $value > 0 ? '<error>'.$value.'</error>' : '<info>No</info>';
+            }
+        );
 
-        $table->setHeaders(['name', 'stable', 'outdated', 'current', 'requested']);
+        $this->printTable($output,
+            ['Name', 'Stable', 'Outdated', 'Current', 'Requested'],
+            ['name', 'stable', 'outdated', 'version_current', 'version_requested'],
+            $response['dependencies'],
+            function($key, $value) {
+                if ('outdated' !== $key) {
+                    return $value;
+                }
 
-        foreach ($response['dependencies'] as $project) {
-            $table->addRow([
-                $project['name'],
-                $project['stable'] ? 'yes' : 'no',
-                $project['outdated'] ? '<error>yes</error>' : '<info>no</info>',
-                $project['version_current'],
-                $project['version_requested']
-            ]);
-        }
-
-        $table->render();
+                return $value ? '<error>Yes</error>' : '<info>No</info>';
+            }
+        );
     }
 }

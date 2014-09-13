@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Me
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
-class Me
+class Me extends BaseOutput
 {
     /**
      * output for the profile api
@@ -20,12 +20,18 @@ class Me
      */
     public function profile(OutputInterface $output, array $response)
     {
-        $output->writeln('<comment>Full Name</comment>     : <info>' . $response['fullname'] . '</info>');
-        $output->writeln('<comment>Username</comment>      : <info>' . $response['username'] . '</info>');
-        $output->writeln('<comment>E-Mail</comment>        : <info>' . $response['email'] . '</info>');
-        $output->writeln('<comment>Admin</comment>         : <info>' . ($response['admin'] ? 'yes' : 'no') . '</info>');
-        $output->writeln('<comment>Deleted</comment>       : <info>' . ($response['deleted'] ? 'yes' : 'no') . '</info>');
-        $output->writeln('<comment>Notifications</comment> : <info>' . $response['notifications']['new'] . '/' . $response['notifications']['total'] . '</info>');
+        $this->printList($output,
+            ['Fullname', 'Username', 'Email', 'Admin', 'Notifications'],
+            ['fullname', 'username', 'email', 'admin', 'notifications'],
+            $response,
+            function($key, $value) {
+                if ('Notifications' !== $key) {
+                    return $value;
+                }
+
+                return sprintf('%d / %d', $value['new'], $value['total']);
+            }
+        );
     }
 
     /**
@@ -36,15 +42,11 @@ class Me
      */
     public function favorites(OutputInterface $output, array $response)
     {
-        $table = new Table($output);
-
-        $table->setHeaders(['name', 'language', 'version', 'type']);
-
-        foreach ($response['favorites'] as $favorite) {
-            $table->addRow([$favorite['name'], $favorite['language'], $favorite['version'], $favorite['prod_type']]);
-        }
-
-        $table->render();
+        $this->printTable($output,
+            ['name', 'language', 'version', 'type'],
+            ['name', 'language', 'version', 'prod_type'],
+            $response['favorites']
+        );
     }
 
     /**
@@ -57,7 +59,7 @@ class Me
     {
         $table = new Table($output);
 
-        $table->setHeaders(['name', 'language', 'version', 'type', 'date', 'comment']);
+        $table->setHeaders(['Name', 'Language', 'Version', 'Type', 'Date', 'Comment']);
 
         foreach ($response['comments'] as $comment) {
             $table->addRow([$comment['product']['name'], $comment['product']['language'], $comment['product']['version'], $comment['product']['prod_type'], $comment['created_at'], $comment['comment']]);

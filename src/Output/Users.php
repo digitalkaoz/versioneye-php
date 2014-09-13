@@ -19,7 +19,10 @@ class Users extends Me
      */
     public function show(OutputInterface $output, array $response)
     {
-        $output->writeln('<comment>Full Name</comment>     : <info>' . $response['fullname'] . '</info>');
-        $output->writeln('<comment>Username</comment>      : <info>' . $response['username'] . '</info>');
+        $this->printList($output,
+            ['Fullname', 'Username'],
+            ['fullname', 'username'],
+            $response
+        );
     }
 }

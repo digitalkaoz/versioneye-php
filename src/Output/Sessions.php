@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Sessions
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
-class Sessions
+class Sessions extends BaseOutput
 {
     /**
      * output for show API
@@ -19,8 +19,11 @@ class Sessions
      */
     public function show(OutputInterface $output, array $response)
     {
-        $output->writeln('<comment>Full Name</comment> : <info>'.$response['fullname'].'</info>');
-        $output->writeln('<comment>API Token</comment> : <info>'.$response['api_key'].'</info>');
+        $this->printList($output,
+            ['Fullname', 'API Token'],
+            ['fullname', 'api_key'],
+            $response
+        );
     }
 
     /**
@@ -31,11 +34,7 @@ class Sessions
      */
     public function open(OutputInterface $output, $response)
     {
-        if ('true' == $response) {
-            $output->writeln('<info>OK</info>');
-        } else {
-            $output->writeln('<error>FAIL</error>');
-        }
+        $this->printBoolean($output, 'OK', 'FAIL', 'true' === $response); //response isnt an array oO
     }
 
     /**
@@ -46,10 +45,6 @@ class Sessions
      */
     public function close(OutputInterface $output, array $response)
     {
-        if ('Session is closed now.' == $response['message']) {
-            $output->writeln('<info>OK</info>');
-        } else {
-            $output->writeln('<error>FAIL</error>');
-        }
+        $this->printBoolean($output, 'OK', 'FAIL', 'Session is closed now.' == $response['message']);
     }
 }

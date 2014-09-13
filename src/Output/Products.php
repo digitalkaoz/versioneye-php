@@ -1,14 +1,14 @@
 <?php
 
 namespace Rs\VersionEye\Output;
-use Symfony\Component\Console\Helper\Table;
+
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Products
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
-class Products
+class Products extends BaseOutput
 {
     /**
      * output for the search API
@@ -18,7 +18,11 @@ class Products
      */
     public function search(OutputInterface $output, array $response)
     {
-        $this->showList($output, $response);
+        $this->printTable($output,
+            ['Name', 'Language', 'Version', 'Type'],
+            ['name', 'language', 'version', 'prod_type'],
+            $response['results']
+        );
     }
 
     /**
@@ -29,14 +33,11 @@ class Products
      */
     public function show(OutputInterface $output, array $response)
     {
-        $output->writeln('<comment>Name</comment>       : <info>' . $response['name'] . '</info>');
-        $output->writeln('<comment>Description</comment>: <info>' . $response['description'] . '</info>');
-        $output->writeln('<comment>Key</comment>        : <info>' . $response['prod_key'] . '</info>');
-        $output->writeln('<comment>Type</comment>       : <info>' . $response['prod_type'] . '</info>');
-        $output->writeln('<comment>License</comment>    : <info>' . $response['license_info'] . '</info>');
-        $output->writeln('<comment>Version</comment>    : <info>' . $response['version'] . '</info>');
-        $output->writeln('<comment>Group</comment>      : <info>'.$response['group_id'].'</info>');
-        $output->writeln('<comment>Updated At</comment> : <info>' . $response['updated_at']. '</info>');
+        $this->printList($output,
+            ['Name', 'Description', 'Key', 'Type', 'License', 'Version', 'Group', 'Updated At'],
+            ['name', 'description', 'prod_key', 'prod_type', 'license_info', 'version', 'group_id', 'updated_at'],
+            $response
+        );
     }
 
     /**
@@ -47,11 +48,7 @@ class Products
      */
     public function followStatus(OutputInterface $output, array $response)
     {
-        if (true == $response['follows']) {
-            $output->writeln('<info>YES</info>');
-        } else {
-            $output->writeln('<error>NO</error>');
-        }
+        $this->printBoolean($output, 'YES', 'NO', true === $response['follows']);
     }
 
     /**
@@ -62,11 +59,7 @@ class Products
      */
     public function follow(OutputInterface $output, array $response)
     {
-        if (true == $response['follows']) {
-            $output->writeln('<info>OK</info>');
-        } else {
-            $output->writeln('<error>FAIL</error>');
-        }
+        $this->printBoolean($output, 'OK', 'FAIL', true === $response['follows']);
     }
 
     /**
@@ -77,11 +70,7 @@ class Products
      */
     public function unfollow(OutputInterface $output, array $response)
     {
-        if (false == $response['follows']) {
-            $output->writeln('<info>OK</info>');
-        } else {
-            $output->writeln('<error>FAIL</error>');
-        }
+        $this->printBoolean($output, 'OK', 'FAIL', false === $response['follows']);
     }
 
     /**
@@ -92,30 +81,10 @@ class Products
      */
     public function references(OutputInterface $output, array $response)
     {
-        $this->showList($output, $response);
-    }
-
-    /**
-     * output for search/references
-     *
-     * @param OutputInterface $output
-     * @param array           $response
-     */
-    private function showList(OutputInterface $output, array $response)
-    {
-        $table = new Table($output);
-
-        $table->setHeaders(['name', 'language', 'version', 'type']);
-
-        foreach ($response['results'] as $project) {
-            $table->addRow([
-                $project['name'],
-                $project['language'],
-                $project['version'],
-                $project['prod_type']
-            ]);
-        }
-
-        $table->render();
+        $this->printTable($output,
+            ['Name', 'Language', 'Version', 'Type'],
+            ['name', 'language', 'version', 'prod_type'],
+            $response['results']
+        );
     }
 }
