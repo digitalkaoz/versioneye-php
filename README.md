@@ -4,7 +4,7 @@ see https://www.versioneye.com/api/ for API documentation
 
 [![Build Status](https://travis-ci.org/digitalkaoz/versioneye-php.svg?branch=master)](https://travis-ci.org/digitalkaoz/versioneye-php)
 
-[![Dependency Status](https://www.versioneye.com/user/projects/5412a7388d7ae1d531009793/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5411b8a68d7ae10d4c009233)
+[![Dependency Status](https://www.versioneye.com/php/digitalkaoz:versioneye-php/badge.svg?style=flat)](https://www.versioneye.com/php/digitalkaoz:versioneye-php)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0/mini.png)](https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0)
