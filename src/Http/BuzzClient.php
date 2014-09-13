@@ -5,6 +5,7 @@ namespace Rs\VersionEye\Http;
 
 use Buzz\Browser;
 use Buzz\Message\Form\FormUpload;
+use Buzz\Message\Response;
 
 /**
  * BuzzClient
@@ -46,11 +47,12 @@ class BuzzClient implements HttpClient
             $this->modifyParameters($params);
         }
         $response = $this->client->submit($url, $params, $method);
+        /** @var Response $response */
 
         if ($response->isSuccessful()) {
             return json_decode($response->getContent(), true);
         } elseif ($response->isServerError()) {
-            $data = json_decode($response->getBody(), true);
+            $data = json_decode($response->getContent(), true);
             $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
             throw new CommunicationException($response->getStatusCode().' : '.$message);
         } elseif ($response->isClientError()) {
