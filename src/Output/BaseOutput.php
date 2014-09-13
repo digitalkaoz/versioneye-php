@@ -109,7 +109,7 @@ abstract class BaseOutput
     /**
      * calculates the max width of a given set of string
      *
-     * @param  array $headings
+     * @param  string[] $headings
      * @return int
      */
     private function getColumnWidth(array $headings)
