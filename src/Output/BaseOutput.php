@@ -16,8 +16,8 @@ abstract class BaseOutput
      * prints a table, values can be modified via $callback
      *
      * @param OutputInterface $output
-     * @param array           $headings
-     * @param array           $keys
+     * @param string[]        $headings
+     * @param string[]        $keys
      * @param array           $data
      * @param \Closure        $callback
      */
@@ -59,8 +59,8 @@ abstract class BaseOutput
      * prints a list combined as <comment>Heading</comment> : <info>Value</info>, values can be modified via $callback
      *
      * @param OutputInterface $output
-     * @param array           $headings
-     * @param array           $keys
+     * @param string[]        $headings
+     * @param string[]        $keys
      * @param array           $data
      * @param \Closure        $callback
      */
