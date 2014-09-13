@@ -86,7 +86,7 @@ abstract class BaseOutput
      * @param OutputInterface $output
      * @param array           $products
      */
-    proteced public function printProducts(OutputInterface $output, array $products)
+    protected function printProducts(OutputInterface $output, array $products)
     {
         $this->printTable($output,
             ['Name', 'Language', 'Version', 'Type'],
