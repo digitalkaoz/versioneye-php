@@ -81,6 +81,21 @@ abstract class BaseOutput
     }
 
     /**
+     * output for references/search api
+     *
+     * @param OutputInterface $output
+     * @param array           $products
+     */
+    proteced public function printProducts(OutputInterface $output, array $products)
+    {
+        $this->printTable($output,
+            ['Name', 'Language', 'Version', 'Type'],
+            ['name', 'language', 'version', 'prod_type'],
+            $$products
+        );
+    }
+
+    /**
      * calculates the max width of a given set of string
      *
      * @param  array $headings

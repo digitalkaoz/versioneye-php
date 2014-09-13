@@ -18,7 +18,7 @@ class Products extends BaseOutput
      */
     public function search(OutputInterface $output, array $response)
     {
-        $this->output($output, $response);
+        $this->printProducts($output, $response['results']);
     }
 
     /**
@@ -29,7 +29,7 @@ class Products extends BaseOutput
      */
     public function references(OutputInterface $output, array $response)
     {
-        $this->output($output, $response);
+        $this->printProducts($output, $response['results']);
     }
 
     /**
@@ -78,20 +78,5 @@ class Products extends BaseOutput
     public function unfollow(OutputInterface $output, array $response)
     {
         $this->printBoolean($output, 'OK', 'FAIL', false === $response['follows']);
-    }
-
-    /**
-     * output for references/search api
-     *
-     * @param OutputInterface $output
-     * @param array           $response
-     */
-    private function output(OutputInterface $output, array $response)
-    {
-        $this->printTable($output,
-            ['Name', 'Language', 'Version', 'Type'],
-            ['name', 'language', 'version', 'prod_type'],
-            $response['results']
-        );
     }
 }
