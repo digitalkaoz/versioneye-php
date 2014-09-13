@@ -6,13 +6,21 @@ namespace Rs\VersionEye\Output;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 /**
  * BaseOutput
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 abstract class BaseOutput
 {
+    /**
+     * prints a table, values can be modified via $callback
+     *
+     * @param OutputInterface $output
+     * @param array           $headings
+     * @param array           $keys
+     * @param array           $data
+     * @param \Closure        $callback
+     */
     protected function printTable(OutputInterface $output, array $headings, array $keys, array $data, \Closure $callback = null)
     {
         $table = new Table($output);
@@ -30,6 +38,14 @@ abstract class BaseOutput
         $table->render();
     }
 
+    /**
+     * prints a simple boolean
+     *
+     * @param OutputInterface $output
+     * @param string          $success
+     * @param string          $fail
+     * @param boolean         $value
+     */
     protected function printBoolean(OutputInterface $output, $success, $fail, $value)
     {
         if ($value) {
@@ -39,9 +55,18 @@ abstract class BaseOutput
         }
     }
 
+    /**
+     * prints a list combined as <comment>Heading</comment> : <info>Value</info>, values can be modified via $callback
+     *
+     * @param OutputInterface $output
+     * @param array           $headings
+     * @param array           $keys
+     * @param array           $data
+     * @param \Closure        $callback
+     */
     protected function printList(OutputInterface $output, array $headings, array $keys, array $data, \Closure $callback = null)
     {
-        $width = $this->getColumnWidth($headings) + 5;
+        $width = $this->getColumnWidth($headings);
         $data = array_merge(array_flip($keys), array_intersect_key($data, array_flip($keys)));
 
         foreach ($headings as $key => $heading) {
@@ -56,8 +81,9 @@ abstract class BaseOutput
     }
 
     /**
-     * @param array $headings
+     * calculates the max width of a given set of string
      *
+     * @param  array $headings
      * @return int
      */
     private function getColumnWidth(array $headings)
@@ -67,7 +93,7 @@ abstract class BaseOutput
             $width = strlen($heading) > $width ? strlen($heading) : $width;
         }
 
-        return $width + 2;
+        return $width + 5;
     }
 
-} 
+}

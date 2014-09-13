@@ -24,7 +24,7 @@ class Projects extends BaseOutput
             ['Id', 'Key', 'Name', 'Type', 'Public', 'Dependencies', 'Outdated', 'Updated At'],
             ['id', 'project_key', 'name', 'project_type', 'public', 'dep_number', 'out_number', 'updated_at'],
             $response,
-            function($key, $value) {
+            function ($key, $value) {
                 if ('out_number' !== $key) {
                     return $value;
                 }
@@ -113,7 +113,7 @@ class Projects extends BaseOutput
             ['Name', 'Id', 'Key', 'Type', 'Public', 'Outdated', 'Updated At'],
             ['name', 'id', 'project_key', 'project_type', 'public', 'out_number', 'updated_at'],
             $response,
-            function($key, $value) {
+            function ($key, $value) {
                 if ('Outdated' !== $key) {
                     return $value;
                 }
@@ -126,7 +126,7 @@ class Projects extends BaseOutput
             ['Name', 'Stable', 'Outdated', 'Current', 'Requested'],
             ['name', 'stable', 'outdated', 'version_current', 'version_requested'],
             $response['dependencies'],
-            function($key, $value) {
+            function ($key, $value) {
                 if ('outdated' !== $key) {
                     return $value;
                 }

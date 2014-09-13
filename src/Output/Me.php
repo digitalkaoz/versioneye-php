@@ -24,7 +24,7 @@ class Me extends BaseOutput
             ['Fullname', 'Username', 'Email', 'Admin', 'Notifications'],
             ['fullname', 'username', 'email', 'admin', 'notifications'],
             $response,
-            function($key, $value) {
+            function ($key, $value) {
                 if ('Notifications' !== $key) {
                     return $value;
                 }

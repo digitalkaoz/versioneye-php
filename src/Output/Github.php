@@ -1,7 +1,6 @@
 <?php
 
 namespace Rs\VersionEye\Output;
-use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -55,11 +54,7 @@ class Github extends BaseOutput
      */
     public function import(OutputInterface $output, array $response)
     {
-        $this->printList($output,
-            ['Name', 'Homepage', 'Language', 'Description', 'Public', 'Created At', 'Http', 'Git'],
-            ['fullname', 'homepage', 'language', 'description', 'private', 'created_at', 'html_url', 'git_url'],
-            $response['repo']
-        );
+        $this->output($output, $response);
     }
 
     /**
@@ -69,6 +64,17 @@ class Github extends BaseOutput
      * @param array           $response
      */
     public function show(OutputInterface $output, array $response)
+    {
+        $this->output($output, $response);
+    }
+
+    /**
+     * output for the import/show api
+     *
+     * @param OutputInterface $output
+     * @param array           $response
+     */
+    private function output(OutputInterface $output, array $response)
     {
         $this->printList($output,
             ['Name', 'Homepage', 'Language', 'Description', 'Public', 'Created At', 'Http', 'Git'],
