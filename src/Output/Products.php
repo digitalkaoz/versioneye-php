@@ -18,11 +18,18 @@ class Products extends BaseOutput
      */
     public function search(OutputInterface $output, array $response)
     {
-        $this->printTable($output,
-            ['Name', 'Language', 'Version', 'Type'],
-            ['name', 'language', 'version', 'prod_type'],
-            $response['results']
-        );
+        $this->output($output, $response);
+    }
+
+    /**
+     * output for the references API
+     *
+     * @param OutputInterface $output
+     * @param array           $response
+     */
+    public function references(OutputInterface $output, array $response)
+    {
+        $this->output($output, $response);
     }
 
     /**
@@ -74,12 +81,12 @@ class Products extends BaseOutput
     }
 
     /**
-     * output for the references API
+     * output for references/search api
      *
      * @param OutputInterface $output
      * @param array           $response
      */
-    public function references(OutputInterface $output, array $response)
+    private function output(OutputInterface $output, array $response)
     {
         $this->printTable($output,
             ['Name', 'Language', 'Version', 'Type'],

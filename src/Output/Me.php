@@ -43,7 +43,7 @@ class Me extends BaseOutput
     public function favorites(OutputInterface $output, array $response)
     {
         $this->printTable($output,
-            ['name', 'language', 'version', 'type'],
+            ['Name', 'Language', 'Version', 'Type'],
             ['name', 'language', 'version', 'prod_type'],
             $response['favorites']
         );
