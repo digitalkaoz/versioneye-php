@@ -18,6 +18,6 @@ class Services extends BaseOutput
      */
     public function ping(OutputInterface $output, array $response)
     {
-        $this->printBoolean($output, $response['message'], $response['message'], true == $response['success']);
+        $this->printMessage($output, $response);
     }
 }

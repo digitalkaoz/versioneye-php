@@ -96,6 +96,17 @@ abstract class BaseOutput
     }
 
     /**
+     * prints a simple message
+     *
+     * @param OutputInterface $output
+     * @param array           $response
+     */
+    protected function printMessage(OutputInterface $output, array $response)
+    {
+        $this->printBoolean($output, $response['message'], $response['message'], true == $response['success']);
+    }
+
+    /**
      * calculates the max width of a given set of string
      *
      * @param  array $headings
