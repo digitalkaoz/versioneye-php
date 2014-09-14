@@ -46,6 +46,17 @@ class Me extends BaseOutput
     }
 
     /**
+     * output for the notifications api
+     *
+     * @param OutputInterface $output
+     * @param array           $response
+     */
+    public function notifications(OutputInterface $output, array $response)
+    {
+        $this->printProducts($output, $response['notifications']);
+    }
+
+    /**
      * output for the comments api
      *
      * @param OutputInterface $output

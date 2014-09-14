@@ -11,7 +11,8 @@
         "guzzlehttp/guzzle":        "~4",
         "kriswallsmith/buzz":       "~0.10",
 
-        "phpspec/phpspec":          "@dev"
+        "phpspec/phpspec":          "@dev",
+        "bossa/phpspec2-expect": "@stable"
     },
 
     "suggest": {
