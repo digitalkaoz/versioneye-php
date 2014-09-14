@@ -3,20 +3,17 @@
 namespace spec\Rs\VersionEye\Output;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-use Symfony\Component\Console\Formatter\OutputFormatter;
-use Symfony\Component\Console\Formatter\OutputFormatterInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class GithubSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Rs\VersionEye\Output\Github');
     }
 
-    function it_prints_a_boolean_on_sync(OutputInterface $output)
+    public function it_prints_a_boolean_on_sync(OutputInterface $output)
     {
         $output = new BufferedOutput();
 
@@ -29,7 +26,7 @@ EOS
         );
     }
 
-    function it_prints_a_boolean_on_hook(OutputInterface $output)
+    public function it_prints_a_boolean_on_hook(OutputInterface $output)
     {
         $output = new BufferedOutput();
 
@@ -42,7 +39,7 @@ EOS
         );
     }
 
-    function it_prints_a_table_on_repos()
+    public function it_prints_a_table_on_repos()
     {
         $output = new BufferedOutput();
         $this->repos($output, ['repos' => [['fullname' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'description' => 'wrapper around versioneye api', 'owner_login' => 'digitalkaoz', 'fork' => false, 'foo' => 'bazz']]]);
@@ -58,7 +55,7 @@ EOS
         );
     }
 
-    function it_prints_a_table_on_search()
+    public function it_prints_a_table_on_search()
     {
         $output = new BufferedOutput();
         $this->search($output, ['results' => [['fullname' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'description' => 'wrapper around versioneye api', 'owner_login' => 'digitalkaoz', 'fork' => false, 'foo' => 'bazz']]]);
@@ -74,7 +71,7 @@ EOS
         );
     }
 
-    function it_prints_a_list_on_import()
+    public function it_prints_a_list_on_import()
     {
         $output = new BufferedOutput();
         $this->import($output, ['repo' => [
@@ -102,7 +99,7 @@ EOS
         );
     }
 
-    function it_prints_a_list_on_show()
+    public function it_prints_a_list_on_show()
     {
         $output = new BufferedOutput();
         $this->show($output, ['repo' => [
