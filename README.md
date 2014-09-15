@@ -17,7 +17,7 @@ see https://www.versioneye.com/api/ for API documentation
 
 ### phar (recommend)
 
-download the latest version from the [Releases section](https://github.com/digitalkaoz/versioneye-php/releases) or from the cli:
+download the latest version from the [Releases section](https://github.com/digitalkaoz/versioneye-php/releases/latest) or from the cli:
 ```
 $ wget https://github.com/digitalkaoz/versioneye-php/releases/download/0.6.1/versioneye.phar //or latest stable
 ```
