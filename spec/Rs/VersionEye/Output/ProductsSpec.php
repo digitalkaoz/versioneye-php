@@ -69,7 +69,10 @@ EOS
             'license_info' => 'MIT',
             'version' => '1.0.0',
             'group_id' => 'foo',
-            'updated_at' => '25.05.1981'
+            'updated_at' => '25.05.1981',
+            'dependencies' => [
+                ['name' => 'symfony/console', 'parsed_version' => '2.5.3', 'version' => '~2.3'],
+            ]
         ]);
 
         expect($output->fetch())->toBe(<<<EOS
@@ -81,6 +84,11 @@ License          : MIT
 Version          : 1.0.0
 Group            : foo
 Updated At       : 25.05.1981
++-----------------+---------+-----------+
+| Name            | Current | Requested |
++-----------------+---------+-----------+
+| symfony/console | 2.5.3   | ~2.3      |
++-----------------+---------+-----------+
 
 EOS
         );
