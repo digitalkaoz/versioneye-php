@@ -45,6 +45,13 @@ class Products extends BaseOutput
             ['name', 'description', 'prod_key', 'prod_type', 'license_info', 'version', 'group_id', 'updated_at'],
             $response
         );
+
+        $this->printTable($output,
+            ['Name', 'Current', 'Requested'],
+            ['name', 'parsed_version', 'version'],
+            $response['dependencies']
+        );
+
     }
 
     /**
