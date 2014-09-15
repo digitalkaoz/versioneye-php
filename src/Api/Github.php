@@ -31,28 +31,11 @@ class Github extends BaseApi implements Api
     /**
      * re-load github data
      *
-     * @param  bool  $force
      * @return array
      */
-    public function sync($force = null)
+    public function sync()
     {
-        return $this->request(sprintf('github/sync?force=%b', $force));
-    }
-
-    /**
-     * search github repositories on github
-     *
-     * @param  string $query
-     * @param  string $languages
-     * @param  string $users
-     * @param  int    $page
-     * @return array
-     */
-    public function search($query, $languages = null, $users = null, $page = 1)
-    {
-        return $this->request(sprintf('github/search?q=%s&langs=%s&users=%s&page=%d',
-            $query, $languages, $users, $page
-        ));
+        return $this->request('github/sync');
     }
 
     /**
@@ -71,11 +54,12 @@ class Github extends BaseApi implements Api
      *
      * @param  string $repository
      * @param  string $branch
+     * @param  string $file
      * @return array
      */
-    public function import($repository, $branch = null)
+    public function import($repository, $branch = null, $file = null)
     {
-        return $this->request(sprintf('github/%s?branch=%s', $this->transform($repository), $branch), 'POST');
+        return $this->request(sprintf('github/%s?branch=%s&file=%s', $this->transform($repository), $branch, $file), 'POST');
     }
 
     /**
@@ -83,11 +67,12 @@ class Github extends BaseApi implements Api
      *
      * @param  string $repository
      * @param  string $branch
+     * @param  string $file
      * @return array
      */
-    public function delete($repository, $branch = null)
+    public function delete($repository, $branch = null, $file = null)
     {
-        return $this->request(sprintf('github/%s?branch=%s', $this->transform($repository), $branch), 'DELETE');
+        return $this->request(sprintf('github/%s?branch=%s&file=%s', $this->transform($repository), $branch, $file), 'DELETE');
     }
 
     /**

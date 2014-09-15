@@ -18,14 +18,15 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CommandFactory
 {
-    private $classes = [];
-
     /**
-     * @param array $classes
+     * generates Commands from all Api Methods
+     *
+     * @param  array     $classes
+     * @return Command[]
      */
-    public function __construct(array $classes = [])
+    public function generateCommands(array $classes = [])
     {
-        $this->classes = $classes ?: [
+        $classes = $classes ?: [
             'Rs\VersionEye\Api\Github',
             'Rs\VersionEye\Api\Me',
             'Rs\VersionEye\Api\Products',
@@ -34,19 +35,11 @@ class CommandFactory
             'Rs\VersionEye\Api\Sessions',
             'Rs\VersionEye\Api\Users'
         ];
-    }
 
-    /**
-     * generates Commands from all Api Methods
-     *
-     * @return Command[]
-     */
-    public function generateCommands()
-    {
         $commands = [];
         $token = $this->readConfigurationFile();
 
-        foreach ($this->classes as $class) {
+        foreach ($classes as $class) {
             $api = new \ReflectionClass($class);
 
             foreach ($api->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {

@@ -8,11 +8,11 @@
         "phpdocumentor/reflection-docblock":    "~2.0"
     },
     "require-dev": {
-        "guzzlehttp/guzzle":        "~4",
-        "kriswallsmith/buzz":       "~0.10",
+        "guzzlehttp/guzzle":                    "~4",
+        "kriswallsmith/buzz":                   "~0.10",
 
-        "phpspec/phpspec":          "@dev",
-        "bossa/phpspec2-expect": "@stable"
+        "phpspec/phpspec":                      "@dev",
+        "bossa/phpspec2-expect":                "@stable"
     },
 
     "suggest": {

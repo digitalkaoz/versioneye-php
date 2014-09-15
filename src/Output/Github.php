@@ -18,7 +18,7 @@ class Github extends BaseOutput
      */
     public function sync(OutputInterface $output, array $response)
     {
-        $this->printBoolean($output, 'OK', 'UP TO DATE', true === $response['changed']);
+        $this->printBoolean($output, 'OK', $response['status'], 'done' === $response['status']);
     }
 
     /**
@@ -44,21 +44,6 @@ class Github extends BaseOutput
             ['Name', 'Language', 'Description', 'Owner', 'Fork'],
             ['fullname', 'language', 'description', 'owner_login', 'fork'],
             $response['repos']
-        );
-    }
-
-    /**
-     * output for search api
-     *
-     * @param OutputInterface $output
-     * @param array           $response
-     */
-    public function search(OutputInterface $output, array $response)
-    {
-        $this->printTable($output,
-            ['Name', 'Language', 'Description', 'Owner', 'Fork'],
-            ['fullname', 'language', 'description', 'owner_login', 'fork'],
-            $response['results']
         );
     }
 

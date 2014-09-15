@@ -91,7 +91,7 @@ abstract class BaseOutput
         $this->printTable($output,
             ['Name', 'Language', 'Version', 'Type'],
             ['name', 'language', 'version', 'prod_type'],
-            $$products
+            $products
         );
     }
 

@@ -28,16 +28,9 @@ class GithubSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_sync(Client $client)
     {
-        $client->request('GET', 'github/sync?force=1&api_key=4711', [])->willReturn([]);
+        $client->request('GET', 'github/sync?api_key=4711', [])->willReturn([]);
 
-        $this->sync(true)->shouldBeArray();
-    }
-
-    public function it_calls_the_correct_url_on_search(Client $client)
-    {
-        $client->request('GET', 'github/search?q=symfony&langs=php&users=fabpot&page=12&api_key=4711', [])->willReturn([]);
-
-        $this->search('symfony', 'php', 'fabpot', 12)->shouldBeArray();
+        $this->sync()->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_show(Client $client)
@@ -49,16 +42,16 @@ class GithubSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_import(Client $client)
     {
-        $client->request('POST', 'github/symfony:symfony?branch=develop&api_key=4711', [])->willReturn([]);
+        $client->request('POST', 'github/symfony:symfony?branch=develop&file=composer.json&api_key=4711', [])->willReturn([]);
 
-        $this->import('symfony/symfony', 'develop')->shouldBeArray();
+        $this->import('symfony/symfony', 'develop', 'composer.json')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_delete(Client $client)
     {
-        $client->request('DELETE', 'github/symfony:symfony?branch=develop&api_key=4711', [])->willReturn([]);
+        $client->request('DELETE', 'github/symfony:symfony?branch=develop&file=composer.json&api_key=4711', [])->willReturn([]);
 
-        $this->delete('symfony/symfony', 'develop')->shouldBeArray();
+        $this->delete('symfony/symfony', 'develop', 'composer.json')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_hook(Client $client)

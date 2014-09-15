@@ -3,15 +3,9 @@
 namespace spec\Rs\VersionEye;
 
 use PhpSpec\ObjectBehavior;
-use Rs\VersionEye\Http\HttpClient;
 
 class ClientSpec extends ObjectBehavior
 {
-    public function let(HttpClient $client)
-    {
-        $this->beConstructedWith($client, 'http://lolcathost');
-    }
-
     public function it_is_initializable()
     {
         $this->shouldHaveType('Rs\VersionEye\Client');
