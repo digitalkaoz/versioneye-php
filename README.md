@@ -15,6 +15,14 @@ see https://www.versioneye.com/api/ for API documentation
 
 ##Installation
 
+### phar (recommend)
+
+```
+$ wget https://github.com/digitalkaoz/versioneye-php/releases/download/0.6.1/versioneye.phar //or latest stable
+```
+
+### source
+
 first you have to decide which `http adapter` to use. The library supports `guzzlehttp/guzzle` and `kriswallsmith/buzz`. Where guzzle is default.
 
 
