@@ -79,7 +79,7 @@ php versioneye.phar products:search "symfony"
 php versioneye.phar products:show "php" "symfony:symfony"
 ```
 
-The last command requires that you have setup your []API Key](https://www.versioneye.com/settings/api) correctly. 
+The last command requires that you have setup your [API Key](https://www.versioneye.com/settings/api) correctly. 
 
 
 ##Configuration
