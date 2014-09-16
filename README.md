@@ -15,14 +15,19 @@ see https://www.versioneye.com/api/ for API documentation
 
 ##Installation
 
-### phar (recommend)
+There are 2 ways to install it: 
+ 
+  - Download the Phar (recommended)
+  - Install from source code
+
+### Download the Phar (recommended)
 
 download the latest version from the [Releases section](https://github.com/digitalkaoz/versioneye-php/releases/latest) or from the cli:
 ```
 $ wget https://github.com/digitalkaoz/versioneye-php/releases/download/0.6.1/versioneye.phar //or latest stable
 ```
 
-### source
+### Install from source code
 
 first you have to decide which `http adapter` to use. The library supports `guzzlehttp/guzzle` and `kriswallsmith/buzz`. Where guzzle is default.
 
@@ -61,14 +66,25 @@ $api = (new Client())->api('users');        // Rs\VersionEye\Api\Users
 
 ### cli:
 
+Here some usage examples.
+
 ```
 $ bin/versioneye services:ping
 $ bin/versioneye products:search symfony
 ```
+Or with the phar file. 
+
+```
+php versioneye.phar products:search "symfony"
+php versioneye.phar products:show "php" "symfony:symfony"
+```
+
+The last command requires that you have setup your API Key correctly. 
+
 
 ##Configuration
 
-to store your generated API Token globally you can create a global config file in your home directory:
+to store your [generated API Token](https://www.versioneye.com/settings/api) globally you can create a global config file in your home directory:
 
 `~/.veye.rc` we share the same config file with the ruby cli https://github.com/versioneye/veye
 
