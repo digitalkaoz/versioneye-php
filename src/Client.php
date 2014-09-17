@@ -6,6 +6,7 @@ use Rs\VersionEye\Http\BuzzClient;
 use Rs\VersionEye\Http\GuzzleClient;
 use Rs\VersionEye\Http\HttpClient;
 use Rs\VersionEye\Api\Api;
+use Rs\VersionEye\Http\ZendClient;
 
 /**
  * Client for interacting with the API
@@ -72,6 +73,8 @@ class Client
             $this->client = new GuzzleClient($url);
         } elseif (!$client && class_exists('Buzz\Browser')) {
             $this->client = new BuzzClient($url);
+        } elseif (!$client && class_exists('Zend\Http\Client')) {
+            $this->client = new ZendClient($url);
         } else {
             throw new \RuntimeException('no suitable HTTP adapter found');
         }

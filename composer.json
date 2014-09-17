@@ -10,6 +10,7 @@
     "require-dev": {
         "guzzlehttp/guzzle":                    "~4",
         "kriswallsmith/buzz":                   "~0.10",
+        "zendframework/zend-http":              "~2.3",
 
         "phpspec/phpspec":                      "@dev",
         "bossa/phpspec2-expect":                "@stable"
@@ -17,7 +18,8 @@
 
     "suggest": {
         "guzzlehttp/guzzle":        "for using guzzle for http",
-        "kriswallsmith/buzz":       "for using buzz for http"
+        "kriswallsmith/buzz":       "for using buzz for http",
+        "zendframework/zend-http":  "for using zend for http"
     },
 
     "license": "MIT",
