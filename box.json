@@ -3,14 +3,21 @@
     "alias": "versioneye.phar",
     "chmod": "0755",
     "compactors": [
-        "Herrera\\Box\\Compactor\\Json"
+        "Herrera\\Box\\Compactor\\Json",
+        "Herrera\\Box\\Compactor\\Php"
     ],
     "directories": [
-        "src"
+        "src/Http",
+        "src/Console",
+        "src/Output"
+    ],
+    "directories-bin": [
+        "src/Api"
     ],
     "extract": true,
     "files": [
-        "LICENSE"
+        "LICENSE",
+        "src/Client.php"
     ],
     "finder": [
         {
