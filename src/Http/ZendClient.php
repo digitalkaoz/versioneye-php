@@ -82,12 +82,9 @@ class ZendClient implements HttpClient
             return $data;
         }
 
-        if ($response->isClientError()) {
-            throw new CommunicationException($response->getStatusCode() . ' : ' . $data['error']);
-        } elseif ($response->isServerError()) {
-            $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
-            throw new CommunicationException($response->getStatusCode() . ' : ' . $message);
-        }
+        $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
+
+        throw new CommunicationException($response->getStatusCode() . ' : ' . $message);
     }
 
 }

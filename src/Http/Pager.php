@@ -24,6 +24,14 @@ class Pager implements \Iterator
     private $url;
     private $params = array();
 
+    /**
+     * @param array      $result
+     * @param string     $key
+     * @param HttpClient $client
+     * @param string     $method
+     * @param string     $url
+     * @param array      $params
+     */
     public function __construct(array $result, $key, HttpClient $client, $method, $url, array $params = array())
     {
         $this->current = $result['paging']['current_page'];
