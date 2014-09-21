@@ -3,6 +3,7 @@
 
 namespace Rs\VersionEye\Output;
 
+use Rs\VersionEye\Http\Pager;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -18,10 +19,10 @@ abstract class BaseOutput
      * @param OutputInterface $output
      * @param string[]        $headings
      * @param string[]        $keys
-     * @param array           $data
+     * @param array|Pager     $data
      * @param \Closure        $callback
      */
-    protected function printTable(OutputInterface $output, array $headings, array $keys, array $data, \Closure $callback = null)
+    protected function printTable(OutputInterface $output, array $headings, array $keys, $data, \Closure $callback = null)
     {
         $table = new Table($output);
 
@@ -84,9 +85,9 @@ abstract class BaseOutput
      * output for references/search api
      *
      * @param OutputInterface $output
-     * @param array           $products
+     * @param array|Pager     $products
      */
-    protected function printProducts(OutputInterface $output, array $products)
+    protected function printProducts(OutputInterface $output, $products)
     {
         $this->printTable($output,
             ['Name', 'Language', 'Version', 'Type'],

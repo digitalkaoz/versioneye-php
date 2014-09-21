@@ -21,9 +21,9 @@ class GithubSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_repos(Client $client)
     {
-        $client->request('GET', 'github?lang=php&private=1&org_name=digitalkaoz&org_type=private&page=42&only_imported=1&api_key=4711', [])->willReturn([]);
+        $client->request('GET', 'github?lang=php&private=1&org_name=digitalkaoz&org_type=private&page=1&only_imported=1&api_key=4711', [])->willReturn([]);
 
-        $this->repos('php', true, 'digitalkaoz', 'private', 42, true)->shouldBeArray();
+        $this->repos('php', true, 'digitalkaoz', 'private', true)->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_sync(Client $client)

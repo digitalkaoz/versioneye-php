@@ -7,7 +7,6 @@ use Prophecy\Argument;
 use Zend\Http\Client;
 use Zend\Http\Request;
 use Zend\Http\Response;
-use Zend\Stdlib\ParametersInterface;
 
 class ZendClientSpec extends ObjectBehavior
 {
@@ -24,7 +23,7 @@ class ZendClientSpec extends ObjectBehavior
 
     public function it_performs_a_GET_request_to_given_url(Client $client, Response $response)
     {
-        $client->send(Argument::that(function($arg){
+        $client->send(Argument::that(function ($arg) {
             return $arg instanceof Request && $arg->getMethod() == 'GET' && $arg->getUri() == "http://lolcathost/bar";
         }))->shouldBeCalled()->willReturn($response);
 
@@ -36,7 +35,7 @@ class ZendClientSpec extends ObjectBehavior
 
     public function it_performs_a_PUT_request_to_given_url(Client $client, Response $response)
     {
-        $client->send(Argument::that(function($arg){
+        $client->send(Argument::that(function ($arg) {
             return $arg instanceof Request && $arg->getMethod() == 'PUT' && $arg->getUri() == "http://lolcathost/bar";
         }))->shouldBeCalled()->willReturn($response);
 
@@ -48,7 +47,7 @@ class ZendClientSpec extends ObjectBehavior
 
     public function it_performs_a_DELETE_request_to_given_url(Client $client, Response $response)
     {
-        $client->send(Argument::that(function($arg){
+        $client->send(Argument::that(function ($arg) {
             return $arg instanceof Request && $arg->getMethod() == 'DELETE' && $arg->getUri() == "http://lolcathost/bar";
         }))->shouldBeCalled()->willReturn($response);
 

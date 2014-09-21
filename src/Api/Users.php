@@ -24,23 +24,21 @@ class Users extends BaseApi implements Api
      * shows user's favorite packages
      *
      * @param  string $username
-     * @param  int    $page
      * @return array
      */
-    public function favorites($username, $page = 1)
+    public function favorites($username)
     {
-        return $this->request(sprintf('users/%s/favorites?page=%d', $username, $page));
+        return $this->request(sprintf('users/%s/favorites?page=%d', $username, 1));
     }
 
     /**
      * shows user's comments
      *
      * @param  string $username
-     * @param  int    $page
      * @return array
      */
-    public function comments($username, $page = 1)
+    public function comments($username)
     {
-        return $this->request(sprintf('users/%s/comments?page=%d', $username, $page));
+        return $this->request(sprintf('users/%s/comments?page=%d', $username, 1));
     }
 }

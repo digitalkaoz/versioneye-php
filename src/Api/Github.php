@@ -17,14 +17,13 @@ class Github extends BaseApi implements Api
      * @param  bool   $private
      * @param  string $organization
      * @param  string $type
-     * @param  int    $page
      * @param  bool   $imported
      * @return array
      */
-    public function repos($language = null, $private = null, $organization = null, $type = null, $page = 1, $imported = null)
+    public function repos($language = null, $private = null, $organization = null, $type = null, $imported = null)
     {
         return $this->request(sprintf('github?lang=%s&private=%b&org_name=%s&org_type=%s&page=%d&only_imported=%b',
-            $language, $private, $organization, $type, $page, $imported
+            $language, $private, $organization, $type, 1, $imported
         ));
     }
 

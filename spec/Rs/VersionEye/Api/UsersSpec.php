@@ -28,16 +28,15 @@ class UsersSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_favorites(Client $client)
     {
-        $client->request('GET', 'users/digitalkaoz/favorites?page=2', [])->willReturn([]);
+        $client->request('GET', 'users/digitalkaoz/favorites?page=1', [])->willReturn([]);
 
-        $this->favorites('digitalkaoz', 2)->shouldBeArray();
+        $this->favorites('digitalkaoz')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_comments(Client $client)
     {
-        $client->request('GET', 'users/digitalkaoz/comments?page=2', [])->willReturn([]);
+        $client->request('GET', 'users/digitalkaoz/comments?page=1', [])->willReturn([]);
 
-        $this->comments('digitalkaoz', 2)->shouldBeArray();
+        $this->comments('digitalkaoz')->shouldBeArray();
     }
-
 }

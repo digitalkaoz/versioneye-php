@@ -49,16 +49,7 @@ class BuzzClient implements HttpClient
         $response = $this->client->submit($url, $params, $method);
         /** @var Response $response */
 
-        if ($response->isSuccessful()) {
-            return json_decode($response->getContent(), true);
-        } elseif ($response->isServerError()) {
-            $data = json_decode($response->getContent(), true);
-            $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
-            throw new CommunicationException($response->getStatusCode().' : '.$message);
-        } elseif ($response->isClientError()) {
-            $data = json_decode($response->getContent(), true);
-            throw new CommunicationException($response->getStatusCode().' : '.$data['error']);
-        }
+        return $this->processResponse($response);
     }
 
     /**
@@ -72,6 +63,29 @@ class BuzzClient implements HttpClient
             if (is_readable($value)) { //upload
                 $params[$name] = new FormUpload($value);
             }
+        }
+    }
+
+    /**
+     * processes the response
+     *
+     * @param  Response               $response
+     * @return mixed
+     * @throws CommunicationException
+     */
+    private function processResponse(Response $response)
+    {
+        $data = json_decode($response->getContent(), true);
+
+        if ($response->isSuccessful()) {
+            return $data;
+        }
+
+        if ($response->isClientError()) {
+            throw new CommunicationException($response->getStatusCode() . ' : ' . $data['error']);
+        } elseif ($response->isServerError()) {
+            $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
+            throw new CommunicationException($response->getStatusCode() . ' : ' . $message);
         }
     }
 

@@ -16,15 +16,14 @@ class Products extends BaseApi implements Api
      * @param  string $query
      * @param  string $language
      * @param  string $group
-     * @param  int    $page
      * @return array
      */
-    public function search($query, $language = null, $group = null, $page = 1)
+    public function search($query, $language = null, $group = null)
     {
         $url = sprintf('products/search/%s?%s', $query, http_build_query([
             'lang' => $language,
-            'g' => $group,
-            'page' => $page
+            'g'    => $group,
+            'page' => 1
         ]));
 
         return $this->request($url);
@@ -83,12 +82,11 @@ class Products extends BaseApi implements Api
      *
      * @param  string $language
      * @param  string $product
-     * @param  int    $page
      * @return array
      */
-    public function references($language, $product, $page = 1)
+    public function references($language, $product)
     {
-        return $this->request(sprintf('products/%s/%s/references?page=%d', $language, $this->transform($product), $page), 'GET');
+        return $this->request(sprintf('products/%s/%s/references?page=%d', $language, $this->transform($product), 1), 'GET');
     }
 
 }

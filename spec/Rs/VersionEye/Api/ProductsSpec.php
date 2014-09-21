@@ -21,9 +21,9 @@ class ProductsSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_search(Client $client)
     {
-        $client->request('GET', 'products/search/symfony?lang=php&g=foo&page=12',[])->willReturn([]);
+        $client->request('GET', 'products/search/symfony?lang=php&g=foo&page=1',[])->willReturn([]);
 
-        $this->search('symfony','php','foo',12)->shouldBeArray();
+        $this->search('symfony','php','foo')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_show(Client $client)
@@ -56,8 +56,8 @@ class ProductsSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_references(Client $client)
     {
-        $client->request('GET', 'products/php/symfony/references?page=42',[])->willReturn([]);
+        $client->request('GET', 'products/php/symfony/references?page=1',[])->willReturn([]);
 
-        $this->references('php', 'symfony', 42)->shouldBeArray();
+        $this->references('php', 'symfony')->shouldBeArray();
     }
 }

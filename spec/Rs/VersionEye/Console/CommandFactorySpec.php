@@ -89,8 +89,8 @@ class Test implements Api
      * awesome
      *
      * @param $foo
-     * @param null $bar
-     * @param int  $bazz
+     * @param  null  $bar
+     * @param  int   $bazz
      * @return array
      */
     public function bazz($foo, $bar = null, $bazz = 1)

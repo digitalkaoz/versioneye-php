@@ -4,6 +4,7 @@ namespace Rs\VersionEye\Http;
 
 use Zend\Http\Client;
 use Zend\Http\Request;
+use Zend\Http\Response;
 
 /**
  * ZendClient
@@ -41,21 +42,17 @@ class ZendClient implements HttpClient
         }
 
         $request->setUri($this->url.$url);
-
         $response = $this->client->send($request);
 
-        if ($response->isSuccess()) {
-            return json_decode($response->getContent(), true);
-        } elseif ($response->isClientError()) {
-            $data = json_decode($response->getContent(), true);
-            throw new CommunicationException($response->getStatusCode().' : '.$data['error']);
-        } elseif ($response->isServerError()) {
-            $data = json_decode($response->getContent(), true);
-            $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
-            throw new CommunicationException($response->getStatusCode().' : '.$message);
-        }
+        return $this->processResponse($response);
     }
 
+    /**
+     * injects file uploads if needed
+     *
+     * @param array   $params
+     * @param Request $request
+     */
     private function modifyParameters(array $params, Request $request)
     {
         foreach ($params as $name => $value) {
@@ -67,6 +64,29 @@ class ZendClient implements HttpClient
                     'data'     => file_get_contents($value)
                 ));
             }
+        }
+    }
+
+    /**
+     * processes the response
+     *
+     * @param  Response               $response
+     * @return mixed
+     * @throws CommunicationException
+     */
+    private function processResponse(Response $response)
+    {
+        $data = json_decode($response->getContent(), true);
+
+        if ($response->isSuccess()) {
+            return $data;
+        }
+
+        if ($response->isClientError()) {
+            throw new CommunicationException($response->getStatusCode() . ' : ' . $data['error']);
+        } elseif ($response->isServerError()) {
+            $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
+            throw new CommunicationException($response->getStatusCode() . ' : ' . $message);
         }
     }
 
