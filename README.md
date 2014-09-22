@@ -23,8 +23,9 @@ There are 2 ways to install it:
 ### Download the Phar (recommended)
 
 download the latest version from the [Releases section](https://github.com/digitalkaoz/versioneye-php/releases/latest) or from the cli:
+
 ```
-$ wget https://github.com/digitalkaoz/versioneye-php/releases/download/0.6.1/versioneye.phar //or latest stable
+$ wget https://github.com/digitalkaoz/versioneye-php/releases/download/0.8.0/versioneye.phar //or latest stable
 ```
 
 ### Install from source code
@@ -37,7 +38,7 @@ $ composer require "guzzlehttp/guzzle" ~4 //or
 $ composer require "kriswallsmith/buzz" ~0.10 //or
 $ composer require "zendframework/zend-http" ~2.3
 
-$ composer require "digitalkaoz/versioneye-php" *
+$ composer require "digitalkaoz/versioneye-php" @stable
 ```
 
 ##Usage
@@ -73,6 +74,7 @@ Here some usage examples.
 $ bin/versioneye services:ping
 $ bin/versioneye products:search symfony
 ```
+
 Or with the phar file. 
 
 ```
@@ -103,6 +105,7 @@ now you dont have to pass your token on each call!
 to build a standalone phar, simply execute the following commands.
 
 ```
+$ composer require --dev kherge/box @stable
 $ vendor/bin/box build
 $ php versioneye-php.phar
 ```
