@@ -2,16 +2,13 @@
 
 see https://www.versioneye.com/api/ for API documentation
 
-[![Build Status](https://travis-ci.org/digitalkaoz/versioneye-php.svg?branch=master)](https://travis-ci.org/digitalkaoz/versioneye-php)
-
-[![Dependency Status](https://www.versioneye.com/php/digitalkaoz:versioneye-php/badge.svg?style=flat)](https://www.versioneye.com/php/digitalkaoz:versioneye-php)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0/mini.png)](https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0)
-
-[![Latest Stable Version](https://poser.pugx.org/digitalkaoz/versioneye-php/version.svg)](https://packagist.org/packages/digitalkaoz/versioneye-php)
-[![Latest Unstable Version](https://poser.pugx.org/digitalkaoz/versioneye-php/v/unstable.svg)](//packagist.org/packages/digitalkaoz/versioneye-php)
-[![Total Downloads](https://poser.pugx.org/digitalkaoz/versioneye-php/downloads.svg)](https://packagist.org/packages/digitalkaoz/versioneye-php)
+[![Build Status](https://img.shields.io/travis/digitalkaoz/versioneye-php/master.svg?style=flat-square)](https://travis-ci.org/digitalkaoz/versioneye-php)
+[![Dependency Status](https://img.shields.io/versioneye/d/php/digitalkaoz:versioneye-php.svg?style=flat-square)](https://www.versioneye.com/php/digitalkaoz:versioneye-php)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/digitalkaoz/versioneye-php.svg?style=flat-square)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/digitalkaoz/versioneye-php/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0.svg?style=flat-square)](https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0)
+[![Latest Stable Version](https://img.shields.io/packagist/v/digitalkaoz/versioneye-php.svg?style=flat-square)](https://packagist.org/packages/digitalkaoz/versioneye-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/digitalkaoz/versioneye-php.svg?style=flat-square)](https://packagist.org/packages/digitalkaoz/versioneye-php)
 
 ##Installation
 
