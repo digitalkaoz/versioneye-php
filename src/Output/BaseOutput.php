@@ -104,7 +104,7 @@ abstract class BaseOutput
      */
     protected function printMessage(OutputInterface $output, array $response)
     {
-        $this->printBoolean($output, $response['message'], $response['message'], true == $response['success']);
+        $this->printBoolean($output, $response['message'], $response['message'], true === $response['success']);
     }
 
     /**

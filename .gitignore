@@ -1,6 +1,6 @@
 # Bootstrap
 app/bootstrap*
-
+.idea
 composer.lock
 # Symfony directories
 vendor/*
