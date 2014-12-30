@@ -28,7 +28,7 @@ class Projects extends BaseApi implements Api
      */
     public function show($project)
     {
-        return $this->request('projects/' . $project);
+        return $this->request('projects/'.$project);
     }
 
     /**
@@ -39,7 +39,7 @@ class Projects extends BaseApi implements Api
      */
     public function delete($project)
     {
-        return $this->request('projects/' . $project, 'DELETE');
+        return $this->request('projects/'.$project, 'DELETE');
     }
 
     /**
@@ -75,5 +75,4 @@ class Projects extends BaseApi implements Api
     {
         return $this->request(sprintf('projects/%s/licenses', $project));
     }
-
 }

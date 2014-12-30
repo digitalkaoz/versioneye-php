@@ -65,7 +65,7 @@ EOS
             'private'     => false,
             'created_at'  => '25.05.1981',
             'html_url'    => 'https://github.com/digitalkaoz/versioneye-php',
-            'git_url'     => 'git@github.com:digitalkaoz/versioneye-php.git'
+            'git_url'     => 'git@github.com:digitalkaoz/versioneye-php.git',
         ]]);
 
         expect($output->fetch())->toBe(<<<EOS
@@ -93,7 +93,7 @@ EOS
             'private'     => false,
             'created_at'  => '25.05.1981',
             'html_url'    => 'https://github.com/digitalkaoz/versioneye-php',
-            'git_url'     => 'git@github.com:digitalkaoz/versioneye-php.git'
+            'git_url'     => 'git@github.com:digitalkaoz/versioneye-php.git',
         ]]);
 
         expect($output->fetch())->toBe(<<<EOS
@@ -109,5 +109,4 @@ Git              : git@github.com:digitalkaoz/versioneye-php.git
 EOS
         );
     }
-
 }

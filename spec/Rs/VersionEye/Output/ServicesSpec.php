@@ -16,7 +16,7 @@ class ServicesSpec extends ObjectBehavior
     {
         $output = new BufferedOutput();
 
-        $this->ping($output, ['success' => true, 'message'=>'pong']);
+        $this->ping($output, ['success' => true, 'message' => 'pong']);
 
         expect($output->fetch())->toBe(<<<EOS
 pong

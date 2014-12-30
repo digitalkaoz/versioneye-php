@@ -24,7 +24,7 @@ class ProjectsSpec extends ObjectBehavior
                 'public' => false,
                 'dep_number' => 47,
                 'out_number' => 13,
-                'updated_at' => '25.05.1981'
+                'updated_at' => '25.05.1981',
             ],
         ]);
 
@@ -107,7 +107,7 @@ EOS
                 'stable' => true,
                 'outdated' => false,
                 'version_current' => '2.5.0',
-                'version_requested' => '2.5.0'
+                'version_requested' => '2.5.0',
             ]]
         ]);
 
@@ -128,5 +128,4 @@ Updated At      : 25.05.1981
 EOS
         );
     }
-
 }

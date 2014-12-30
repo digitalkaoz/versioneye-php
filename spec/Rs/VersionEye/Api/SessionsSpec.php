@@ -39,5 +39,4 @@ class SessionsSpec extends ObjectBehavior
 
         $this->close()->shouldBeArray();
     }
-
 }

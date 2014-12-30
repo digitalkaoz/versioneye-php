@@ -46,5 +46,4 @@ class MeSpec extends ObjectBehavior
 
         $this->notifications()->shouldBeArray();
     }
-
 }

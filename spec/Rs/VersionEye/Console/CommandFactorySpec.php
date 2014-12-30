@@ -51,7 +51,7 @@ class CommandFactorySpec extends ObjectBehavior
             'sessions:show',
             'users:comments',
             'users:favorites',
-            'users:show'
+            'users:show',
         ]);
         $result->shouldOnlyContainCommandInstances();
     }
@@ -120,7 +120,6 @@ class CommandFactorySpec extends ObjectBehavior
             }
         ];
     }
-
 }
 
 class Test implements Api

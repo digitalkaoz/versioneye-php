@@ -60,5 +60,4 @@ class ProjectsSpec extends ObjectBehavior
 
         $this->update('symfony', 'path/to/file')->shouldBeArray();
     }
-
 }

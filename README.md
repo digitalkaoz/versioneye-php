@@ -30,14 +30,10 @@ $ wget https://github.com/digitalkaoz/versioneye-php/releases/download/0.8.0/ver
 
 ### Install from source code
 
-first you have to decide which `http adapter` to use. The library supports `guzzlehttp/guzzle`, `zendframework/zend-http` and `kriswallsmith/buzz`. Where guzzle is default.
-
+first you have to decide which `http adapter` to use. The library supports all adapters supported by [egeloen/ivory-http-adapter](https://github.com/egeloen/ivory-http-adapter)
+Where `fopen` is last resort if even `curl` is missing.
 
 ```
-$ composer require "guzzlehttp/guzzle" ~4 //or
-$ composer require "kriswallsmith/buzz" ~0.10 //or
-$ composer require "zendframework/zend-http" ~2.3
-
 $ composer require "digitalkaoz/versioneye-php" @stable
 ```
 

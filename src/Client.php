@@ -2,11 +2,15 @@
 
 namespace Rs\VersionEye;
 
-use Rs\VersionEye\Http\BuzzClient;
-use Rs\VersionEye\Http\GuzzleClient;
+use Ivory\HttpAdapter\BuzzHttpAdapter;
+use Ivory\HttpAdapter\CurlHttpAdapter;
+use Ivory\HttpAdapter\FopenHttpAdapter;
+use Ivory\HttpAdapter\GuzzleHttpAdapter;
+use Ivory\HttpAdapter\GuzzleHttpHttpAdapter;
+use Ivory\HttpAdapter\Zend1HttpAdapter;
+use Ivory\HttpAdapter\Zend2HttpAdapter;
 use Rs\VersionEye\Http\HttpClient;
 use Rs\VersionEye\Api\Api;
-use Rs\VersionEye\Http\ZendClient;
 
 /**
  * Client for interacting with the API
@@ -40,12 +44,12 @@ class Client
      */
     public function api($name)
     {
-        $class = 'Rs\\VersionEye\\Api\\' . ucfirst($name);
+        $class = 'Rs\\VersionEye\\Api\\'.ucfirst($name);
 
         if (class_exists($class)) {
             return new $class($this->client, $this->token);
         } else {
-            throw new \InvalidArgumentException('unknown api "' . $name . '" requested');
+            throw new \InvalidArgumentException('unknown api "'.$name.'" requested');
         }
     }
 
@@ -62,21 +66,32 @@ class Client
     /**
      * initializes the http client
      *
-     * @param string     $url
-     * @param HttpClient $client
+     * @param  string     $url
+     * @param  HttpClient $client
+     * @return HttpClient
      */
     private function initializeClient($url, HttpClient $client = null)
     {
         if ($client) {
-            $this->client = $client;
-        } elseif (!$client && class_exists('\GuzzleHttp\Client')) {
-            $this->client = new GuzzleClient($url);
-        } elseif (!$client && class_exists('Buzz\Browser')) {
-            $this->client = new BuzzClient($url);
-        } elseif (!$client && class_exists('Zend\Http\Client')) {
-            $this->client = new ZendClient($url);
+            return $this->client = $client;
+        } elseif (class_exists('\Guzzle\Http\Client')) {
+            $adapter = new GuzzleHttpAdapter();
+        } elseif (class_exists('\GuzzleHttp\Client')) {
+            $adapter = new GuzzleHttpHttpAdapter();
+        } elseif (class_exists('Buzz\Browser')) {
+            $adapter = new BuzzHttpAdapter();
+        } elseif (class_exists('Zend\Http\Client')) {
+            $adapter = new Zend2HttpAdapter();
+        } elseif (function_exists('curl_exec')) {
+            $adapter = new CurlHttpAdapter();
+        } elseif (class_exists('Zend_Http_Client')) {
+            $adapter = new Zend1HttpAdapter();
+        } elseif (ini_get('allow_url_fopen')) {
+            $adapter = new FopenHttpAdapter();
         } else {
             throw new \RuntimeException('no suitable HTTP adapter found');
         }
+
+        return $this->client = new HttpClient($adapter, $url);
     }
 }

@@ -60,5 +60,4 @@ class GithubSpec extends ObjectBehavior
 
         $this->hook('project_id')->shouldBeArray();
     }
-
 }

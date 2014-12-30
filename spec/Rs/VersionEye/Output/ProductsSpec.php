@@ -20,8 +20,8 @@ class ProductsSpec extends ObjectBehavior
                 'name' => 'digitalkaoz/versioneye-php',
                 'language' => 'php',
                 'version' => '1.0.0',
-                'prod_type' => 'composer'
-            ]
+                'prod_type' => 'composer',
+            ],
         ]]);
 
         expect($output->fetch())->toBe(<<<EOS
@@ -43,8 +43,8 @@ EOS
                 'name' => 'digitalkaoz/versioneye-php',
                 'language' => 'php',
                 'version' => '1.0.0',
-                'prod_type' => 'composer'
-            ]
+                'prod_type' => 'composer',
+            ],
         ]]);
 
         expect($output->fetch())->toBe(<<<EOS
@@ -132,5 +132,4 @@ OK
 EOS
         );
     }
-
 }

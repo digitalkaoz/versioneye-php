@@ -98,7 +98,7 @@ abstract class BaseApi
             }
         }
 
-        return $path . '?' . http_build_query($final);
+        return $path.'?'.http_build_query($final);
     }
 
     /**

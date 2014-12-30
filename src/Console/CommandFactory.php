@@ -64,7 +64,7 @@ class CommandFactory
      */
     private function generateCommand($name, \ReflectionMethod $method, $token = null)
     {
-        $command = new Command(strtolower($name . ':' . $this->dash($method->getName())));
+        $command = new Command(strtolower($name.':'.$this->dash($method->getName())));
         $docBlock = new DocBlock($method->getDocComment());
 
         $command->setDefinition($this->buildDefinition($method, $token));
@@ -163,7 +163,7 @@ class CommandFactory
      */
     private function readConfigurationFile()
     {
-        $file = trim(shell_exec('cd ~ && pwd')) . DIRECTORY_SEPARATOR . '.veye.rc';
+        $file = trim(shell_exec('cd ~ && pwd')).DIRECTORY_SEPARATOR.'.veye.rc';
 
         if (!file_exists($file)) {
             return;

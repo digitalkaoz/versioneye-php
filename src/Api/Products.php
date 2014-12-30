@@ -23,7 +23,7 @@ class Products extends BaseApi implements Api
         $url = sprintf('products/search/%s?%s', $query, http_build_query([
             'lang' => $language,
             'g'    => $group,
-            'page' => 1
+            'page' => 1,
         ]));
 
         return $this->request($url);
@@ -88,5 +88,4 @@ class Products extends BaseApi implements Api
     {
         return $this->request(sprintf('products/%s/%s/references?page=%d', $language, $this->transform($product), 1), 'GET');
     }
-
 }

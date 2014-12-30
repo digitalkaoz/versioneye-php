@@ -51,7 +51,6 @@ class Products extends BaseOutput
             ['name', 'parsed_version', 'version'],
             $response['dependencies']
         );
-
     }
 
     /**

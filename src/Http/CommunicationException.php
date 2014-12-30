@@ -1,7 +1,4 @@
 <?php
-/**
- * versioneye-php
- */
 
 namespace Rs\VersionEye\Http;
 
@@ -11,5 +8,4 @@ namespace Rs\VersionEye\Http;
  */
 class CommunicationException extends \RuntimeException
 {
-
 }

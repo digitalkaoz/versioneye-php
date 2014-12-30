@@ -21,42 +21,42 @@ class ProductsSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_search(Client $client)
     {
-        $client->request('GET', 'products/search/symfony?lang=php&g=foo&page=1',[])->willReturn([]);
+        $client->request('GET', 'products/search/symfony?lang=php&g=foo&page=1', [])->willReturn([]);
 
-        $this->search('symfony','php','foo')->shouldBeArray();
+        $this->search('symfony', 'php', 'foo')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_show(Client $client)
     {
-        $client->request('GET', 'products/php/symfony',[])->willReturn([]);
+        $client->request('GET', 'products/php/symfony', [])->willReturn([]);
 
         $this->show('php', 'symfony')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_followStatus(Client $client)
     {
-        $client->request('GET', 'products/php/symfony/follow',[])->willReturn([]);
+        $client->request('GET', 'products/php/symfony/follow', [])->willReturn([]);
 
         $this->followStatus('php', 'symfony')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_follow(Client $client)
     {
-        $client->request('POST', 'products/php/symfony/follow',[])->willReturn([]);
+        $client->request('POST', 'products/php/symfony/follow', [])->willReturn([]);
 
         $this->follow('php', 'symfony')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_unfollow(Client $client)
     {
-        $client->request('DELETE', 'products/php/symfony/follow',[])->willReturn([]);
+        $client->request('DELETE', 'products/php/symfony/follow', [])->willReturn([]);
 
         $this->unfollow('php', 'symfony')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_references(Client $client)
     {
-        $client->request('GET', 'products/php/symfony/references?page=1',[])->willReturn([]);
+        $client->request('GET', 'products/php/symfony/references?page=1', [])->willReturn([]);
 
         $this->references('php', 'symfony')->shouldBeArray();
     }

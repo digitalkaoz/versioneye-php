@@ -122,5 +122,4 @@ abstract class BaseOutput
 
         return $width + 5;
     }
-
 }

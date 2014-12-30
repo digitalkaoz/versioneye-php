@@ -68,8 +68,8 @@ EOS
             [
                 'created_at' => '25.05.1981',
                 'comment' => 'whoohoo',
-                'product' => ['name' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'version' => '1.0.0', 'prod_type' => 'composer']
-            ]
+                'product' => ['name' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'version' => '1.0.0', 'prod_type' => 'composer'],
+            ],
         ]]);
 
         expect($output->fetch())->toBe(<<<EOS
@@ -82,5 +82,4 @@ EOS
 EOS
         );
     }
-
 }

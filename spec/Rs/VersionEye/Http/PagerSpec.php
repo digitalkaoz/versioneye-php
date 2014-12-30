@@ -10,7 +10,7 @@ class PagerSpec extends ObjectBehavior
     public function let(HttpClient $client)
     {
         $this->beConstructedWith(
-            array('repos'=>['foo','bar'], 'paging'=>['current_page'=>1, 'total_entries' => 4]),
+            array('repos' => ['foo', 'bar'], 'paging' => ['current_page' => 1, 'total_entries' => 4]),
             'repos',
             $client,
             'GET',
@@ -26,7 +26,7 @@ class PagerSpec extends ObjectBehavior
 
     public function it_fetches_next_pages_until_all_are_results_are_fetched(HttpClient $client)
     {
-        $client->request('GET', '/foo?page=2', [])->shouldBeCalled()->willReturn(array('repos'=>['bazz','lol'], 'paging'=>['current_page'=>2, 'total_entries' => 4]));
+        $client->request('GET', '/foo?page=2', [])->shouldBeCalled()->willReturn(array('repos' => ['bazz', 'lol'], 'paging' => ['current_page' => 2, 'total_entries' => 4]));
 
         $this->current()->shouldBe('foo');
         $this->next();

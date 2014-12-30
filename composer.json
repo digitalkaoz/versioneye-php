@@ -5,15 +5,12 @@
     "require": {
         "php":                                  ">=5.4",
         "symfony/console":                      "~2.3",
-        "phpdocumentor/reflection-docblock":    "~2.0"
+        "phpdocumentor/reflection-docblock":    "~2.0",
+        "egeloen/http-adapter":                 "~0.5"
     },
     "require-dev": {
-        "guzzlehttp/guzzle":                    "~4",
-        "kriswallsmith/buzz":                   "~0.10",
-        "zendframework/zend-http":              "~2.3",
-
         "phpspec/phpspec":                      "~2",
-        "bossa/phpspec2-expect":                "@stable"
+        "bossa/phpspec2-expect":                "~1"
     },
 
     "suggest": {
