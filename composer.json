@@ -12,7 +12,7 @@
         "kriswallsmith/buzz":                   "~0.10",
         "zendframework/zend-http":              "~2.3",
 
-        "phpspec/phpspec":                      "@dev",
+        "phpspec/phpspec":                      "~2",
         "bossa/phpspec2-expect":                "@stable"
     },
 
