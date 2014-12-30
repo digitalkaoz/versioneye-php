@@ -12,6 +12,8 @@ matrix:
     php: hhvm
 
 before_script:
+#  - wget http://curl.haxx.se/ca/cacert.pem -O /tmp/cacert.pem
+#  - echo 'curl.cainfo = /tmp/cacert.pem' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - composer self-update
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "hhvm" ]; then rm phpspec.yml; fi;'
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then composer require --no-update --dev henrikbjorn/phpspec-code-coverage "1.0.*@dev"; fi;'
@@ -20,4 +22,5 @@ after_script:
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;'
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.xml; fi;'
 
-script: vendor/bin/phpspec run
+#script: php -d curl.cainfo=/tmp/cacert.pem vendor/bin/phpspec run -fpretty -v
+script: vendor/bin/phpspec run -fpretty -v

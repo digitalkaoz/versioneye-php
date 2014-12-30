@@ -72,6 +72,7 @@ class Client
      */
     private function initializeClient($url, HttpClient $client = null)
     {
+        //TODO this client guessing should be moved to "egeloen/http-adapter"
         if ($client) {
             return $this->client = $client;
         } elseif (class_exists('\Guzzle\Http\Client')) {
@@ -82,10 +83,10 @@ class Client
             $adapter = new BuzzHttpAdapter();
         } elseif (class_exists('Zend\Http\Client')) {
             $adapter = new Zend2HttpAdapter();
-        } elseif (function_exists('curl_exec')) {
-            $adapter = new CurlHttpAdapter();
         } elseif (class_exists('Zend_Http_Client')) {
             $adapter = new Zend1HttpAdapter();
+        } elseif (function_exists('curl_exec')) {
+            $adapter = new CurlHttpAdapter();
         } elseif (ini_get('allow_url_fopen')) {
             $adapter = new FopenHttpAdapter();
         } else {

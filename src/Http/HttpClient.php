@@ -47,10 +47,12 @@ class HttpClient
 
             return json_decode($response->getBody(), true);
         } catch (HttpAdapterException $e) {
-            $data = json_decode($e->getResponse()->getBody(), true);
+            $data = $e->getResponse() ? json_decode($e->getResponse()->getBody(), true) : ['error' => $e->getMessage()];
             $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
 
-            throw new CommunicationException($e->getResponse()->getStatusCode().' : '.$message);
+            $status = $e->getResponse() ? $e->getResponse()->getStatusCode() : 500;
+
+            throw new CommunicationException(sprintf('%s : %s', $status, $message));
         }
     }
 

@@ -26,11 +26,12 @@ class ProjectsSpec extends ObjectBehavior
         $this->all()->shouldBeArray();
     }
 
-    public function it_calls_the_correct_url_on_show(Client $client)
+    public function it_calls_the_correct_url_on_show_and_has_a_Pager_injected(Client $client)
     {
-        $client->request('GET', 'projects/symfony', [])->willReturn([]);
+        $client->request('GET', 'projects/symfony', [])->willReturn(['repos' => [], 'paging' => ['current_page' => 1, 'total_entries' => 4]]);
 
         $this->show('symfony')->shouldBeArray();
+        $this->show('symfony')['repos']->shouldHaveType('Rs\VersionEye\Http\Pager');
     }
 
     public function it_calls_the_correct_url_on_licenses(Client $client)

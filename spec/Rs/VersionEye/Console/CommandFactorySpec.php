@@ -56,26 +56,25 @@ class CommandFactorySpec extends ObjectBehavior
         $result->shouldOnlyContainCommandInstances();
     }
 
-//TODO wont work on travis cause of certificate foo
-//    public function it_generates_a_runnable_command()
-//    {
-//        $output = new BufferedOutput();
-//        $result = $this->generateCommands(['Rs\VersionEye\Api\Users']);
-//
-//        $result->shouldBeArray();
-//        $result->shouldHaveCount(3);
-//
-//        $result[0]->shouldHaveType('Symfony\Component\Console\Command\Command');
-//        $result[0]->getName()->shouldBe('users:show');
-//        $result[0]->run(new ArrayInput(['username' => 'digitalkaoz']), $output);
-//
-//        expect($output->fetch())->toBe(<<<EOS
-//Fullname      : Robert Schönthal
-//Username      : digitalkaoz
-//
-//EOS
-//        );
-//    }
+    public function it_generates_a_runnable_command()
+    {
+        $output = new BufferedOutput();
+        $result = $this->generateCommands(['Rs\VersionEye\Api\Users']);
+
+        $result->shouldBeArray();
+        $result->shouldHaveCount(3);
+
+        $result[0]->shouldHaveType('Symfony\Component\Console\Command\Command');
+        $result[0]->getName()->shouldBe('users:show');
+        $result[0]->run(new ArrayInput(['username' => 'digitalkaoz']), $output);
+
+        expect($output->fetch())->toBe(<<<EOS
+Fullname      : Robert Schönthal
+Username      : digitalkaoz
+
+EOS
+        );
+    }
 
     public function it_generated_correct_Commands_from_an_Api()
     {
@@ -84,17 +83,18 @@ class CommandFactorySpec extends ObjectBehavior
         $result->shouldBeArray();
         $result->shouldHaveCount(1);
 
-        $result[0]->shouldHaveType('Symfony\Component\Console\Command\Command');
-        $result[0]->getName()->shouldBe('test:bazz');
-        $result[0]->getDescription()->shouldBe('awesome');
+        $command = $result[0];
+        $command->shouldHaveType('Symfony\Component\Console\Command\Command');
+        $command->getName()->shouldBe('test:bazz');
+        $command->getDescription()->shouldBe('awesome');
 
-        $result[0]->getDefinition()->hasArgument('foo');
+        $command->getDefinition()->hasArgument('foo');
 
-        $result[0]->getDefinition()->hasOption('bar');
-        $result[0]->getDefinition()->getOption('bar')->getDefault()->shouldBeNull();
+        $command->getDefinition()->hasOption('bar');
+        $command->getDefinition()->getOption('bar')->getDefault()->shouldBeNull();
 
-        $result[0]->getDefinition()->hasOption('bazz');
-        $result[0]->getDefinition()->getOption('bazz')->getDefault()->shouldBe(1);
+        $command->getDefinition()->hasOption('bazz');
+        $command->getDefinition()->getOption('bazz')->getDefault()->shouldBe(1);
     }
 
     public function getMatchers()
