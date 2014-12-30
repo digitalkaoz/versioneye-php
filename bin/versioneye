@@ -7,8 +7,10 @@ if (!@include __DIR__.'/../vendor/autoload.php') {
         'php composer.phar install'.PHP_EOL);
 }
 
-use Rs\VersionEye\Console\Application;
+use Rs\VersionEye\Console\CommandFactory;
+use Symfony\Component\Console\Application;
 
 // run the command application
-$application = new Application();
+$application = new Application('versioneye', '@git-version@');
+$application->addCommands((new CommandFactory())->generateCommands());
 $application->run();

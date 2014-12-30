@@ -22,6 +22,37 @@ class CommandFactorySpec extends ObjectBehavior
 
         $result->shouldBeArray();
         $result->shouldHaveCount(29);
+        $result->shouldHaveCommands([
+            'github:delete',
+            'github:hook',
+            'github:import',
+            'github:repos',
+            'github:show',
+            'github:sync',
+            'me:comments',
+            'me:favorites',
+            'me:notifications',
+            'me:profile',
+            'products:follow',
+            'products:follow-status',
+            'products:references',
+            'products:search',
+            'products:show',
+            'products:unfollow',
+            'projects:all',
+            'projects:create',
+            'projects:delete',
+            'projects:licenses',
+            'projects:show',
+            'projects:update',
+            'services:ping',
+            'sessions:close',
+            'sessions:open',
+            'sessions:show',
+            'users:comments',
+            'users:favorites',
+            'users:show'
+        ]);
         $result->shouldOnlyContainCommandInstances();
     }
 
@@ -69,6 +100,15 @@ class CommandFactorySpec extends ObjectBehavior
     public function getMatchers()
     {
         return [
+            'haveCommands' => function ($subject, $keys) {
+                $present = [];
+                foreach ($subject as $command) {
+                    $present[] = $command->getName();
+                }
+
+                return [] == array_diff($present, $keys);
+            },
+
             'onlyContainCommandInstances' => function ($subject) {
                 foreach ($subject as $command) {
                     if (! $command instanceof Command) {
