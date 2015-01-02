@@ -59,18 +59,17 @@ class CommandFactorySpec extends ObjectBehavior
     public function it_generates_a_runnable_command()
     {
         $output = new BufferedOutput();
-        $result = $this->generateCommands(['Rs\VersionEye\Api\Users']);
+        $result = $this->generateCommands(['Rs\VersionEye\Api\Services']);
 
         $result->shouldBeArray();
-        $result->shouldHaveCount(3);
+        $result->shouldHaveCount(1);
 
         $result[0]->shouldHaveType('Symfony\Component\Console\Command\Command');
-        $result[0]->getName()->shouldBe('users:show');
-        $result[0]->run(new ArrayInput(['username' => 'digitalkaoz']), $output);
+        $result[0]->getName()->shouldBe('services:ping');
+        $result[0]->run(new ArrayInput([]), $output);
 
         expect($output->fetch())->toBe(<<<EOS
-Fullname      : Robert Schönthal
-Username      : digitalkaoz
+pong
 
 EOS
         );
