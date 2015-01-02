@@ -3,11 +3,7 @@
 
 namespace Rs\VersionEye\Http;
 
-use Ivory\HttpAdapter\Event\Subscriber\RedirectSubscriber;
-use Ivory\HttpAdapter\Event\Subscriber\RetrySubscriber;
-use Ivory\HttpAdapter\Event\Subscriber\StatusCodeSubscriber;
 use Ivory\HttpAdapter\HttpAdapterException;
-use Ivory\HttpAdapter\HttpAdapterFactory;
 use Ivory\HttpAdapter\HttpAdapterInterface;
 
 /**
@@ -29,12 +25,6 @@ class IvoryHttpAdapterClient implements HttpClient
      */
     public function __construct(HttpAdapterInterface $adapter, $url)
     {
-        if ($adapter->getConfiguration()->getEventDispatcher()) {
-            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RedirectSubscriber());
-            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RetrySubscriber());
-            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new StatusCodeSubscriber());
-        }
-
         $this->adapter = $adapter;
         $this->url = $url;
     }
@@ -81,5 +71,4 @@ class IvoryHttpAdapterClient implements HttpClient
 
         return [$parameters, $files];
     }
-
-} 
+}

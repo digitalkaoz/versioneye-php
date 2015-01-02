@@ -2,6 +2,9 @@
 
 namespace Rs\VersionEye;
 
+use Ivory\HttpAdapter\Event\Subscriber\RedirectSubscriber;
+use Ivory\HttpAdapter\Event\Subscriber\RetrySubscriber;
+use Ivory\HttpAdapter\Event\Subscriber\StatusCodeSubscriber;
 use Ivory\HttpAdapter\HttpAdapterFactory;
 use Rs\VersionEye\Http\HttpClient;
 use Rs\VersionEye\Api\Api;
@@ -71,6 +74,24 @@ class Client
             return $this->client = $client;
         }
 
-        return $this->client = new IvoryHttpAdapterClient(HttpAdapterFactory::guess(), $url);
+        return $this->client = $this->createDefaultHttpClient($url);
+    }
+
+    /**
+     * @param  string                                  $url
+     * @return IvoryHttpAdapterClient
+     * @throws \Ivory\HttpAdapter\HttpAdapterException
+     */
+    private function createDefaultHttpClient($url)
+    {
+        $adapter = HttpAdapterFactory::guess();
+
+        if ($adapter->getConfiguration()->getEventDispatcher()) {
+            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RedirectSubscriber());
+            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RetrySubscriber());
+            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new StatusCodeSubscriber());
+        }
+
+        return new IvoryHttpAdapterClient($adapter, $url);
     }
 }

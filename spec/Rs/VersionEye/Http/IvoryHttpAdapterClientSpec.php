@@ -2,7 +2,6 @@
 
 namespace spec\Rs\VersionEye\Http;
 
-use Ivory\HttpAdapter\ConfigurationInterface;
 use Ivory\HttpAdapter\HttpAdapterException;
 use Ivory\HttpAdapter\Message\ResponseInterface;
 use PhpSpec\ObjectBehavior;
@@ -11,10 +10,9 @@ use Rs\VersionEye\Http\CommunicationException;
 
 class IvoryHttpAdapterClientSpec extends ObjectBehavior
 {
-    public function let(HttpAdapterInterface $client, ConfigurationInterface $config)
+    public function let(HttpAdapterInterface $client)
     {
         $this->beConstructedWith($client, 'http://lolcathost/');
-        $client->getConfiguration()->willReturn($config);
     }
 
     public function it_is_initializable()
