@@ -6,7 +6,7 @@
         "php":                                  ">=5.4",
         "symfony/console":                      "~2.3",
         "phpdocumentor/reflection-docblock":    "~2.0",
-        "egeloen/http-adapter":                 "~0.5"
+        "egeloen/http-adapter":                 "dev-adapter_guesser"
     },
     "require-dev": {
         "phpspec/phpspec":                      "~2",
@@ -18,6 +18,13 @@
         "kriswallsmith/buzz":       "for using buzz for http",
         "zendframework/zend-http":  "for using zend for http"
     },
+
+    "repositories" : [
+        {
+            "type": "vcs",
+            "url": "https://github.com/digitalkaoz/ivory-http-adapter"
+        }
+    ],
 
     "license": "MIT",
     "authors": [

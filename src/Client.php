@@ -3,10 +3,12 @@
 namespace Rs\VersionEye;
 
 use Ivory\HttpAdapter\BuzzHttpAdapter;
+use Ivory\HttpAdapter\Configuration;
 use Ivory\HttpAdapter\CurlHttpAdapter;
 use Ivory\HttpAdapter\FopenHttpAdapter;
 use Ivory\HttpAdapter\GuzzleHttpAdapter;
 use Ivory\HttpAdapter\GuzzleHttpHttpAdapter;
+use Ivory\HttpAdapter\HttpAdapterFactory;
 use Ivory\HttpAdapter\Zend1HttpAdapter;
 use Ivory\HttpAdapter\Zend2HttpAdapter;
 use Rs\VersionEye\Http\HttpClient;
@@ -72,27 +74,10 @@ class Client
      */
     private function initializeClient($url, HttpClient $client = null)
     {
-        //TODO this client guessing should be moved to "egeloen/http-adapter"
         if ($client) {
             return $this->client = $client;
-        } elseif (class_exists('\Guzzle\Http\Client')) {
-            $adapter = new GuzzleHttpAdapter();
-        } elseif (class_exists('\GuzzleHttp\Client')) {
-            $adapter = new GuzzleHttpHttpAdapter();
-        } elseif (class_exists('Buzz\Browser')) {
-            $adapter = new BuzzHttpAdapter();
-        } elseif (class_exists('Zend\Http\Client')) {
-            $adapter = new Zend2HttpAdapter();
-        } elseif (class_exists('Zend_Http_Client')) {
-            $adapter = new Zend1HttpAdapter();
-        } elseif (function_exists('curl_exec')) {
-            $adapter = new CurlHttpAdapter();
-        } elseif (ini_get('allow_url_fopen')) {
-            $adapter = new FopenHttpAdapter();
-        } else {
-            throw new \RuntimeException('no suitable HTTP adapter found');
         }
 
-        return $this->client = new HttpClient($adapter, $url);
+        return $this->client = new HttpClient(HttpAdapterFactory::guess(), $url);
     }
 }

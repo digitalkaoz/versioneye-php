@@ -3,8 +3,12 @@
 
 namespace Rs\VersionEye\Http;
 
+use Ivory\HttpAdapter\Configuration;
 use Ivory\HttpAdapter\HttpAdapterException;
 use Ivory\HttpAdapter\HttpAdapterInterface;
+use Ivory\HttpAdapter\Event\Subscriber\RedirectSubscriber;
+use Ivory\HttpAdapter\Event\Subscriber\RetrySubscriber;
+use Ivory\HttpAdapter\Event\Subscriber\StatusCodeSubscriber;
 
 /**
  * HttpClient
@@ -25,6 +29,12 @@ class HttpClient
      */
     public function __construct(HttpAdapterInterface $adapter, $url)
     {
+        $adapter->setConfiguration(new Configuration());
+
+        $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RedirectSubscriber());
+        $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RetrySubscriber());
+        $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new StatusCodeSubscriber());
+
         $this->adapter = $adapter;
         $this->url = $url;
     }
