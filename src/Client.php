@@ -2,15 +2,7 @@
 
 namespace Rs\VersionEye;
 
-use Ivory\HttpAdapter\BuzzHttpAdapter;
-use Ivory\HttpAdapter\Configuration;
-use Ivory\HttpAdapter\CurlHttpAdapter;
-use Ivory\HttpAdapter\FopenHttpAdapter;
-use Ivory\HttpAdapter\GuzzleHttpAdapter;
-use Ivory\HttpAdapter\GuzzleHttpHttpAdapter;
 use Ivory\HttpAdapter\HttpAdapterFactory;
-use Ivory\HttpAdapter\Zend1HttpAdapter;
-use Ivory\HttpAdapter\Zend2HttpAdapter;
 use Rs\VersionEye\Http\HttpClient;
 use Rs\VersionEye\Api\Api;
 
