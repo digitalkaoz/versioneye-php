@@ -12,8 +12,8 @@ matrix:
     php: hhvm
 
 before_script:
-#  - wget http://curl.haxx.se/ca/cacert.pem -O /tmp/cacert.pem
-#  - echo 'curl.cainfo = /tmp/cacert.pem' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - wget https://knowledge.rapidssl.com/library/VERISIGN/ALL_OTHER/RapidSSL%20Intermediate/RapidSSL_CA_bundle.pem -O /tmp/cacert.pem
+  - echo 'curl.cainfo = /tmp/cacert.pem' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - composer self-update
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "hhvm" ]; then rm phpspec.yml; fi;'
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then composer require --no-update --dev henrikbjorn/phpspec-code-coverage "1.0.*@dev"; fi;'
