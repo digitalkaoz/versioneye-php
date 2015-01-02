@@ -9,7 +9,7 @@ use PhpSpec\ObjectBehavior;
 use Ivory\HttpAdapter\HttpAdapterInterface;
 use Rs\VersionEye\Http\CommunicationException;
 
-class HttpClientSpec extends ObjectBehavior
+class IvoryHttpAdapterClientSpec extends ObjectBehavior
 {
     public function let(HttpAdapterInterface $client, ConfigurationInterface $config)
     {
@@ -19,6 +19,7 @@ class HttpClientSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
+        $this->shouldHaveType('Rs\VersionEye\Http\IvoryHttpAdapterClient');
         $this->shouldHaveType('Rs\VersionEye\Http\HttpClient');
     }
 

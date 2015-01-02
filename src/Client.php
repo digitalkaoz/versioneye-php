@@ -5,6 +5,7 @@ namespace Rs\VersionEye;
 use Ivory\HttpAdapter\HttpAdapterFactory;
 use Rs\VersionEye\Http\HttpClient;
 use Rs\VersionEye\Api\Api;
+use Rs\VersionEye\Http\IvoryHttpAdapterClient;
 
 /**
  * Client for interacting with the API
@@ -70,6 +71,6 @@ class Client
             return $this->client = $client;
         }
 
-        return $this->client = new HttpClient(HttpAdapterFactory::guess(), $url);
+        return $this->client = new IvoryHttpAdapterClient(HttpAdapterFactory::guess(), $url);
     }
 }
