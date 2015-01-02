@@ -29,11 +29,11 @@ class HttpClient
      */
     public function __construct(HttpAdapterInterface $adapter, $url)
     {
-        $adapter->setConfiguration(new Configuration());
-
-        $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RedirectSubscriber());
-        $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RetrySubscriber());
-        $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new StatusCodeSubscriber());
+        if ($adapter->getConfiguration()->getEventDispatcher()) {
+            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RedirectSubscriber());
+            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RetrySubscriber());
+            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new StatusCodeSubscriber());
+        }
 
         $this->adapter = $adapter;
         $this->url = $url;
