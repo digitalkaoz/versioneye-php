@@ -3,7 +3,6 @@
 
 namespace Rs\VersionEye\Http;
 
-use Ivory\HttpAdapter\Configuration;
 use Ivory\HttpAdapter\HttpAdapterException;
 use Ivory\HttpAdapter\HttpAdapterInterface;
 use Ivory\HttpAdapter\Event\Subscriber\RedirectSubscriber;
