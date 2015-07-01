@@ -3,6 +3,7 @@
 namespace spec\Rs\VersionEye;
 
 use PhpSpec\ObjectBehavior;
+use Rs\VersionEye\Http\HttpClient as Client;
 
 class ClientSpec extends ObjectBehavior
 {
@@ -39,6 +40,18 @@ class ClientSpec extends ObjectBehavior
     public function it_exposes_the_users_api()
     {
         $this->api('users')->shouldHaveType('Rs\VersionEye\Api\Users');
+    }
+
+    public function it_creates_authorized_apis_if_client_is_authorized(Client $client)
+    {
+        $this->beConstructedWith($client);
+        $this->authorize('lolcat');
+
+        $client->request('GET', 'me?api_key=lolcat', [])->shouldBeCalled();
+
+        $api = $this->api('me');
+
+        $api->profile();
     }
 
     public function it_doesnt_exposes_a_unknown_api()
