@@ -5,9 +5,9 @@ code_coverage:
   whitelist: [src]
   format:
     - text
-    - html
+#    - html
     - clover
   output:
     clover: coverage.xml
-    html: coverage
+ #   html: coverage
 
