@@ -3,15 +3,16 @@
 namespace Rs\VersionEye\Api;
 
 /**
- * Sessions API
+ * Sessions API.
  *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
+ *
  * @see https://www.versioneye.com/api/v2/swagger_doc/sessions
  */
 class Sessions extends BaseApi implements Api
 {
     /**
-     * returns session info for authorized users
+     * returns session info for authorized users.
      *
      * @return array
      */
@@ -21,7 +22,7 @@ class Sessions extends BaseApi implements Api
     }
 
     /**
-     * creates new sessions
+     * creates new sessions.
      *
      * @return array
      */

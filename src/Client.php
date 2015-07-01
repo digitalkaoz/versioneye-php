@@ -5,13 +5,15 @@ namespace Rs\VersionEye;
 use Ivory\HttpAdapter\Event\Subscriber\RedirectSubscriber;
 use Ivory\HttpAdapter\Event\Subscriber\RetrySubscriber;
 use Ivory\HttpAdapter\Event\Subscriber\StatusCodeSubscriber;
+use Ivory\HttpAdapter\EventDispatcherHttpAdapter;
 use Ivory\HttpAdapter\HttpAdapterFactory;
-use Rs\VersionEye\Http\HttpClient;
 use Rs\VersionEye\Api\Api;
+use Rs\VersionEye\Http\HttpClient;
 use Rs\VersionEye\Http\IvoryHttpAdapterClient;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
- * Client for interacting with the API
+ * Client for interacting with the API.
  *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
@@ -34,25 +36,27 @@ class Client
     }
 
     /**
-     * returns an api
+     * returns an api.
      *
-     * @param  string                    $name
-     * @return Api
+     * @param string $name
+     *
      * @throws \InvalidArgumentException
+     * @return Api
+     *
      */
     public function api($name)
     {
-        $class = 'Rs\\VersionEye\\Api\\'.ucfirst($name);
+        $class = 'Rs\\VersionEye\\Api\\' . ucfirst($name);
 
         if (class_exists($class)) {
             return new $class($this->client, $this->token);
         } else {
-            throw new \InvalidArgumentException('unknown api "'.$name.'" requested');
+            throw new \InvalidArgumentException('unknown api "' . $name . '" requested');
         }
     }
 
     /**
-     * authorizes a api
+     * authorizes a api.
      *
      * @param $token
      */
@@ -62,10 +66,11 @@ class Client
     }
 
     /**
-     * initializes the http client
+     * initializes the http client.
      *
-     * @param  string     $url
-     * @param  HttpClient $client
+     * @param string     $url
+     * @param HttpClient $client
+     *
      * @return HttpClient
      */
     private function initializeClient($url, HttpClient $client = null)
@@ -78,19 +83,20 @@ class Client
     }
 
     /**
-     * @param  string                                  $url
-     * @return IvoryHttpAdapterClient
+     * @param string $url
+     *
      * @throws \Ivory\HttpAdapter\HttpAdapterException
+     * @return IvoryHttpAdapterClient
+     *
      */
     private function createDefaultHttpClient($url)
     {
-        $adapter = HttpAdapterFactory::guess();
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber(new RedirectSubscriber());
+        $eventDispatcher->addSubscriber(new RetrySubscriber());
+        $eventDispatcher->addSubscriber(new StatusCodeSubscriber());
 
-        if ($adapter->getConfiguration()->getEventDispatcher()) {
-            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RedirectSubscriber());
-            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new RetrySubscriber());
-            $adapter->getConfiguration()->getEventDispatcher()->addSubscriber(new StatusCodeSubscriber());
-        }
+        $adapter = new EventDispatcherHttpAdapter(HttpAdapterFactory::guess(), $eventDispatcher);
 
         return new IvoryHttpAdapterClient($adapter, $url);
     }

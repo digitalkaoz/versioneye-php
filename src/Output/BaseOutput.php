@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Rs\VersionEye\Output;
 
 use Rs\VersionEye\Http\Pager;
@@ -8,13 +7,14 @@ use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * BaseOutput
+ * BaseOutput.
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 abstract class BaseOutput
 {
     /**
-     * prints a table, values can be modified via $callback
+     * prints a table, values can be modified via $callback.
      *
      * @param OutputInterface $output
      * @param string[]        $headings
@@ -40,24 +40,24 @@ abstract class BaseOutput
     }
 
     /**
-     * prints a simple boolean
+     * prints a simple boolean.
      *
      * @param OutputInterface $output
      * @param string          $success
      * @param string          $fail
-     * @param boolean         $value
+     * @param bool            $value
      */
     protected function printBoolean(OutputInterface $output, $success, $fail, $value)
     {
         if ($value) {
-            $output->writeln('<info>'.$success.'</info>');
+            $output->writeln('<info>' . $success . '</info>');
         } else {
-            $output->writeln('<error>'.$fail.'</error>');
+            $output->writeln('<error>' . $fail . '</error>');
         }
     }
 
     /**
-     * prints a list combined as <comment>Heading</comment> : <info>Value</info>, values can be modified via $callback
+     * prints a list combined as <comment>Heading</comment> : <info>Value</info>, values can be modified via $callback.
      *
      * @param OutputInterface $output
      * @param string[]        $headings
@@ -68,7 +68,7 @@ abstract class BaseOutput
     protected function printList(OutputInterface $output, array $headings, array $keys, array $data, \Closure $callback = null)
     {
         $width = $this->getColumnWidth($headings);
-        $data = array_merge(array_flip($keys), array_intersect_key($data, array_flip($keys)));
+        $data  = array_merge(array_flip($keys), array_intersect_key($data, array_flip($keys)));
 
         foreach ($headings as $key => $heading) {
             $value = array_values($data)[$key];
@@ -82,7 +82,7 @@ abstract class BaseOutput
     }
 
     /**
-     * output for references/search api
+     * output for references/search api.
      *
      * @param OutputInterface $output
      * @param array|Pager     $products
@@ -97,7 +97,7 @@ abstract class BaseOutput
     }
 
     /**
-     * prints a simple message
+     * prints a simple message.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -108,9 +108,10 @@ abstract class BaseOutput
     }
 
     /**
-     * calculates the max width of a given set of string
+     * calculates the max width of a given set of string.
      *
-     * @param  string[] $headings
+     * @param string[] $headings
+     *
      * @return int
      */
     private function getColumnWidth(array $headings)

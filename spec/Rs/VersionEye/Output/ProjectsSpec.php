@@ -17,14 +17,14 @@ class ProjectsSpec extends ObjectBehavior
         $output = new BufferedOutput();
         $this->all($output, [
             [
-                'id' => '1337',
-                'project_key' => 'digitalkaoz_versioneye-php_1',
-                'name' => 'digitalkaoz/versioneye-php',
+                'id'           => '1337',
+                'project_key'  => 'digitalkaoz_versioneye-php_1',
+                'name'         => 'digitalkaoz/versioneye-php',
                 'project_type' => 'composer',
-                'public' => false,
-                'dep_number' => 47,
-                'out_number' => 13,
-                'updated_at' => '25.05.1981',
+                'public'       => false,
+                'dep_number'   => 47,
+                'out_number'   => 13,
+                'updated_at'   => '25.05.1981',
             ],
         ]);
 
@@ -42,7 +42,7 @@ EOS
     public function it_prints_a_table_on_licenses()
     {
         $output = new BufferedOutput();
-        $this->licenses($output, [ 'licenses' => [
+        $this->licenses($output, ['licenses' => [
             'MIT' => [[
                 'name' => 'digitalkaoz/versioneye-php',
             ]],
@@ -91,24 +91,63 @@ EOS
         );
     }
 
+    public function it_prints_a_boolean_on_merge()
+    {
+        $output = new BufferedOutput();
+
+        $this->merge($output, ['success' => true]);
+
+        expect($output->fetch())->toBe(<<<EOS
+OK
+
+EOS
+        );
+    }
+
+    public function it_prints_a_boolean_on_merge_ga()
+    {
+        $output = new BufferedOutput();
+
+        $this->merge_ga($output, ['success' => true]);
+
+        expect($output->fetch())->toBe(<<<EOS
+OK
+
+EOS
+        );
+    }
+
+    public function it_prints_a_boolean_on_unmerge()
+    {
+        $output = new BufferedOutput();
+
+        $this->unmerge($output, ['success' => false]);
+
+        expect($output->fetch())->toBe(<<<EOS
+FAIL
+
+EOS
+        );
+    }
+
     private function defaultOutput($method)
     {
         $output = new BufferedOutput();
         $this->{$method}($output, [
-            'name' => 'digitalkaoz/versioneye-php',
-            'id' => '1337',
-            'project_key' => 'digitalkaoz_versioneye-php_1',
+            'name'         => 'digitalkaoz/versioneye-php',
+            'id'           => '1337',
+            'project_key'  => 'digitalkaoz_versioneye-php_1',
             'project_type' => 'composer',
-            'public' => true,
-            'out_number' => 7,
-            'updated_at' => '25.05.1981',
+            'public'       => true,
+            'out_number'   => 7,
+            'updated_at'   => '25.05.1981',
             'dependencies' => [[
-                'name' => 'symfony/symfony',
-                'stable' => true,
-                'outdated' => false,
-                'version_current' => '2.5.0',
+                'name'              => 'symfony/symfony',
+                'stable'            => true,
+                'outdated'          => false,
+                'version_current'   => '2.5.0',
                 'version_requested' => '2.5.0',
-            ]]
+            ]],
         ]);
 
         expect($output->fetch())->toBe(<<<EOS

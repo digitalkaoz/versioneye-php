@@ -17,9 +17,9 @@ class ProductsSpec extends ObjectBehavior
         $output = new BufferedOutput();
         $this->search($output, ['results' => [
             [
-                'name' => 'digitalkaoz/versioneye-php',
-                'language' => 'php',
-                'version' => '1.0.0',
+                'name'      => 'digitalkaoz/versioneye-php',
+                'language'  => 'php',
+                'version'   => '1.0.0',
                 'prod_type' => 'composer',
             ],
         ]]);
@@ -35,14 +35,45 @@ EOS
         );
     }
 
+    public function it_prints_a_table_on_versions()
+    {
+        $output = new BufferedOutput();
+        $this->versions($output, [
+                'name'      => 'digitalkaoz/versioneye-php',
+                'language'  => 'php',
+                'version'   => '1.0.0',
+                'prod_type' => 'composer',
+                'versions'  => [
+                    ['version' => '0.1', 'released_at' => '25.05.1981 07:01:00'],
+                    ['version' => '0.2', 'released_at' => '25.05.2015 07:01:00'],
+                ],
+        ]);
+
+        expect($output->fetch())->toBe(<<<EOS
+Name          : digitalkaoz/versioneye-php
+Language      : php
+Key           : 2
+Type          : composer
+Version       : 1.0.0
++---------+---------------------+
+| Version | Released At         |
++---------+---------------------+
+| 0.1     | 1981-05-25 07:01:00 |
+| 0.2     | 2015-05-25 07:01:00 |
++---------+---------------------+
+
+EOS
+        );
+    }
+
     public function it_prints_a_table_on_references()
     {
         $output = new BufferedOutput();
         $this->references($output, ['results' => [
             [
-                'name' => 'digitalkaoz/versioneye-php',
-                'language' => 'php',
-                'version' => '1.0.0',
+                'name'      => 'digitalkaoz/versioneye-php',
+                'language'  => 'php',
+                'version'   => '1.0.0',
                 'prod_type' => 'composer',
             ],
         ]]);
@@ -62,17 +93,17 @@ EOS
     {
         $output = new BufferedOutput();
         $this->show($output, [
-            'name' => 'digitalkaoz/versioneye-php',
-            'description' => 'a php wrapper around the versioneye api',
-            'prod_key' => '1337',
-            'prod_type' => 'composer',
+            'name'         => 'digitalkaoz/versioneye-php',
+            'description'  => 'a php wrapper around the versioneye api',
+            'prod_key'     => '1337',
+            'prod_type'    => 'composer',
             'license_info' => 'MIT',
-            'version' => '1.0.0',
-            'group_id' => 'foo',
-            'updated_at' => '25.05.1981',
+            'version'      => '1.0.0',
+            'group_id'     => 'foo',
+            'updated_at'   => '25.05.1981',
             'dependencies' => [
                 ['name' => 'symfony/console', 'parsed_version' => '2.5.3', 'version' => '~2.3'],
-            ]
+            ],
         ]);
 
         expect($output->fetch())->toBe(<<<EOS

@@ -3,9 +3,10 @@
 namespace Rs\VersionEye\Api;
 
 /**
- * Services API
+ * Services API.
  *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
+ *
  * @see https://www.versioneye.com/api/v2/swagger_doc/services
  */
 class Services extends BaseApi implements Api

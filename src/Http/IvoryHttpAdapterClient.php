@@ -1,13 +1,13 @@
 <?php
 
-
 namespace Rs\VersionEye\Http;
 
 use Ivory\HttpAdapter\HttpAdapterException;
 use Ivory\HttpAdapter\HttpAdapterInterface;
 
 /**
- * IvoryHttpAdapterClient
+ * IvoryHttpAdapterClient.
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class IvoryHttpAdapterClient implements HttpClient
@@ -26,7 +26,7 @@ class IvoryHttpAdapterClient implements HttpClient
     public function __construct(HttpAdapterInterface $adapter, $url)
     {
         $this->adapter = $adapter;
-        $this->url = $url;
+        $this->url     = $url;
     }
 
     /**
@@ -37,11 +37,11 @@ class IvoryHttpAdapterClient implements HttpClient
         list($params, $files) = $this->fixParams($params);
 
         try {
-            $response = $this->adapter->send($this->url.$url, $method, [], $params, $files);
+            $response = $this->adapter->send($this->url . $url, $method, [], $params, $files);
 
             return json_decode($response->getBody(), true);
         } catch (HttpAdapterException $e) {
-            $data = $e->getResponse() ? json_decode($e->getResponse()->getBody(), true) : ['error' => $e->getMessage()];
+            $data    = $e->getResponse() ? json_decode($e->getResponse()->getBody(), true) : ['error' => $e->getMessage()];
             $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
 
             $status = $e->getResponse() ? $e->getResponse()->getStatusCode() : 500;
@@ -51,15 +51,16 @@ class IvoryHttpAdapterClient implements HttpClient
     }
 
     /**
-     * splits arguments into parameters and files (if any)
+     * splits arguments into parameters and files (if any).
      *
-     * @param  array $params
+     * @param array $params
+     *
      * @return array
      */
     private function fixParams(array $params)
     {
         $parameters = [];
-        $files = [];
+        $files      = [];
 
         foreach ($params as $name => $value) {
             if (is_readable($value)) { //file

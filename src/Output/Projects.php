@@ -1,19 +1,19 @@
 <?php
 
-
 namespace Rs\VersionEye\Output;
 
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Projects
+ * Projects.
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class Projects extends BaseOutput
 {
     /**
-     * output for projects API
+     * output for projects API.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -29,13 +29,13 @@ class Projects extends BaseOutput
                     return $value;
                 }
 
-                return $value > 0 ? '<error>'.$value.'</error>' : '<info>No</info>';
+                return $value > 0 ? '<error>' . $value . '</error>' : '<info>No</info>';
             }
         );
     }
 
     /**
-     * output for licenses API
+     * output for licenses API.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -47,7 +47,7 @@ class Projects extends BaseOutput
 
         foreach ($response['licenses'] as $license => $projects) {
             foreach ($projects as $project) {
-                $name = $license === 'unknown' ? '<error>'.$project['name'].'</error>' : $project['name'];
+                $name    = $license === 'unknown' ? '<error>' . $project['name'] . '</error>' : $project['name'];
                 $license = $license === 'unknown' ? '<error>unknown</error>' : $license;
 
                 $table->addRow([$license, $name]);
@@ -58,7 +58,7 @@ class Projects extends BaseOutput
     }
 
     /**
-     * output for show API
+     * output for show API.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -69,7 +69,7 @@ class Projects extends BaseOutput
     }
 
     /**
-     * output for update API
+     * output for update API.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -80,7 +80,7 @@ class Projects extends BaseOutput
     }
 
     /**
-     * output for create API
+     * output for create API.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -91,7 +91,7 @@ class Projects extends BaseOutput
     }
 
     /**
-     * output for delete API
+     * output for delete API.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -102,7 +102,7 @@ class Projects extends BaseOutput
     }
 
     /**
-     * default output for create/show/update
+     * default output for create/show/update.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -118,7 +118,7 @@ class Projects extends BaseOutput
                     return $value;
                 }
 
-                return $value > 0 ? '<error>'.$value.'</error>' : '<info>No</info>';
+                return $value > 0 ? '<error>' . $value . '</error>' : '<info>No</info>';
             }
         );
 
@@ -134,5 +134,38 @@ class Projects extends BaseOutput
                 return $value ? '<error>Yes</error>' : '<info>No</info>';
             }
         );
+    }
+
+    /**
+     * output for the merge API.
+     *
+     * @param OutputInterface $output
+     * @param array           $response
+     */
+    public function merge(OutputInterface $output, array $response)
+    {
+        $this->printBoolean($output, 'OK', 'FAIL', true === $response['success']);
+    }
+
+    /**
+     * output for the merge_ga API.
+     *
+     * @param OutputInterface $output
+     * @param array           $response
+     */
+    public function merge_ga(OutputInterface $output, array $response)
+    {
+        $this->printBoolean($output, 'OK', 'FAIL', true === $response['success']);
+    }
+
+    /**
+     * output for the unmerge API.
+     *
+     * @param OutputInterface $output
+     * @param array           $response
+     */
+    public function unmerge(OutputInterface $output, array $response)
+    {
+        $this->printBoolean($output, 'OK', 'FAIL', true === $response['success']);
     }
 }

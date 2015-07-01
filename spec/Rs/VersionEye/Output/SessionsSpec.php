@@ -16,9 +16,9 @@ class SessionsSpec extends ObjectBehavior
     {
         $output = new BufferedOutput();
         $this->show($output, [
-            'fullname'      => 'Robert Schönthal',
-            'api_key'       => '1337',
-            'email'         => 'robert.schoenthal@gmail.com',
+            'fullname' => 'Robert Schönthal',
+            'api_key'  => '1337',
+            'email'    => 'robert.schoenthal@gmail.com',
         ]);
 
         expect($output->fetch())->toBe(<<<EOS

@@ -16,9 +16,9 @@ class UsersSpec extends ObjectBehavior
     {
         $output = new BufferedOutput();
         $this->show($output, [
-            'fullname'      => 'Robert Schönthal',
-            'username'      => 'digitalkaoz',
-            'email'         => 'robert.schoenthal@gmail.com',
+            'fullname' => 'Robert Schönthal',
+            'username' => 'digitalkaoz',
+            'email'    => 'robert.schoenthal@gmail.com',
         ]);
 
         expect($output->fetch())->toBe(<<<EOS
@@ -67,8 +67,8 @@ EOS
         $this->comments($output, ['comments' => [
             [
                 'created_at' => '25.05.1981',
-                'comment' => 'whoohoo',
-                'product' => ['name' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'version' => '1.0.0', 'prod_type' => 'composer'],
+                'comment'    => 'whoohoo',
+                'product'    => ['name' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'version' => '1.0.0', 'prod_type' => 'composer'],
             ],
         ]]);
 

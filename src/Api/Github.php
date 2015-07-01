@@ -3,21 +3,23 @@
 namespace Rs\VersionEye\Api;
 
 /**
- * Github Api
+ * Github Api.
  *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
+ *
  * @see https://www.versioneye.com/api/v2/swagger_doc/github
  */
 class Github extends BaseApi implements Api
 {
     /**
-     * lists your's github repos
+     * lists your's github repos.
      *
-     * @param  string $language
-     * @param  bool   $private
-     * @param  string $organization
-     * @param  string $type
-     * @param  bool   $imported
+     * @param string $language
+     * @param bool   $private
+     * @param string $organization
+     * @param string $type
+     * @param bool   $imported
+     *
      * @return array
      */
     public function repos($language = null, $private = null, $organization = null, $type = null, $imported = null)
@@ -28,7 +30,7 @@ class Github extends BaseApi implements Api
     }
 
     /**
-     * re-load github data
+     * re-load github data.
      *
      * @return array
      */
@@ -38,22 +40,24 @@ class Github extends BaseApi implements Api
     }
 
     /**
-     * shows the detailed information for the repository
+     * shows the detailed information for the repository.
      *
-     * @param  string $repository
+     * @param string $repository
+     *
      * @return array
      */
     public function show($repository)
     {
-        return $this->request('github/'.$this->transform($repository));
+        return $this->request('github/' . $this->transform($repository));
     }
 
     /**
-     * imports project file from github
+     * imports project file from github.
      *
-     * @param  string $repository
-     * @param  string $branch
-     * @param  string $file
+     * @param string $repository
+     * @param string $branch
+     * @param string $file
+     *
      * @return array
      */
     public function import($repository, $branch = null, $file = null)
@@ -62,11 +66,12 @@ class Github extends BaseApi implements Api
     }
 
     /**
-     * remove imported project
+     * remove imported project.
      *
-     * @param  string $repository
-     * @param  string $branch
-     * @param  string $file
+     * @param string $repository
+     * @param string $branch
+     * @param string $file
+     *
      * @return array
      */
     public function delete($repository, $branch = null, $file = null)
@@ -75,9 +80,10 @@ class Github extends BaseApi implements Api
     }
 
     /**
-     * GitHub Hook
+     * GitHub Hook.
      *
-     * @param  string $project
+     * @param string $project
+     *
      * @return array
      */
     public function hook($project)

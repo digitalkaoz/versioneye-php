@@ -5,13 +5,14 @@ namespace Rs\VersionEye\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Services
+ * Services.
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class Services extends BaseOutput
 {
     /**
-     * output for the ping api
+     * output for the ping api.
      *
      * @param OutputInterface $output
      * @param array           $response

@@ -3,7 +3,7 @@
 namespace Rs\VersionEye\Api;
 
 /**
- * Api Interface
+ * Api Interface.
  *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */

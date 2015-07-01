@@ -1,18 +1,18 @@
 <?php
 
-
 namespace Rs\VersionEye\Output;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Sessions
+ * Sessions.
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class Sessions extends BaseOutput
 {
     /**
-     * output for show API
+     * output for show API.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -27,7 +27,7 @@ class Sessions extends BaseOutput
     }
 
     /**
-     * output for open API
+     * output for open API.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -38,13 +38,13 @@ class Sessions extends BaseOutput
     }
 
     /**
-     * output for close API
+     * output for close API.
      *
      * @param OutputInterface $output
      * @param array           $response
      */
     public function close(OutputInterface $output, array $response)
     {
-        $this->printBoolean($output, 'OK', 'FAIL', 'Session is closed now.' == $response['message']);
+        $this->printBoolean($output, 'OK', 'FAIL', 'Session is closed now.' === $response['message']);
     }
 }

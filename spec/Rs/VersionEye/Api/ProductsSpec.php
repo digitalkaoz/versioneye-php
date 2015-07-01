@@ -60,4 +60,11 @@ class ProductsSpec extends ObjectBehavior
 
         $this->references('php', 'symfony')->shouldBeArray();
     }
+
+    public function it_calls_the_correct_url_on_versions(Client $client)
+    {
+        $client->request('GET', 'products/php/symfony/versions', [])->willReturn([]);
+
+        $this->versions('php', 'symfony')->shouldBeArray();
+    }
 }

@@ -25,6 +25,19 @@ EOS
         );
     }
 
+    public function it_prints_a_boolean_on_delete()
+    {
+        $output = new BufferedOutput();
+
+        $this->delete($output, ['success' => 'failure']);
+
+        expect($output->fetch())->toBe(<<<EOS
+failure
+
+EOS
+        );
+    }
+
     public function it_prints_a_boolean_on_hook()
     {
         $output = new BufferedOutput();

@@ -12,16 +12,17 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * CommandFactory
+ * CommandFactory.
  *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class CommandFactory
 {
     /**
-     * generates Commands from all Api Methods
+     * generates Commands from all Api Methods.
      *
-     * @param  array     $classes
+     * @param array $classes
+     *
      * @return Command[]
      */
     public function generateCommands(array $classes = [])
@@ -33,11 +34,11 @@ class CommandFactory
             'Rs\VersionEye\Api\Projects',
             'Rs\VersionEye\Api\Services',
             'Rs\VersionEye\Api\Sessions',
-            'Rs\VersionEye\Api\Users'
+            'Rs\VersionEye\Api\Users',
         ];
 
         $commands = [];
-        $token = $this->readConfigurationFile();
+        $token    = $this->readConfigurationFile();
 
         foreach ($classes as $class) {
             $api = new \ReflectionClass($class);
@@ -55,16 +56,17 @@ class CommandFactory
     }
 
     /**
-     * creates a Command based on an Api Method
+     * creates a Command based on an Api Method.
      *
-     * @param  string            $name
-     * @param  \ReflectionMethod $method
-     * @param  string            $token
+     * @param string            $name
+     * @param \ReflectionMethod $method
+     * @param string            $token
+     *
      * @return Command
      */
     private function generateCommand($name, \ReflectionMethod $method, $token = null)
     {
-        $command = new Command(strtolower($name.':'.$this->dash($method->getName())));
+        $command  = new Command(strtolower($name . ':' . $this->dash($method->getName())));
         $docBlock = new DocBlock($method->getDocComment());
 
         $command->setDefinition($this->buildDefinition($method, $token));
@@ -75,10 +77,11 @@ class CommandFactory
     }
 
     /**
-     * builds the Input Definition based upon Api Method Parameters
+     * builds the Input Definition based upon Api Method Parameters.
      *
-     * @param  \ReflectionMethod $method
-     * @param  string            $token
+     * @param \ReflectionMethod $method
+     * @param string            $token
+     *
      * @return InputDefinition
      */
     private function buildDefinition(\ReflectionMethod $method, $token = null)
@@ -101,10 +104,11 @@ class CommandFactory
     }
 
     /**
-     * creates the command execution code
+     * creates the command execution code.
      *
-     * @param  string            $name
-     * @param  \ReflectionMethod $method
+     * @param string            $name
+     * @param \ReflectionMethod $method
+     *
      * @return \Closure
      */
     private function createCode($name, \ReflectionMethod $method)
@@ -135,7 +139,7 @@ class CommandFactory
             $response = call_user_func_array([$api, $methodName], $args);
 
             $classParts = explode('\\', get_class($api));
-            $className = 'Rs\VersionEye\Output\\'.array_pop($classParts);
+            $className  = 'Rs\VersionEye\Output\\' . array_pop($classParts);
 
             if (method_exists($className, $methodName)) {
                 (new $className())->{$methodName}($output, $response);
@@ -146,9 +150,10 @@ class CommandFactory
     }
 
     /**
-     * dashifies a camelCase string
+     * dashifies a camelCase string.
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return string
      */
     private function dash($name)
@@ -157,20 +162,20 @@ class CommandFactory
     }
 
     /**
-     * reads global information from the user config file ~/.veye.rc
+     * reads global information from the user config file ~/.veye.rc.
      *
      * @return string
      */
     private function readConfigurationFile()
     {
-        $file = trim(shell_exec('cd ~ && pwd')).DIRECTORY_SEPARATOR.'.veye.rc';
+        $file = trim(shell_exec('cd ~ && pwd')) . DIRECTORY_SEPARATOR . '.veye.rc';
 
         if (!file_exists($file)) {
             return;
         }
 
         $data = file_get_contents($file);
-        $data = parse_ini_string(str_replace([': ', ':'], ['= ', ''],  $data)); //stupid convert from .rc to .ini
+        $data = parse_ini_string(str_replace([': ', ':'], ['= ', ''], $data)); //stupid convert from .rc to .ini
 
         if (isset($data['api_key']) && $data['api_key']) {
             return trim($data['api_key']);

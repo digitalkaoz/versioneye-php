@@ -3,27 +3,31 @@
 namespace Rs\VersionEye\Api;
 
 /**
- * Users API
+ * Users API.
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
+ *
  * @see https://www.versioneye.com/api/v2/swagger_doc/users
  */
 class Users extends BaseApi implements Api
 {
     /**
-     * shows profile of given user_id
+     * shows profile of given user_id.
      *
-     * @param  string $username
+     * @param string $username
+     *
      * @return array
      */
     public function show($username)
     {
-        return $this->request('users/'.$username);
+        return $this->request('users/' . $username);
     }
 
     /**
-     * shows user's favorite packages
+     * shows user's favorite packages.
      *
-     * @param  string $username
+     * @param string $username
+     *
      * @return array
      */
     public function favorites($username)
@@ -32,9 +36,10 @@ class Users extends BaseApi implements Api
     }
 
     /**
-     * shows user's comments
+     * shows user's comments.
      *
-     * @param  string $username
+     * @param string $username
+     *
      * @return array
      */
     public function comments($username)

@@ -61,4 +61,25 @@ class ProjectsSpec extends ObjectBehavior
 
         $this->update('symfony', 'path/to/file')->shouldBeArray();
     }
+
+    public function it_calls_the_correct_url_on_merge(Client $client)
+    {
+        $client->request('GET', 'projects/1337/merge/42', [])->willReturn([]);
+
+        $this->merge('1337', '42')->shouldBeArray();
+    }
+
+    public function it_calls_the_correct_url_on_merge_ga(Client $client)
+    {
+        $client->request('GET', 'projects/13/1337/merge_ga/42', [])->willReturn([]);
+
+        $this->merge_ga('13', '1337', '42')->shouldBeArray();
+    }
+
+    public function it_calls_the_correct_url_on_unmerge(Client $client)
+    {
+        $client->request('GET', 'projects/1337/unmerge/42', [])->willReturn([]);
+
+        $this->unmerge('1337', '42')->shouldBeArray();
+    }
 }

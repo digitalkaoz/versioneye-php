@@ -1,19 +1,18 @@
 <?php
 
-
 namespace Rs\VersionEye\Http;
 
 /**
- * ResultPager
+ * ResultPager.
  *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class Pager implements \Iterator
 {
-    private $offset = 0;
+    private $offset  = 0;
     private $current = 1;
-    private $max = 0;
-    private $result = array();
+    private $max     = 0;
+    private $result  = [];
 
     /**
      * @var HttpClient
@@ -22,7 +21,7 @@ class Pager implements \Iterator
     private $key;
     private $method;
     private $url;
-    private $params = array();
+    private $params = [];
 
     /**
      * @param array      $result
@@ -32,16 +31,16 @@ class Pager implements \Iterator
      * @param string     $url
      * @param array      $params
      */
-    public function __construct(array $result, $key, HttpClient $client, $method, $url, array $params = array())
+    public function __construct(array $result, $key, HttpClient $client, $method, $url, array $params = [])
     {
         $this->current = $result['paging']['current_page'];
-        $this->max = $result['paging']['total_entries'];
-        $this->result = $result[$key];
+        $this->max     = $result['paging']['total_entries'];
+        $this->result  = $result[$key];
 
-        $this->key = $key;
+        $this->key    = $key;
         $this->client = $client;
         $this->method = $method;
-        $this->url = $url;
+        $this->url    = $url;
         $this->params = $params;
     }
 
@@ -58,7 +57,7 @@ class Pager implements \Iterator
      */
     public function next()
     {
-        $this->offset++;
+        ++$this->offset;
     }
 
     /**
@@ -75,8 +74,8 @@ class Pager implements \Iterator
     public function valid()
     {
         if (!isset($this->result[$this->offset]) && $this->offset < $this->max) {
-            $this->current++;
-            $url = preg_replace('/page=[0-9]+/', 'page='.$this->current, $this->url);
+            ++$this->current;
+            $url    = preg_replace('/page=[0-9]+/', 'page=' . $this->current, $this->url);
             $result = $this->client->request($this->method, $url, $this->params);
 
             $this->result = array_merge($this->result, $result[$this->key]);

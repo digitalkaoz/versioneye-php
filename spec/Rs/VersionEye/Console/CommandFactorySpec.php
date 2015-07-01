@@ -21,7 +21,7 @@ class CommandFactorySpec extends ObjectBehavior
         $result = $this->generateCommands();
 
         $result->shouldBeArray();
-        $result->shouldHaveCount(29);
+        $result->shouldHaveCount(33);
         $result->shouldHaveCommands([
             'github:delete',
             'github:hook',
@@ -39,6 +39,10 @@ class CommandFactorySpec extends ObjectBehavior
             'products:search',
             'products:show',
             'products:unfollow',
+            'products:versions',
+            'projects:merge',
+            'projects:merge_ga',
+            'projects:unmerge',
             'projects:all',
             'projects:create',
             'projects:delete',
@@ -85,7 +89,7 @@ EOS
         $command = $result[0];
         $command->shouldHaveType('Symfony\Component\Console\Command\Command');
         $command->getName()->shouldBe('test:bazz');
-        $command->getDescription()->shouldBe('awesome');
+        $command->getDescription()->shouldBe('awesome.');
 
         $command->getDefinition()->hasArgument('foo');
 
@@ -105,18 +109,18 @@ EOS
                     $present[] = $command->getName();
                 }
 
-                return [] == array_diff($present, $keys);
+                return [] === array_diff($present, $keys);
             },
 
             'onlyContainCommandInstances' => function ($subject) {
                 foreach ($subject as $command) {
-                    if (! $command instanceof Command) {
-                        throw new FailureException('"'.get_class($command).'" is not a subtype of Symfony\Component\Console\Command\Command');
+                    if (!$command instanceof Command) {
+                        throw new FailureException('"' . get_class($command) . '" is not a subtype of Symfony\Component\Console\Command\Command');
                     }
                 }
 
                 return true;
-            }
+            },
         ];
     }
 }
@@ -124,11 +128,12 @@ EOS
 class Test implements Api
 {
     /**
-     * awesome
+     * awesome.
      *
      * @param $foo
-     * @param  null  $bar
-     * @param  int   $bazz
+     * @param null $bar
+     * @param int  $bazz
+     *
      * @return array
      */
     public function bazz($foo, $bar = null, $bazz = 1)

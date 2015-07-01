@@ -5,13 +5,14 @@ namespace Rs\VersionEye\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Github
+ * Github.
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class Github extends BaseOutput
 {
     /**
-     * output for sync api
+     * output for sync api.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -22,7 +23,7 @@ class Github extends BaseOutput
     }
 
     /**
-     * output for hook api
+     * output for hook api.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -33,7 +34,18 @@ class Github extends BaseOutput
     }
 
     /**
-     * output for repos api
+     * output for delete api.
+     *
+     * @param OutputInterface $output
+     * @param array           $response
+     */
+    public function delete(OutputInterface $output, array $response)
+    {
+        $this->printBoolean($output, 'OK', $response['success'], true === $response['success']);
+    }
+
+    /**
+     * output for repos api.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -48,7 +60,7 @@ class Github extends BaseOutput
     }
 
     /**
-     * output for show api
+     * output for show api.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -59,7 +71,7 @@ class Github extends BaseOutput
     }
 
     /**
-     * output for import api
+     * output for import api.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -70,7 +82,7 @@ class Github extends BaseOutput
     }
 
     /**
-     * output for the import/show api
+     * output for the import/show api.
      *
      * @param OutputInterface $output
      * @param array           $response

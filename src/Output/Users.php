@@ -1,18 +1,18 @@
 <?php
 
-
 namespace Rs\VersionEye\Output;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Users
+ * Users.
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class Users extends Me
 {
     /**
-     * output for the profile API
+     * output for the profile API.
      *
      * @param OutputInterface $output
      * @param array           $response

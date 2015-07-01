@@ -1,19 +1,19 @@
 <?php
 
-
 namespace Rs\VersionEye\Output;
 
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Me
+ * Me.
+ *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class Me extends BaseOutput
 {
     /**
-     * output for the profile api
+     * output for the profile api.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -35,7 +35,7 @@ class Me extends BaseOutput
     }
 
     /**
-     * output for the favorites api
+     * output for the favorites api.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -46,7 +46,7 @@ class Me extends BaseOutput
     }
 
     /**
-     * output for the notifications api
+     * output for the notifications api.
      *
      * @param OutputInterface $output
      * @param array           $response
@@ -57,7 +57,7 @@ class Me extends BaseOutput
     }
 
     /**
-     * output for the comments api
+     * output for the comments api.
      *
      * @param OutputInterface $output
      * @param array           $response

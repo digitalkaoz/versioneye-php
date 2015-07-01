@@ -3,9 +3,9 @@
 namespace spec\Rs\VersionEye\Http;
 
 use Ivory\HttpAdapter\HttpAdapterException;
+use Ivory\HttpAdapter\HttpAdapterInterface;
 use Ivory\HttpAdapter\Message\ResponseInterface;
 use PhpSpec\ObjectBehavior;
-use Ivory\HttpAdapter\HttpAdapterInterface;
 use Rs\VersionEye\Http\CommunicationException;
 
 class IvoryHttpAdapterClientSpec extends ObjectBehavior

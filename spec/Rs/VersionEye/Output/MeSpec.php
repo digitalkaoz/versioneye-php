@@ -20,7 +20,7 @@ class MeSpec extends ObjectBehavior
             'username'      => 'digitalkaoz',
             'email'         => 'robert.schoenthal@gmail.com',
             'admin'         => false,
-            'notifications' => ['new' => 10, 'total' => 100]
+            'notifications' => ['new' => 10, 'total' => 100],
         ]);
 
         expect($output->fetch())->toBe(<<<EOS
@@ -72,8 +72,8 @@ EOS
         $this->comments($output, ['comments' => [
             [
                 'created_at' => '25.05.1981',
-                'comment' => 'whoohoo',
-                'product' => ['name' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'version' => '1.0.0', 'prod_type' => 'composer'],
+                'comment'    => 'whoohoo',
+                'product'    => ['name' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'version' => '1.0.0', 'prod_type' => 'composer'],
             ],
         ]]);
 

@@ -3,15 +3,16 @@
 namespace Rs\VersionEye\Api;
 
 /**
- * Me Api
+ * Me Api.
  *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
+ *
  * @see https://www.versioneye.com/api/v2/swagger_doc/me
  */
 class Me extends BaseApi implements Api
 {
     /**
-     * shows profile of authorized user
+     * shows profile of authorized user.
      *
      * @return array
      */
@@ -21,7 +22,7 @@ class Me extends BaseApi implements Api
     }
 
     /**
-     * shows favorite packages for authorized user
+     * shows favorite packages for authorized user.
      *
      * @return array
      */
@@ -31,7 +32,7 @@ class Me extends BaseApi implements Api
     }
 
     /**
-     * shows comments of authorized user
+     * shows comments of authorized user.
      *
      * @return array
      */
@@ -41,7 +42,7 @@ class Me extends BaseApi implements Api
     }
 
     /**
-     * shows unread notifications of authorized user
+     * shows unread notifications of authorized user.
      *
      * @return array
      */

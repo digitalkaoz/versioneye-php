@@ -6,7 +6,7 @@ use Rs\VersionEye\Http\HttpClient;
 use Rs\VersionEye\Http\Pager;
 
 /**
- * BaseApi
+ * BaseApi.
  *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
@@ -25,15 +25,16 @@ abstract class BaseApi
     public function __construct(HttpClient $client, $token = null)
     {
         $this->client = $client;
-        $this->token = $token;
+        $this->token  = $token;
     }
 
     /**
-     * performs the request
+     * performs the request.
      *
-     * @param  string $url
-     * @param  string $method
-     * @param  array  $params
+     * @param string $url
+     * @param string $method
+     * @param array  $params
+     *
      * @return array
      */
     protected function request($url, $method = 'GET', array $params = [])
@@ -56,9 +57,10 @@ abstract class BaseApi
     }
 
     /**
-     * converts names to the needed url path format
+     * converts names to the needed url path format.
      *
-     * @param  string $name
+     * @param string $name
+     *
      * @return string
      */
     protected function transform($name)
@@ -67,15 +69,16 @@ abstract class BaseApi
     }
 
     /**
-     * removes empty query string parameters
+     * removes empty query string parameters.
      *
-     * @param  string $query
+     * @param string $query
+     *
      * @return string
      */
     private function sanitizeQuery($query)
     {
         $parts = parse_url($query);
-        $path = $parts['path'];
+        $path  = $parts['path'];
 
         if (!isset($parts['query'])) {
             return $query;
@@ -83,7 +86,7 @@ abstract class BaseApi
 
         $vars = explode('&', $parts['query']);
 
-        $final = array();
+        $final = [];
 
         if (!empty($vars)) {
             foreach ($vars as $var) {
@@ -98,19 +101,20 @@ abstract class BaseApi
             }
         }
 
-        return $path.'?'.http_build_query($final);
+        return $path . '?' . http_build_query($final);
     }
 
     /**
-     * converts the pageable data into a real pager
+     * converts the pageable data into a real pager.
      *
-     * @param  array  $response
-     * @param  string $method
-     * @param  string $url
-     * @param  array  $params
+     * @param array  $response
+     * @param string $method
+     * @param string $url
+     * @param array  $params
+     *
      * @return array
      */
-    private function injectPager(array $response, $method, $url, array $params = array())
+    private function injectPager(array $response, $method, $url, array $params = [])
     {
         while (next($response)) {
             if ('paging' === key($response)) {

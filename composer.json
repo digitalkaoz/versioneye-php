@@ -6,17 +6,13 @@
         "php":                                  ">=5.4",
         "symfony/console":                      "~2.3",
         "phpdocumentor/reflection-docblock":    "~2.0",
-        "egeloen/http-adapter":                 "dev-master"
+        "egeloen/http-adapter":                 "dev-master",
+        "symfony/event-dispatcher":             "~2.3"
     },
     "require-dev": {
         "phpspec/phpspec":                      "~2",
-        "bossa/phpspec2-expect":                "~1"
-    },
-
-    "suggest": {
-        "guzzlehttp/guzzle":        "for using guzzle for http",
-        "kriswallsmith/buzz":       "for using buzz for http",
-        "zendframework/zend-http":  "for using zend for http"
+        "bossa/phpspec2-expect":                "~1",
+        "henrikbjorn/phpspec-code-coverage": "^1.0"
     },
 
     "license": "MIT",
