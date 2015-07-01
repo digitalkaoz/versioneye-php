@@ -31,7 +31,7 @@ first you have to decide which `http adapter` to use. The library supports all a
 Where `fopen` is last resort if even `curl` is missing.
 
 ```
-$ composer require "digitalkaoz/versioneye-php" @stable
+$ composer require digitalkaoz/versioneye-php
 ```
 
 ##Usage
