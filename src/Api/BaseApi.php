@@ -39,7 +39,7 @@ abstract class BaseApi
      */
     protected function request($url, $method = 'GET', array $params = [])
     {
-        if ($this->token) {
+        if (null !== $this->token) {
             $delimiter = strstr($url, '?') ? '&' : '?';
 
             $url = sprintf('%s%sapi_key=%s', $url, $delimiter, $this->token);
