@@ -1,20 +1,6 @@
 {
     "name": "digitalkaoz/versioneye-php",
     "description": "PHP CLI for the VersionEye API",
-
-    "require": {
-        "php":                                  ">=5.4",
-        "symfony/console":                      "~2.3",
-        "phpdocumentor/reflection-docblock":    "~2.0",
-        "egeloen/http-adapter":                 "~0.7",
-        "symfony/event-dispatcher":             "~2.3"
-    },
-    "require-dev": {
-        "phpspec/phpspec":                      "~2",
-        "bossa/phpspec2-expect":                "~1",
-        "henrikbjorn/phpspec-code-coverage": "^1.0"
-    },
-
     "license": "MIT",
     "authors": [
         {
@@ -22,6 +8,24 @@
             "email": "robert.schoenthal@gmail.com"
         }
     ],
+
+    "require": {
+        "php":                                  ">=5.4",
+        "symfony/console":                      "~2.3",
+        "phpdocumentor/reflection-docblock":    "~2.0",
+        "egeloen/http-adapter":                 "~0.8",
+        "symfony/event-dispatcher":             "~2.7"
+    },
+    "require-dev": {
+        "phpspec/phpspec":                      "~2",
+        "bossa/phpspec2-expect":                "~1"
+    },
+
+    "suggest": {
+        "guzzlehttp/guzzle":        "for using guzzle for http",
+        "kriswallsmith/buzz":       "for using buzz for http",
+        "zendframework/zend-http":  "for using zend for http"
+    },
 
     "autoload" : {
         "psr-4" : {"Rs\\VersionEye\\" : "src"}

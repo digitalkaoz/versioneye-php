@@ -14,3 +14,4 @@ app/config/parameters.yml
 
 # Composer
 composer.phar
+phpspec.yml
