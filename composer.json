@@ -21,12 +21,6 @@
         "bossa/phpspec2-expect":                "~1"
     },
 
-    "suggest": {
-        "guzzlehttp/guzzle":        "for using guzzle for http",
-        "kriswallsmith/buzz":       "for using buzz for http",
-        "zendframework/zend-http":  "for using zend for http"
-    },
-
     "autoload" : {
         "psr-4" : {"Rs\\VersionEye\\" : "src"}
     }

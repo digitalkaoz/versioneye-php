@@ -45,7 +45,7 @@ class Pager implements \Iterator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function current()
     {
@@ -53,7 +53,7 @@ class Pager implements \Iterator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function next()
     {
@@ -61,7 +61,7 @@ class Pager implements \Iterator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function key()
     {
@@ -69,7 +69,7 @@ class Pager implements \Iterator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function valid()
     {
@@ -87,7 +87,7 @@ class Pager implements \Iterator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rewind()
     {

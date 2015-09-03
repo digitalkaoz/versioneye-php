@@ -41,8 +41,8 @@ class Client
      * @param string $name
      *
      * @throws \InvalidArgumentException
-     * @return Api
      *
+     * @return Api
      */
     public function api($name)
     {
@@ -86,8 +86,8 @@ class Client
      * @param string $url
      *
      * @throws \Ivory\HttpAdapter\HttpAdapterException
-     * @return IvoryHttpAdapterClient
      *
+     * @return IvoryHttpAdapterClient
      */
     private function createDefaultHttpClient($url)
     {
@@ -97,6 +97,8 @@ class Client
         $eventDispatcher->addSubscriber(new StatusCodeSubscriber());
 
         $adapter = new EventDispatcherHttpAdapter(HttpAdapterFactory::guess(), $eventDispatcher);
+        $adapter->getConfiguration()->setTimeout(30);
+        $adapter->getConfiguration()->setUserAgent('versioneye-php');
 
         return new IvoryHttpAdapterClient($adapter, $url);
     }

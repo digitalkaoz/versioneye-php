@@ -30,7 +30,7 @@ class IvoryHttpAdapterClient implements HttpClient
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function request($method, $url, array $params = [])
     {
