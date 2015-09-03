@@ -22,7 +22,7 @@ There are 2 ways to install it:
 download the latest version from the [Releases section](https://github.com/digitalkaoz/versioneye-php/releases/latest) or from the cli:
 
 ```
-$ wget https://github.com/digitalkaoz/versioneye-php/releases/download/0.9.1/versioneye.phar //or latest stable
+$ wget https://github.com/digitalkaoz/versioneye-php/releases/download/0.9.2/versioneye.phar //or latest stable
 ```
 
 ### Install from source code
