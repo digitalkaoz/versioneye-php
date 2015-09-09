@@ -1,46 +1,42 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Versioneye-php by digitalkaoz</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Versioneye-php</h1>
-        <p>a PHP CLI tool and library for interacting with the VersionEye API</p>
-        <p class="view"><a href="https://github.com/digitalkaoz/versioneye-php">View the Project on GitHub <small>digitalkaoz/versioneye-php</small></a></p>
-        <ul>
-          <li><a href="https://github.com/digitalkaoz/versioneye-php/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/digitalkaoz/versioneye-php/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/digitalkaoz/versioneye-php">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a name="a-php-clilibrary-for-the-versioneye-api" class="anchor" href="#a-php-clilibrary-for-the-versioneye-api"><span class="octicon octicon-link"></span></a>a PHP CLI/Library for the VersionEye API</h1>
+    <section class="page-header">
+      <h1 class="project-name">Versioneye-php</h1>
+      <h2 class="project-tagline">a PHP CLI tool and library for interacting with the VersionEye API</h2>
+      <a href="https://github.com/digitalkaoz/versioneye-php" class="btn">View on GitHub</a>
+      <a href="https://github.com/digitalkaoz/versioneye-php/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/digitalkaoz/versioneye-php/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="a-php-clilibrary-for-the-versioneye-api" class="anchor" href="#a-php-clilibrary-for-the-versioneye-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>a PHP CLI/Library for the VersionEye API</h1>
 
 <p>see <a href="https://www.versioneye.com/api/">https://www.versioneye.com/api/</a> for API documentation</p>
 
-<p><a href="https://travis-ci.org/digitalkaoz/versioneye-php"><img src="https://camo.githubusercontent.com/18658e80f09c06c81a2408f72df2f1cd137cf597/68747470733a2f2f696d672e736869656c64732e696f2f7472617669732f6469676974616c6b616f7a2f76657273696f6e6579652d7068702f6d61737465722e7376673f7374796c653d666c61742d737175617265" alt="Build Status" data-canonical-src="https://img.shields.io/travis/digitalkaoz/versioneye-php/master.svg?style=flat-square" style="max-width:100%;"></a>
-<a href="https://www.versioneye.com/php/digitalkaoz:versioneye-php"><img src="https://camo.githubusercontent.com/30769abc0c184fd85c847f586b66949f29650c6f/68747470733a2f2f696d672e736869656c64732e696f2f76657273696f6e6579652f642f7068702f6469676974616c6b616f7a3a76657273696f6e6579652d7068702e7376673f7374796c653d666c61742d737175617265" alt="Dependency Status" data-canonical-src="https://img.shields.io/versioneye/d/php/digitalkaoz:versioneye-php.svg?style=flat-square" style="max-width:100%;"></a>
-<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://camo.githubusercontent.com/71a838c423b5f962aa04b86e245aa49084a8ade9/68747470733a2f2f696d672e736869656c64732e696f2f7363727574696e697a65722f672f6469676974616c6b616f7a2f76657273696f6e6579652d7068702e7376673f7374796c653d666c61742d737175617265" alt="Scrutinizer Code Quality" data-canonical-src="https://img.shields.io/scrutinizer/g/digitalkaoz/versioneye-php.svg?style=flat-square" style="max-width:100%;"></a>
-<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://camo.githubusercontent.com/e857f720b48c371c024836dca3562ac4fa3d5d52/68747470733a2f2f696d672e736869656c64732e696f2f7363727574696e697a65722f636f7665726167652f672f6469676974616c6b616f7a2f76657273696f6e6579652d7068702f6d61737465722e7376673f7374796c653d666c61742d737175617265" alt="Code Coverage" data-canonical-src="https://img.shields.io/scrutinizer/coverage/g/digitalkaoz/versioneye-php/master.svg?style=flat-square" style="max-width:100%;"></a>
-<a href="https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0"><img src="https://camo.githubusercontent.com/184a7fc4d74306d1316f70671bf41158a659a0e6/68747470733a2f2f696d672e736869656c64732e696f2f73656e73696f6c6162732f692f66373633336137652d343537372d346138362d623664392d6363616137356362376661302e7376673f7374796c653d666c61742d737175617265" alt="SensioLabsInsight" data-canonical-src="https://img.shields.io/sensiolabs/i/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0.svg?style=flat-square" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://camo.githubusercontent.com/ad23a5d639b428503ecb070a0240a518c33be41b/68747470733a2f2f696d672e736869656c64732e696f2f7061636b61676973742f762f6469676974616c6b616f7a2f76657273696f6e6579652d7068702e7376673f7374796c653d666c61742d737175617265" alt="Latest Stable Version" data-canonical-src="https://img.shields.io/packagist/v/digitalkaoz/versioneye-php.svg?style=flat-square" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://camo.githubusercontent.com/08a10217d852eee43f6cf027a7d194e4b606e997/68747470733a2f2f696d672e736869656c64732e696f2f7061636b61676973742f64742f6469676974616c6b616f7a2f76657273696f6e6579652d7068702e7376673f7374796c653d666c61742d737175617265" alt="Total Downloads" data-canonical-src="https://img.shields.io/packagist/dt/digitalkaoz/versioneye-php.svg?style=flat-square" style="max-width:100%;"></a></p>
+<p><a href="https://travis-ci.org/digitalkaoz/versioneye-php"><img src="https://travis-ci.org/digitalkaoz/versioneye-php.svg?branch=master" alt="Build Status"></a></p>
+
+<p><a href="https://www.versioneye.com/user/projects/5411b8a68d7ae10d4c009233"><img src="https://www.versioneye.com/user/projects/5412a7388d7ae1d531009793/badge.svg?style=flat" alt="Dependency Status"></a>
+<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/coverage.png?b=master" alt="Code Coverage"></a>
+<a href="https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0"><img src="https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0/mini.png" alt="SensioLabsInsight"></a></p>
+
+<p><a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://poser.pugx.org/digitalkaoz/versioneye-php/version.svg" alt="Latest Stable Version"></a>
+<a href="//packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://poser.pugx.org/digitalkaoz/versioneye-php/v/unstable.svg" alt="Latest Unstable Version"></a>
+<a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://poser.pugx.org/digitalkaoz/versioneye-php/downloads.svg" alt="Total Downloads"></a></p>
+
 <h2>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>first you have to decide which <code>http adapter</code> to use. The library supports <code>guzzlehttp/guzzle</code> and <code>kriswallsmith/buzz</code>. Where guzzle is default.</p>
 
@@ -51,39 +47,38 @@ $ composer require "digitalkaoz/versioneye-php" *
 </code></pre>
 
 <h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>all API endpoints are implemented, see <a href="https://www.versioneye.com/api/v2/swagger_doc.json">https://www.versioneye.com/api/v2/swagger_doc.json</a> for their detailed docs.</p>
 
 <h3>
-<a name="programmatic" class="anchor" href="#programmatic"><span class="octicon octicon-link"></span></a>programmatic:</h3>
+<a id="programmatic" class="anchor" href="#programmatic" aria-hidden="true"><span class="octicon octicon-link"></span></a>programmatic:</h3>
 
-<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
-
-<span class="k">use</span> <span class="nx">Rs\VersionEye\Client</span><span class="p">;</span>
-
-<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'services'</span><span class="p">);</span>     <span class="c1">// Rs\VersionEye\Api\Services</span>
-<span class="nv">$api</span><span class="o">-&gt;</span><span class="na">ping</span><span class="p">();</span> <span class="c1">//array</span>
-
-<span class="c1">//other implemented APIs</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'github'</span><span class="p">);</span>       <span class="c1">// Rs\VersionEye\Api\Github</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'me'</span><span class="p">);</span>           <span class="c1">// Rs\VersionEye\Api\Me</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'projects'</span><span class="p">);</span>     <span class="c1">// Rs\VersionEye\Api\Projects</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'products'</span><span class="p">);</span>     <span class="c1">// Rs\VersionEye\Api\Products</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'sessions'</span><span class="p">);</span>     <span class="c1">// Rs\VersionEye\Api\Sessions</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nx">Client</span><span class="p">())</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'users'</span><span class="p">);</span>        <span class="c1">// Rs\VersionEye\Api\Users</span>
-
-</pre></div>
+<div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Rs\VersionEye\Client</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$api</span> <span class="pl-k">=</span> (<span class="pl-k">new</span> <span class="pl-c1">Client</span>())<span class="pl-k">-&gt;</span>api(<span class="pl-s"><span class="pl-pds">'</span>services<span class="pl-pds">'</span></span>);     <span class="pl-c">// Rs\VersionEye\Api\Services</span></span>
+<span class="pl-s1"><span class="pl-smi">$api</span><span class="pl-k">-&gt;</span>ping(); <span class="pl-c">//array</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">//other implemented APIs</span></span>
+<span class="pl-s1"><span class="pl-smi">$api</span> <span class="pl-k">=</span> (<span class="pl-k">new</span> <span class="pl-c1">Client</span>())<span class="pl-k">-&gt;</span>api(<span class="pl-s"><span class="pl-pds">'</span>github<span class="pl-pds">'</span></span>);       <span class="pl-c">// Rs\VersionEye\Api\Github</span></span>
+<span class="pl-s1"><span class="pl-smi">$api</span> <span class="pl-k">=</span> (<span class="pl-k">new</span> <span class="pl-c1">Client</span>())<span class="pl-k">-&gt;</span>api(<span class="pl-s"><span class="pl-pds">'</span>me<span class="pl-pds">'</span></span>);           <span class="pl-c">// Rs\VersionEye\Api\Me</span></span>
+<span class="pl-s1"><span class="pl-smi">$api</span> <span class="pl-k">=</span> (<span class="pl-k">new</span> <span class="pl-c1">Client</span>())<span class="pl-k">-&gt;</span>api(<span class="pl-s"><span class="pl-pds">'</span>projects<span class="pl-pds">'</span></span>);     <span class="pl-c">// Rs\VersionEye\Api\Projects</span></span>
+<span class="pl-s1"><span class="pl-smi">$api</span> <span class="pl-k">=</span> (<span class="pl-k">new</span> <span class="pl-c1">Client</span>())<span class="pl-k">-&gt;</span>api(<span class="pl-s"><span class="pl-pds">'</span>products<span class="pl-pds">'</span></span>);     <span class="pl-c">// Rs\VersionEye\Api\Products</span></span>
+<span class="pl-s1"><span class="pl-smi">$api</span> <span class="pl-k">=</span> (<span class="pl-k">new</span> <span class="pl-c1">Client</span>())<span class="pl-k">-&gt;</span>api(<span class="pl-s"><span class="pl-pds">'</span>sessions<span class="pl-pds">'</span></span>);     <span class="pl-c">// Rs\VersionEye\Api\Sessions</span></span>
+<span class="pl-s1"><span class="pl-smi">$api</span> <span class="pl-k">=</span> (<span class="pl-k">new</span> <span class="pl-c1">Client</span>())<span class="pl-k">-&gt;</span>api(<span class="pl-s"><span class="pl-pds">'</span>users<span class="pl-pds">'</span></span>);        <span class="pl-c">// Rs\VersionEye\Api\Users</span></span>
+<span class="pl-s1"></span></pre></div>
 
 <h3>
-<a name="cli" class="anchor" href="#cli"><span class="octicon octicon-link"></span></a>cli:</h3>
+<a id="cli" class="anchor" href="#cli" aria-hidden="true"><span class="octicon octicon-link"></span></a>cli:</h3>
 
 <pre><code>$ bin/versioneye services:ping
 $ bin/versioneye products:search symfony
 </code></pre>
 
 <h2>
-<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
 <p>to store your generated API Token globally you can create a global config file in your home directory:</p>
 
@@ -97,7 +92,7 @@ $ bin/versioneye products:search symfony
 <p>now you dont have to pass your token on each call!</p>
 
 <h2>
-<a name="cli-tool" class="anchor" href="#cli-tool"><span class="octicon octicon-link"></span></a>CLI Tool</h2>
+<a id="cli-tool" class="anchor" href="#cli-tool" aria-hidden="true"><span class="octicon octicon-link"></span></a>CLI Tool</h2>
 
 <p>to build a standalone phar, simply execute the following commands.</p>
 
@@ -106,7 +101,7 @@ $ php versioneye-php.phar
 </code></pre>
 
 <h2>
-<a name="commands" class="anchor" href="#commands"><span class="octicon octicon-link"></span></a>Commands:</h2>
+<a id="commands" class="anchor" href="#commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Commands:</h2>
 
 <p>The Commands are autogenerated by introspecting the API Implementations. Each Public Method is a Command, each Method Parameter will be translated into a InputArgument or InputOption.</p>
 
@@ -150,23 +145,27 @@ users
 </code></pre>
 
 <h2>
-<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
 
 <ul>
 <li>complete output presentations of each api endpoint</li>
 <li>paging results</li>
-</ul><h2>
-<a name="tests" class="anchor" href="#tests"><span class="octicon octicon-link"></span></a>Tests</h2>
+</ul>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
 
 <pre><code>$ vendor/bin/phpspec run
 </code></pre>
-      </section>
-    </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/digitalkaoz">digitalkaoz</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/digitalkaoz/versioneye-php">Versioneye-php</a> is maintained by <a href="https://github.com/digitalkaoz">digitalkaoz</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
