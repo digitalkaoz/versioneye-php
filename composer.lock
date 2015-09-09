@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ca3fceb501c0f85fe0e23f29d146cfe7",
+    "hash": "25d1698c2677da722886ae4c4c3e768a",
     "packages": [
         {
             "name": "egeloen/http-adapter",
