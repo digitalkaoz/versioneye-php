@@ -153,7 +153,7 @@ class Projects extends BaseOutput
      * @param OutputInterface $output
      * @param array           $response
      */
-    public function merge_ga(OutputInterface $output, array $response)
+    public function mergeGa(OutputInterface $output, array $response)
     {
         $this->printBoolean($output, 'OK', 'FAIL', true === $response['success']);
     }

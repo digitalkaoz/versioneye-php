@@ -104,11 +104,11 @@ EOS
         );
     }
 
-    public function it_prints_a_boolean_on_merge_ga()
+    public function it_prints_a_boolean_on_mergeGa()
     {
         $output = new BufferedOutput();
 
-        $this->merge_ga($output, ['success' => true]);
+        $this->mergeGa($output, ['success' => true]);
 
         expect($output->fetch())->toBe(<<<EOS
 OK

@@ -7,10 +7,17 @@ if (!@include __DIR__.'/../vendor/autoload.php') {
         'php composer.phar install'.PHP_EOL);
 }
 
+use Rs\VersionEye\Authentication\RubyConfigFileToken;
 use Rs\VersionEye\Console\CommandFactory;
 use Symfony\Component\Console\Application;
+use Camel\CaseTransformer;
+use Camel\Format;
 
-// run the command application
+$commandFactory = new CommandFactory(
+    new RubyConfigFileToken(),
+    new CaseTransformer(new Format\CamelCase(), new Format\SnakeCase())
+);
+
 $application = new Application('versioneye', '@git-version@');
-$application->addCommands((new CommandFactory())->generateCommands());
+$application->addCommands($commandFactory->generateCommands());
 $application->run();

@@ -2,15 +2,61 @@
 
 namespace spec\Rs\VersionEye\Console;
 
+use Camel\CaseTransformer;
+use Camel\Format;
+use Diff;
 use PhpSpec\Exception\Example\FailureException;
+use PhpSpec\Exception\Example\NotEqualException;
 use PhpSpec\ObjectBehavior;
 use Rs\VersionEye\Api\Api;
+use Rs\VersionEye\Authentication\Token;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 class CommandFactorySpec extends ObjectBehavior
 {
+    private static $commands = [
+        'github:delete',
+        'github:hook',
+        'github:import',
+        'github:repos',
+        'github:show',
+        'github:sync',
+        'me:comments',
+        'me:favorites',
+        'me:notifications',
+        'me:profile',
+        'products:follow',
+        'products:follow_status',
+        'products:references',
+        'products:search',
+        'products:show',
+        'products:unfollow',
+        'products:versions',
+        'projects:merge',
+        'projects:merge_ga',
+        'projects:unmerge',
+        'projects:all',
+        'projects:create',
+        'projects:delete',
+        'projects:licenses',
+        'projects:show',
+        'projects:update',
+        'services:ping',
+        'sessions:close',
+        'sessions:open',
+        'sessions:show',
+        'users:comments',
+        'users:favorites',
+        'users:show',
+    ];
+
+    public function let(Token $token)
+    {
+        $this->beConstructedWith($token, new CaseTransformer(new Format\CamelCase(), new Format\SnakeCase()));
+    }
+
     public function it_is_initializable()
     {
         $this->shouldHaveType('Rs\VersionEye\Console\CommandFactory');
@@ -21,42 +67,8 @@ class CommandFactorySpec extends ObjectBehavior
         $result = $this->generateCommands();
 
         $result->shouldBeArray();
-        $result->shouldHaveCount(33);
-        $result->shouldHaveCommands([
-            'github:delete',
-            'github:hook',
-            'github:import',
-            'github:repos',
-            'github:show',
-            'github:sync',
-            'me:comments',
-            'me:favorites',
-            'me:notifications',
-            'me:profile',
-            'products:follow',
-            'products:follow-status',
-            'products:references',
-            'products:search',
-            'products:show',
-            'products:unfollow',
-            'products:versions',
-            'projects:merge',
-            'projects:merge_ga',
-            'projects:unmerge',
-            'projects:all',
-            'projects:create',
-            'projects:delete',
-            'projects:licenses',
-            'projects:show',
-            'projects:update',
-            'services:ping',
-            'sessions:close',
-            'sessions:open',
-            'sessions:show',
-            'users:comments',
-            'users:favorites',
-            'users:show',
-        ]);
+        $result->shouldHaveCount(count(self::$commands));
+        $result->shouldHaveCommands(self::$commands);
         $result->shouldOnlyContainCommandInstances();
     }
 
@@ -66,11 +78,11 @@ class CommandFactorySpec extends ObjectBehavior
         $result = $this->generateCommands(['Rs\VersionEye\Api\Services']);
 
         $result->shouldBeArray();
-        $result->shouldHaveCount(1);
+        $result->shouldHaveCount(count(self::$commands));
 
-        $result[0]->shouldHaveType('Symfony\Component\Console\Command\Command');
-        $result[0]->getName()->shouldBe('services:ping');
-        $result[0]->run(new ArrayInput([]), $output);
+        $result['services:ping']->shouldHaveType('Symfony\Component\Console\Command\Command');
+        $result['services:ping']->getName()->shouldBe('services:ping');
+        $result['services:ping']->run(new ArrayInput([]), $output);
 
         expect($output->fetch())->toBe(<<<EOS
 pong
@@ -84,9 +96,9 @@ EOS
         $result = $this->generateCommands(['spec\Rs\VersionEye\Console\Test']);
 
         $result->shouldBeArray();
-        $result->shouldHaveCount(1);
+        $result->shouldHaveCount(count(self::$commands) + 1);
 
-        $command = $result[0];
+        $command = $result['test:bazz'];
         $command->shouldHaveType('Symfony\Component\Console\Command\Command');
         $command->getName()->shouldBe('test:bazz');
         $command->getDescription()->shouldBe('awesome.');
@@ -109,7 +121,16 @@ EOS
                     $present[] = $command->getName();
                 }
 
-                return [] === array_diff($present, $keys);
+                sort($keys);
+                sort($present);
+
+                $diff = new Diff($present, $keys);
+
+                if ($diff->render(new \Diff_Renderer_Text_Unified())) {
+                    throw new NotEqualException('command set is not equal to expectation', $keys, $present);
+                }
+
+                return true;
             },
 
             'onlyContainCommandInstances' => function ($subject) {

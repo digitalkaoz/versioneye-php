@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "79bb91cb3863cd82c65f2d8dc066139b",
+    "hash": "ca3fceb501c0f85fe0e23f29d146cfe7",
     "packages": [
         {
             "name": "egeloen/http-adapter",
@@ -83,6 +83,49 @@
                 "psr-7"
             ],
             "time": "2015-08-12 09:35:40"
+        },
+        {
+            "name": "mattketmo/camel",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MattKetmo/camel.git",
+                "reference": "2d7753c62787933f6761108acc76f95d8bfee191"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MattKetmo/camel/zipball/2d7753c62787933f6761108acc76f95d8bfee191",
+                "reference": "2d7753c62787933f6761108acc76f95d8bfee191",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.6.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Camel": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthieu Moquet",
+                    "email": "matthieu@moquet.net"
+                }
+            ],
+            "description": "Tiny library to handle words case transformation",
+            "keywords": [
+                "camelcase",
+                "case",
+                "lowercase",
+                "snakecase",
+                "transform"
+            ],
+            "time": "2015-05-13 13:51:08"
         },
         {
             "name": "phpdocumentor/reflection-docblock",

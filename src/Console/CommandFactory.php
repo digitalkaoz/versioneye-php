@@ -2,7 +2,9 @@
 
 namespace Rs\VersionEye\Console;
 
+use Camel\CaseTransformerInterface;
 use phpDocumentor\Reflection\DocBlock;
+use Rs\VersionEye\Authentication\Token;
 use Rs\VersionEye\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -19,6 +21,22 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CommandFactory
 {
     /**
+     * @var CaseTransformerInterface
+     */
+    private $transformer;
+
+    /**
+     * @var Token
+     */
+    private $token;
+
+    public function __construct(Token $token, CaseTransformerInterface $transformer)
+    {
+        $this->transformer = $transformer;
+        $this->token       = $token;
+    }
+
+    /**
      * generates Commands from all Api Methods.
      *
      * @param array $classes
@@ -27,28 +45,18 @@ class CommandFactory
      */
     public function generateCommands(array $classes = [])
     {
-        $classes = $classes ?: [
-            'Rs\VersionEye\Api\Github',
-            'Rs\VersionEye\Api\Me',
-            'Rs\VersionEye\Api\Products',
-            'Rs\VersionEye\Api\Projects',
-            'Rs\VersionEye\Api\Services',
-            'Rs\VersionEye\Api\Sessions',
-            'Rs\VersionEye\Api\Users',
-        ];
-
+        $classes  = $this->readApis($classes);
+        $token    = $this->token->read();
         $commands = [];
-        $token    = $this->readConfigurationFile();
 
         foreach ($classes as $class) {
             $api = new \ReflectionClass($class);
 
             foreach ($api->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
-                if (strstr($method->getName(), '__')) { //skip magics
-                    continue;
+                if (0 !== strpos($method->getName(), '__')) { //skip magics
+                    $command                       = $this->generateCommand($api->getShortName(), $method, $token);
+                    $commands[$command->getName()] = $command;
                 }
-
-                $commands[] = $this->generateCommand($api->getShortName(), $method, $token);
             }
         }
 
@@ -66,7 +74,9 @@ class CommandFactory
      */
     private function generateCommand($name, \ReflectionMethod $method, $token = null)
     {
-        $command  = new Command(strtolower($name . ':' . $this->dash($method->getName())));
+        $methodName = $this->transformer->transform($method->getName());
+
+        $command  = new Command(strtolower($name . ':' . $methodName));
         $docBlock = new DocBlock($method->getDocComment());
 
         $command->setDefinition($this->buildDefinition($method, $token));
@@ -150,35 +160,24 @@ class CommandFactory
     }
 
     /**
-     * dashifies a camelCase string.
+     * reads all api classes.
      *
-     * @param string $name
+     * @param array $classes
      *
-     * @return string
+     * @return array
      */
-    private function dash($name)
+    private function readApis(array $classes = [])
     {
-        return strtolower(preg_replace(['/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'], ['\\1-\\2', '\\1-\\2'], strtr($name, '-', '.')));
-    }
+        $baseClasses = [
+            'Rs\VersionEye\Api\Github',
+            'Rs\VersionEye\Api\Me',
+            'Rs\VersionEye\Api\Products',
+            'Rs\VersionEye\Api\Projects',
+            'Rs\VersionEye\Api\Services',
+            'Rs\VersionEye\Api\Sessions',
+            'Rs\VersionEye\Api\Users',
+        ];
 
-    /**
-     * reads global information from the user config file ~/.veye.rc.
-     *
-     * @return string
-     */
-    private function readConfigurationFile()
-    {
-        $file = trim(shell_exec('cd ~ && pwd')) . DIRECTORY_SEPARATOR . '.veye.rc';
-
-        if (!file_exists($file)) {
-            return;
-        }
-
-        $data = file_get_contents($file);
-        $data = parse_ini_string(str_replace([': ', ':'], ['= ', ''], $data)); //stupid convert from .rc to .ini
-
-        if (isset($data['api_key']) && $data['api_key']) {
-            return trim($data['api_key']);
-        }
+        return array_merge($baseClasses, $classes);
     }
 }

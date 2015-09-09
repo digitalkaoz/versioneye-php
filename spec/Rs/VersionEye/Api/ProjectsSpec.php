@@ -69,11 +69,11 @@ class ProjectsSpec extends ObjectBehavior
         $this->merge('1337', '42')->shouldBeArray();
     }
 
-    public function it_calls_the_correct_url_on_merge_ga(Client $client)
+    public function it_calls_the_correct_url_on_mergeGa(Client $client)
     {
         $client->request('GET', 'projects/13/1337/merge_ga/42', [])->willReturn([]);
 
-        $this->merge_ga('13', '1337', '42')->shouldBeArray();
+        $this->mergeGa('13', '1337', '42')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_unmerge(Client $client)

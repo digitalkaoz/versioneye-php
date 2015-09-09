@@ -117,7 +117,7 @@ class Projects extends BaseApi implements Api
      *
      * @return array
      */
-    public function merge_ga($group, $artifact, $child)
+    public function mergeGa($group, $artifact, $child)
     {
         return $this->request(sprintf('projects/%s/%s/merge_ga/%s', $group, $artifact, $child));
     }
