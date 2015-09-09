@@ -1,55 +1,85 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Versioneye-php by digitalkaoz</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Versioneye-php</h1>
-      <h2 class="project-tagline">a PHP CLI tool and library for interacting with the VersionEye API</h2>
-      <a href="https://github.com/digitalkaoz/versioneye-php" class="btn">View on GitHub</a>
-      <a href="https://github.com/digitalkaoz/versioneye-php/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/digitalkaoz/versioneye-php/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <section class="main-content">
-      <h1>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>versioneye-php by digitalkaoz</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>versioneye-php</h1>
+        <h2>a PHP CLI tool and library for interacting with the VersionEye API</h2>
+        <a href="https://github.com/digitalkaoz/versioneye-php" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
 <a id="a-php-clilibrary-for-the-versioneye-api" class="anchor" href="#a-php-clilibrary-for-the-versioneye-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>a PHP CLI/Library for the VersionEye API</h1>
 
 <p>see <a href="https://www.versioneye.com/api/">https://www.versioneye.com/api/</a> for API documentation</p>
 
-<p><a href="https://travis-ci.org/digitalkaoz/versioneye-php"><img src="https://travis-ci.org/digitalkaoz/versioneye-php.svg?branch=master" alt="Build Status"></a></p>
-
-<p><a href="https://www.versioneye.com/user/projects/5411b8a68d7ae10d4c009233"><img src="https://www.versioneye.com/user/projects/5412a7388d7ae1d531009793/badge.svg?style=flat" alt="Dependency Status"></a>
-<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
-<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/badges/coverage.png?b=master" alt="Code Coverage"></a>
-<a href="https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0"><img src="https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0/mini.png" alt="SensioLabsInsight"></a></p>
-
-<p><a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://poser.pugx.org/digitalkaoz/versioneye-php/version.svg" alt="Latest Stable Version"></a>
-<a href="//packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://poser.pugx.org/digitalkaoz/versioneye-php/v/unstable.svg" alt="Latest Unstable Version"></a>
-<a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://poser.pugx.org/digitalkaoz/versioneye-php/downloads.svg" alt="Total Downloads"></a></p>
+<p><a href="https://travis-ci.org/digitalkaoz/versioneye-php"><img src="https://img.shields.io/travis/digitalkaoz/versioneye-php/master.svg?style=flat-square" alt="Build Status"></a>
+<a href="https://www.versioneye.com/php/digitalkaoz:versioneye-php"><img src="https://img.shields.io/versioneye/d/php/digitalkaoz:versioneye-php.svg?style=flat-square" alt="Dependency Status"></a>
+<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://img.shields.io/scrutinizer/g/digitalkaoz/versioneye-php.svg?style=flat-square" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/digitalkaoz/versioneye-php/?branch=master"><img src="https://img.shields.io/scrutinizer/coverage/g/digitalkaoz/versioneye-php/master.svg?style=flat-square" alt="Code Coverage"></a>
+<a href="https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0"><img src="https://img.shields.io/sensiolabs/i/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0.svg?style=flat-square" alt="SensioLabsInsight"></a>
+<a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://img.shields.io/packagist/v/digitalkaoz/versioneye-php.svg?style=flat-square" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/digitalkaoz/versioneye-php"><img src="https://img.shields.io/packagist/dt/digitalkaoz/versioneye-php.svg?style=flat-square" alt="Total Downloads"></a></p>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<p>first you have to decide which <code>http adapter</code> to use. The library supports <code>guzzlehttp/guzzle</code> and <code>kriswallsmith/buzz</code>. Where guzzle is default.</p>
+<p>There are 3 ways to install it: </p>
 
-<pre><code>$ composer require "guzzlehttp/guzzle" ~4 //or
-$ composer require "kriswallsmith/buzz" ~0.10
+<ul>
+<li>Download the Phar (recommended)</li>
+<li>Install from source code</li>
+</ul>
 
-$ composer require "digitalkaoz/versioneye-php" *
+<h3>
+<a id="download-the-phar-recommended" class="anchor" href="#download-the-phar-recommended" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download the Phar (recommended)</h3>
+
+<p>download the latest version from the <a href="https://github.com/digitalkaoz/versioneye-php/releases/latest">Releases section</a> or from the cli:</p>
+
+<pre><code>$ wget https://github.com/digitalkaoz/versioneye-php/releases/download/0.10.0/versioneye.phar //or latest stable
+</code></pre>
+
+<h3>
+<a id="install-as-global-composer-package" class="anchor" href="#install-as-global-composer-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install as global Composer Package</h3>
+
+<pre><code>$ composer g require digitalkaoz/versioneye-php
+</code></pre>
+
+<p>now you can run <code>~/.composer/vendor/bin/versioneye</code> maybe add this folder to your <code>PATH</code> variable.</p>
+
+<h3>
+<a id="install-from-source-code" class="anchor" href="#install-from-source-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install from source code</h3>
+
+<p>first you have to decide which <code>http adapter</code> to use. The library supports all adapters supported by <a href="https://github.com/egeloen/ivory-http-adapter">egeloen/ivory-http-adapter</a>
+Where <code>fopen</code> is last resort if even <code>curl</code> is missing.</p>
+
+<pre><code>$ composer require digitalkaoz/versioneye-php
 </code></pre>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>all API endpoints are implemented, see <a href="https://www.versioneye.com/api/v2/swagger_doc.json">https://www.versioneye.com/api/v2/swagger_doc.json</a> for their detailed docs.</p>
+<p>all API endpoints are implemented, see <a href="https://www.versioneye.com/api/">https://www.versioneye.com/api/</a> for their detailed docs.</p>
 
 <h3>
 <a id="programmatic" class="anchor" href="#programmatic" aria-hidden="true"><span class="octicon octicon-link"></span></a>programmatic:</h3>
@@ -73,14 +103,24 @@ $ composer require "digitalkaoz/versioneye-php" *
 <h3>
 <a id="cli" class="anchor" href="#cli" aria-hidden="true"><span class="octicon octicon-link"></span></a>cli:</h3>
 
+<p>Here some usage examples.</p>
+
 <pre><code>$ bin/versioneye services:ping
 $ bin/versioneye products:search symfony
 </code></pre>
 
+<p>Or with the phar file. </p>
+
+<pre><code>php versioneye.phar products:search "symfony"
+php versioneye.phar products:show "php" "symfony:symfony"
+</code></pre>
+
+<p>The last command requires that you have setup your <a href="https://www.versioneye.com/settings/api">API Key</a> correctly. </p>
+
 <h2>
 <a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
-<p>to store your generated API Token globally you can create a global config file in your home directory:</p>
+<p>to store your <a href="https://www.versioneye.com/settings/api">generated API Token</a> globally you can create a global config file in your home directory:</p>
 
 <p><code>~/.veye.rc</code> we share the same config file with the ruby cli <a href="https://github.com/versioneye/veye">https://github.com/versioneye/veye</a></p>
 
@@ -96,8 +136,9 @@ $ bin/versioneye products:search symfony
 
 <p>to build a standalone phar, simply execute the following commands.</p>
 
-<pre><code>$ vendor/bin/box build
-$ php versioneye-php.phar
+<pre><code>$ composer require --dev kherge/box
+$ vendor/bin/box build
+$ php versioneye.phar
 </code></pre>
 
 <h2>
@@ -105,66 +146,167 @@ $ php versioneye-php.phar
 
 <p>The Commands are autogenerated by introspecting the API Implementations. Each Public Method is a Command, each Method Parameter will be translated into a InputArgument or InputOption.</p>
 
-<pre><code>github
-  github:delete            remove imported project
-  github:hook              GitHub Hook
-  github:import            imports project file from github
-  github:repos             lists your's github repos
-  github:search            search github repositories on github
-  github:show              shows the detailed information for the repository
-  github:sync              re-load github data
-me
-  me:comments              shows comments of authorized user
-  me:favorites             shows favorite packages for authorized user
-  me:notifications         shows unread notifications of authorized user
-  me:profile               shows profile of authorized user
-products
-  products:follow          follow your favorite software package
-  products:follow-status   check your following status
-  products:references      references
-  products:search          search packages
-  products:show            detailed information for specific package
-  products:unfollow        unfollow given software package
-projects
-  projects:all             shows user`s projects
-  projects:create          upload project file
-  projects:delete          delete given project
-  projects:licenses        get grouped view of licences for dependencies
-  projects:show            shows the project's information
-  projects:update          update project with new file
-services
-  services:ping            Answers to request with basic pong.
-sessions
-  sessions:close           delete current session aka log out.
-  sessions:open            creates new sessions
-  sessions:show            returns session info for authorized users
-users
-  users:comments           shows user's comments
-  users:favorites          shows user's favorite packages
-  users:show               shows profile of given user_id
+<pre><code> github
+  github:delete           remove imported project.
+  github:hook             GitHub Hook.
+  github:import           imports project file from github.
+  github:repos            lists your's github repos.
+  github:show             shows the detailed information for the repository.
+  github:sync             re-load github data.
+ me
+  me:comments             shows comments of authorized user.
+  me:favorites            shows favorite packages for authorized user.
+  me:notifications        shows unread notifications of authorized user.
+  me:profile              shows profile of authorized user.
+ products
+  products:follow         follow your favorite software package.
+  products:follow_status  check your following status.
+  products:references     shows all references for the given package.
+  products:search         search packages.
+  products:show           detailed information for specific package.
+  products:unfollow       unfollow given software package.
+  products:versions       shows all version for the given package.
+ projects
+  projects:all            shows user`s projects.
+  projects:create         upload project file.
+  projects:delete         delete given project.
+  projects:licenses       get grouped view of licences for dependencies.
+  projects:merge          merge two projects together.
+  projects:merge_ga       merge two projects together (only for maven projects).
+  projects:show           shows the project's information.
+  projects:unmerge        unmerge two projects.
+  projects:update         update project with new file.
+ services
+  services:ping           Answers to request with basic pong.
+ sessions
+  sessions:close          delete current session aka log out.
+  sessions:open           creates new sessions.
+  sessions:show           returns session info for authorized users.
+ users
+  users:comments          shows user's comments.
+  users:favorites         shows user's favorite packages.
+  users:show              shows profile of given user_id.
 </code></pre>
 
 <h2>
-<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
+<a id="faq" class="anchor" href="#faq" aria-hidden="true"><span class="octicon octicon-link"></span></a>FAQ</h2>
 
-<ul>
-<li>complete output presentations of each api endpoint</li>
-<li>paging results</li>
-</ul>
+<h3>
+<a id="implement-a-new-http-adapter" class="anchor" href="#implement-a-new-http-adapter" aria-hidden="true"><span class="octicon octicon-link"></span></a>implement a new HTTP Adapter</h3>
+
+<p>simply implement the <code>Rs\VersionEye\Http\HttpClient</code> Interface:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">MyHttpClient</span> <span class="pl-k">implements</span> <span class="pl-e">HttpClient</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * @inheritDoc</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">request</span>(<span class="pl-smi">$method</span>, <span class="pl-smi">$url</span>, <span class="pl-k">array</span> <span class="pl-smi">$params</span> <span class="pl-k">=</span> [])</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-c">//implement your own special http handling here</span></span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>and then pass it the the Client:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-k">&lt;</span>?<span class="pl-c1">php</span> </span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$api</span> <span class="pl-k">=</span> (<span class="pl-k">new</span> <span class="pl-c1">Client</span>(<span class="pl-k">new</span> <span class="pl-c1">MyHttpClient</span>))<span class="pl-k">-&gt;</span>api(<span class="pl-s"><span class="pl-pds">'</span>users<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h3>
+<a id="writing-a-new-api" class="anchor" href="#writing-a-new-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>writing a new Api</h3>
+
+<p>simply implement the <code>Rs\VersionEye\Api\Api</code> Interface:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">namespace</span> <span class="pl-en">Rs\VersionEye\Api</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">Foo</span> <span class="pl-k">implements</span> <span class="pl-e">Api</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * awesome api endpoint</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">bar</span>(<span class="pl-smi">$bar</span>, <span class="pl-smi">$bazz</span><span class="pl-k">=</span><span class="pl-c1">1</span>)</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-c">//implement api endpoint</span></span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>the you have to register the Api in the <code>CommandFactory</code> (maybe even that could be autogenerated by searching all implementors of Interface <code>Rs\VersionEye\Api\Api</code>):</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-k">&lt;</span>?<span class="pl-c1">php</span> </span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">CommandFactory</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * generates Commands from all Api Methods</span></span>
+<span class="pl-s1"><span class="pl-c">     *</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@param</span>  array     $classes</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@return</span> Command[]</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">generateCommands</span>(<span class="pl-k">array</span> <span class="pl-smi">$classes</span> <span class="pl-k">=</span> [])</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$classes</span> <span class="pl-k">=</span> <span class="pl-smi">$classes</span> ?: [</span>
+<span class="pl-s1">            <span class="pl-c">//...</span></span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>Rs\VersionEye\Api\Foo<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">        ];</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}    </span></pre></div>
+
+<p>be aware that each public method would be exposed as <code>Command</code>. Mandatory Parameters will be <code>InputArgument</code>s, optionals will be a <code>InputOption</code>. The Command description would be taken from the <code>phpdoc</code>!</p>
+
+<p>So the above example will be generated to this <code>Command</code>:</p>
+
+<pre><code>foo:bar --bazz=1 bar      //awesome api endpoint
+</code></pre>
+
+<h3>
+<a id="writing-a-new-console-output-formatter" class="anchor" href="#writing-a-new-console-output-formatter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Writing a new Console Output Formatter</h3>
+
+<p>by default the <code>Command</code> tries to find the same API method in the Output Classes (if not it will output the data as simple <code>print_r</code>:</p>
+
+<p><code>Rs\VersionEye\Api\Github:sync</code> <strong>API</strong> ----&gt; <code>Rs\VersionEye\Output\Github:sync</code> <strong>Output</strong></p>
+
+<p>so for the above Example simply create the following Class:</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">namespace</span> <span class="pl-en">Rs\VersionEye\Output</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">Foo</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">bar</span>(<span class="pl-c1">OutputInterface</span> <span class="pl-smi">$output</span>, <span class="pl-smi">$response</span>)</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-c">//output the $response (API Result)</span></span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>thats all.</p>
 
 <h2>
 <a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
 
-<pre><code>$ vendor/bin/phpspec run
+<pre><code>$ composer require --dev henrikbjorn/phpspec-code-coverage
+$ vendor/bin/phpspec run
 </code></pre>
+        </section>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/digitalkaoz/versioneye-php">Versioneye-php</a> is maintained by <a href="https://github.com/digitalkaoz">digitalkaoz</a>.</span>
+        <aside id="sidebar">
+          <a href="https://github.com/digitalkaoz/versioneye-php/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/digitalkaoz/versioneye-php/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+          <p class="repo-owner"><a href="https://github.com/digitalkaoz/versioneye-php"></a> is maintained by <a href="https://github.com/digitalkaoz">digitalkaoz</a>.</p>
 
-    </section>
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
 
   
   </body>
