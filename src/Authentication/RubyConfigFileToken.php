@@ -16,7 +16,7 @@ class RubyConfigFileToken implements Token
      */
     public function __construct($file = null)
     {
-        if (!$file) {
+        if (null === $file) {
             $file = $_SERVER['HOME'] . DIRECTORY_SEPARATOR . '.veye.rc';
         }
 
