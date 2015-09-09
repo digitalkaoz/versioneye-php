@@ -44,7 +44,7 @@ $ composer require digitalkaoz/versioneye-php
 
 ##Usage
 
-all API endpoints are implemented, see https://www.versioneye.com/api/v2/swagger_doc.json for their detailed docs.
+all API endpoints are implemented, see https://www.versioneye.com/api/ for their detailed docs.
 
 
 ### programmatic:
@@ -106,9 +106,9 @@ now you dont have to pass your token on each call!
 to build a standalone phar, simply execute the following commands.
 
 ```
-$ composer require --dev kherge/box @stable
+$ composer require --dev kherge/box
 $ vendor/bin/box build
-$ php versioneye-php.phar
+$ php versioneye.phar
 ```
 
 ## Commands:
