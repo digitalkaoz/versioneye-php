@@ -1,17 +1,5 @@
-# Bootstrap
-app/bootstrap*
-.idea
-# Symfony directories
 vendor/*
-*/logs/*
-*/cache/*
-web/uploads/*
-web/bundles/*
-
-# Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
-
-# Composer
 composer.phar
 phpspec.yml
+.php_cs.cache
+versioneye.phar
