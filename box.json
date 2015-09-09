@@ -9,7 +9,8 @@
     "directories": [
         "src/Http",
         "src/Console",
-        "src/Output"
+        "src/Output",
+        "src/Authentication"
     ],
     "directories-bin": [
         "src/Api"
@@ -25,10 +26,6 @@
             "exclude": [
                 "tests", "Tests"
             ],
-            "in": "vendor"
-        },
-        {
-            "name": "cacert.pem",
             "in": "vendor"
         }
     ],
