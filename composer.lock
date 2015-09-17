@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "90e1027267a57642a838614ee4a6a1d2",
+    "hash": "efcd312c39dd24570dfa0278ab8d4050",
     "packages": [
         {
             "name": "egeloen/http-adapter",
@@ -224,6 +224,59 @@
                 "response"
             ],
             "time": "2015-05-04 20:22:00"
+        },
+        {
+            "name": "rybakit/arguments-resolver",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rybakit/arguments-resolver.git",
+                "reference": "99b600a9d868453de052eb27c263e9f5fbe93c6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rybakit/arguments-resolver/zipball/99b600a9d868453de052eb27c263e9f5fbe93c6e",
+                "reference": "99b600a9d868453de052eb27c263e9f5fbe93c6e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ArgumentsResolver\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eugene Leonovich",
+                    "email": "gen.work@gmail.com"
+                }
+            ],
+            "description": "ArgumentsResolver allows you to determine the arguments to pass to a function or method.",
+            "homepage": "https://github.com/rybakit/arguments-resolver",
+            "keywords": [
+                "arguments",
+                "callable",
+                "function",
+                "injection",
+                "invoke",
+                "method",
+                "parameters",
+                "reflection",
+                "resolver"
+            ],
+            "time": "2015-09-10 09:44:20"
         },
         {
             "name": "symfony/console",
@@ -1048,7 +1101,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "rybakit/arguments-resolver": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

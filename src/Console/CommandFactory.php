@@ -2,6 +2,7 @@
 
 namespace Rs\VersionEye\Console;
 
+use ArgumentsResolver\NamedArgumentsResolver;
 use Camel\CaseTransformerInterface;
 use phpDocumentor\Reflection\DocBlock;
 use Rs\VersionEye\Authentication\Token;
@@ -124,35 +125,21 @@ class CommandFactory
     private function createCode($name, \ReflectionMethod $method)
     {
         return function (InputInterface $input, OutputInterface $output) use ($name, $method) {
-            $methodName = $method->getName();
-
             $client = new Client();
 
             if ($input->getOption('token')) {
                 $client->authorize($input->getOption('token'));
             }
 
-            $api = $client->api(strtolower($name));
-
-            $args = [];
-
-            foreach ($method->getParameters() as $parameter) {
-                if ($parameter->isDefaultValueAvailable()) {
-                    //option
-                    $args[$parameter->getName()] = $input->getOption($parameter->getName());
-                } else {
-                    //argument
-                    $args[$parameter->getName()] = $input->getArgument($parameter->getName());
-                }
-            }
+            $methodName  = $method->getName();
+            $api         = $client->api(strtolower($name));
+            $args        = (new NamedArgumentsResolver($method))->resolve(array_merge($input->getOptions(), $input->getArguments()));
+            $outputClass = $this->generateOutputClassFromApiClass($api);
 
             $response = call_user_func_array([$api, $methodName], $args);
 
-            $classParts = explode('\\', get_class($api));
-            $className  = 'Rs\VersionEye\Output\\' . array_pop($classParts);
-
-            if (method_exists($className, $methodName)) {
-                (new $className())->{$methodName}($output, $response);
+            if (method_exists($outputClass, $methodName)) {
+                (new $outputClass())->{$methodName}($output, $response);
             } else {
                 $output->writeln(print_r($response, true));
             }
@@ -179,5 +166,22 @@ class CommandFactory
         ];
 
         return array_merge($baseClasses, $classes);
+    }
+
+    /**
+     * remove the last namespace prefix of the Api Class and replace it with Output
+     * e.g. Rs\VersionEye\Api\Me -> Rs\VersionEye\Output\Me.
+     *
+     * @param string $api
+     *
+     * @return string
+     */
+    private function generateOutputClassFromApiClass($api)
+    {
+        $classParts = explode('\\', get_class($api));
+        $apiName    = array_pop($classParts);
+        array_pop($classParts);
+
+        return implode('\\', $classParts) . '\\Output\\' . $apiName;
     }
 }

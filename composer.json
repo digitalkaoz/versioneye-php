@@ -15,7 +15,8 @@
         "phpdocumentor/reflection-docblock":    "~2.0",
         "egeloen/http-adapter":                 "~0.8",
         "symfony/event-dispatcher":             "~2.7",
-        "mattketmo/camel":                      "~1.1"
+        "mattketmo/camel":                      "~1.1",
+        "rybakit/arguments-resolver":           "1.0.x-dev@dev"
     },
     "require-dev": {
         "phpspec/phpspec":                      "~2",
