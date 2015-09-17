@@ -21,13 +21,18 @@ class Projects extends BaseOutput
     public function all(OutputInterface $output, array $response)
     {
         $this->printTable($output,
-            ['Id', 'Key', 'Name', 'Type', 'Public', 'Dependencies', 'Outdated', 'Updated At'],
-            ['id', 'project_key', 'name', 'project_type', 'public', 'dep_number', 'out_number', 'updated_at'],
+            ['Id', 'Key', 'Name', 'Type', 'Public', 'Dependencies', 'Outdated', 'Updated At', 'Bad Licenses', 'Unknown Licenses'],
+            ['id', 'project_key', 'name', 'project_type', 'public', 'dep_number', 'out_number', 'updated_at', 'licenses_red', 'licenses_unknown'],
             $response,
             function ($key, $value) {
-                if ('out_number' !== $key) {
+                if ('public' === $key) {
+                    return $value == 1 ? 'Yes' : 'No';
+                }
+
+                if (!in_array($key, ['out_number', 'licenses_red', 'licenses_unknown'])) {
                     return $value;
                 }
+
 
                 return $value > 0 ? '<error>' . $value . '</error>' : '<info>No</info>';
             }
@@ -110,11 +115,11 @@ class Projects extends BaseOutput
     private function output(OutputInterface $output, array $response)
     {
         $this->printList($output,
-            ['Name', 'Id', 'Key', 'Type', 'Public', 'Outdated', 'Updated At'],
-            ['name', 'id', 'project_key', 'project_type', 'public', 'out_number', 'updated_at'],
+            ['Name', 'Id', 'Key', 'Type', 'Public', 'Outdated', 'Updated At', 'Bad Licenses', 'Unknown Licenses'],
+            ['name', 'id', 'project_key', 'project_type', 'public', 'out_number', 'updated_at', 'licenses_red', 'licenses_unknown'],
             $response,
             function ($key, $value) {
-                if ('Outdated' !== $key) {
+                if (!in_array($key, ['Outdated', 'Bad Licenses', 'Unknown Licenses'])) {
                     return $value;
                 }
 
@@ -127,11 +132,14 @@ class Projects extends BaseOutput
             ['name', 'stable', 'outdated', 'version_current', 'version_requested'],
             $response['dependencies'],
             function ($key, $value) {
-                if ('outdated' !== $key) {
-                    return $value;
+                if ('stable' === $key) {
+                    return !$value ? '<error>No</error>' : '<info>Yes</info>';
+                }
+                if ('outdated' === $key) {
+                    return $value ? '<error>Yes</error>' : '<info>No</info>';
                 }
 
-                return $value ? '<error>Yes</error>' : '<info>No</info>';
+                return $value;
             }
         );
     }

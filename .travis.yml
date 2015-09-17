@@ -23,7 +23,6 @@ before_script:
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then composer require --no-update --dev henrikbjorn/phpspec-code-coverage; fi;'
   - composer update
 after_script:
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;'
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.xml; fi;'
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.xml; fi;'
 
-script: vendor/bin/phpspec run -fpretty -v
+script: composer test

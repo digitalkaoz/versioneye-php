@@ -25,6 +25,10 @@
     "autoload" : {
         "psr-4" : {"Rs\\VersionEye\\" : "src"}
     },
-    
+
+    "scripts": {
+        "test" : "vendor/bin/phpspec run -fpretty -vv"
+    },
+
     "bin": ["bin/versioneye"]
 }
