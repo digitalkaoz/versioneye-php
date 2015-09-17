@@ -17,23 +17,25 @@ class ProjectsSpec extends ObjectBehavior
         $output = new BufferedOutput();
         $this->all($output, [
             [
-                'id'           => '1337',
-                'project_key'  => 'digitalkaoz_versioneye-php_1',
-                'name'         => 'digitalkaoz/versioneye-php',
-                'project_type' => 'composer',
-                'public'       => false,
-                'dep_number'   => 47,
-                'out_number'   => 13,
-                'updated_at'   => '25.05.1981',
+                'id'               => '1337',
+                'project_key'      => 'digitalkaoz_versioneye-php_1',
+                'name'             => 'digitalkaoz/versioneye-php',
+                'project_type'     => 'composer',
+                'public'           => false,
+                'dep_number'       => 47,
+                'out_number'       => 13,
+                'updated_at'       => '25.05.1981',
+                'licenses_red'     => 0,
+                'licenses_unknown' => 1,
             ],
         ]);
 
         expect($output->fetch())->toBe(<<<EOS
-+------+------------------------------+----------------------------+----------+--------+--------------+----------+------------+
-| Id   | Key                          | Name                       | Type     | Public | Dependencies | Outdated | Updated At |
-+------+------------------------------+----------------------------+----------+--------+--------------+----------+------------+
-| 1337 | digitalkaoz_versioneye-php_1 | digitalkaoz/versioneye-php | composer |        | 47           | 13       | 25.05.1981 |
-+------+------------------------------+----------------------------+----------+--------+--------------+----------+------------+
++------+------------------------------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
+| Id   | Key                          | Name                       | Type     | Public | Dependencies | Outdated | Updated At | Bad Licenses | Unknown Licenses |
++------+------------------------------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
+| 1337 | digitalkaoz_versioneye-php_1 | digitalkaoz/versioneye-php | composer | No     | 47           | 13       | 25.05.1981 | No           | 1                |
++------+------------------------------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
 
 EOS
         );
@@ -134,14 +136,16 @@ EOS
     {
         $output = new BufferedOutput();
         $this->{$method}($output, [
-            'name'         => 'digitalkaoz/versioneye-php',
-            'id'           => '1337',
-            'project_key'  => 'digitalkaoz_versioneye-php_1',
-            'project_type' => 'composer',
-            'public'       => true,
-            'out_number'   => 7,
-            'updated_at'   => '25.05.1981',
-            'dependencies' => [[
+            'name'             => 'digitalkaoz/versioneye-php',
+            'id'               => '1337',
+            'project_key'      => 'digitalkaoz_versioneye-php_1',
+            'project_type'     => 'composer',
+            'public'           => true,
+            'out_number'       => 7,
+            'updated_at'       => '25.05.1981',
+            'licenses_red'     => 7,
+            'licenses_unknown' => 8,
+            'dependencies'     => [[
                 'name'              => 'symfony/symfony',
                 'stable'            => true,
                 'outdated'          => false,
@@ -151,17 +155,19 @@ EOS
         ]);
 
         expect($output->fetch())->toBe(<<<EOS
-Name            : digitalkaoz/versioneye-php
-Id              : 1337
-Key             : digitalkaoz_versioneye-php_1
-Type            : composer
-Public          : Yes
-Outdated        : 7
-Updated At      : 25.05.1981
+Name                  : digitalkaoz/versioneye-php
+Id                    : 1337
+Key                   : digitalkaoz_versioneye-php_1
+Type                  : composer
+Public                : Yes
+Outdated              : 7
+Updated At            : 25.05.1981
+Bad Licenses          : 7
+Unknown Licenses      : 8
 +-----------------+--------+----------+---------+-----------+
 | Name            | Stable | Outdated | Current | Requested |
 +-----------------+--------+----------+---------+-----------+
-| symfony/symfony | 1      | No       | 2.5.0   | 2.5.0     |
+| symfony/symfony | Yes    | No       | 2.5.0   | 2.5.0     |
 +-----------------+--------+----------+---------+-----------+
 
 EOS

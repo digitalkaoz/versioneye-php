@@ -26,13 +26,12 @@ class Projects extends BaseOutput
             $response,
             function ($key, $value) {
                 if ('public' === $key) {
-                    return $value == 1 ? 'Yes' : 'No';
+                    return $value === 1 ? 'Yes' : 'No';
                 }
 
-                if (!in_array($key, ['out_number', 'licenses_red', 'licenses_unknown'])) {
+                if (!in_array($key, ['out_number', 'licenses_red', 'licenses_unknown'], true)) {
                     return $value;
                 }
-
 
                 return $value > 0 ? '<error>' . $value . '</error>' : '<info>No</info>';
             }
@@ -119,7 +118,7 @@ class Projects extends BaseOutput
             ['name', 'id', 'project_key', 'project_type', 'public', 'out_number', 'updated_at', 'licenses_red', 'licenses_unknown'],
             $response,
             function ($key, $value) {
-                if (!in_array($key, ['Outdated', 'Bad Licenses', 'Unknown Licenses'])) {
+                if (!in_array($key, ['Outdated', 'Bad Licenses', 'Unknown Licenses'], true)) {
                     return $value;
                 }
 
