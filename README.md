@@ -9,6 +9,7 @@ see https://www.versioneye.com/api/ for API documentation
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0.svg?style=flat-square)](https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0)
 [![Latest Stable Version](https://img.shields.io/packagist/v/digitalkaoz/versioneye-php.svg?style=flat-square)](https://packagist.org/packages/digitalkaoz/versioneye-php)
 [![Total Downloads](https://img.shields.io/packagist/dt/digitalkaoz/versioneye-php.svg?style=flat-square)](https://packagist.org/packages/digitalkaoz/versioneye-php)
+[![StyleCI](https://styleci.io/repos/23851520/shield)](https://styleci.io/repos/23851520)
 
 ##Installation
 
