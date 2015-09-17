@@ -24,5 +24,7 @@
 
     "autoload" : {
         "psr-4" : {"Rs\\VersionEye\\" : "src"}
-    }
+    },
+    
+    "bin": ["bin/versioneye-php"]
 }
