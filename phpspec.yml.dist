@@ -1,0 +1,15 @@
+suites:
+    default:
+        namespace: Rs\VersionEye
+        psr4_prefix: Rs\VersionEye
+
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+
+code_coverage:
+  whitelist: [src]
+  format:
+    - text
+    - clover
+  output:
+    clover: coverage.xml
