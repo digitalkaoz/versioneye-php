@@ -5,6 +5,7 @@ namespace Rs\VersionEye\Console;
 use ArgumentsResolver\NamedArgumentsResolver;
 use Camel\CaseTransformerInterface;
 use phpDocumentor\Reflection\DocBlock;
+use Rs\VersionEye\Api\Api;
 use Rs\VersionEye\Authentication\Token;
 use Rs\VersionEye\Client;
 use Symfony\Component\Console\Command\Command;
@@ -173,11 +174,11 @@ class CommandFactory
      * remove the last namespace prefix of the Api Class and replace it with Output
      * e.g. Rs\VersionEye\Api\Me -> Rs\VersionEye\Output\Me.
      *
-     * @param string $api
+     * @param Api $api
      *
      * @return string
      */
-    private function generateOutputClassFromApiClass($api)
+    private function generateOutputClassFromApiClass(Api $api)
     {
         $classParts = explode('\\', get_class($api));
         $apiName    = array_pop($classParts);
