@@ -101,6 +101,8 @@ EOS
             'version'      => '1.0.0',
             'group_id'     => 'foo',
             'updated_at'   => '25.05.1981',
+            'links'        => [['name' => 'Source', 'link' => 'http://lolcat.com']],
+            'archives'     => [['name' => 'Source', 'link' => 'http://lolcat.com']],
             'dependencies' => [
                 ['name' => 'symfony/console', 'parsed_version' => '2.5.3', 'version' => '~2.3'],
             ],
@@ -109,6 +111,8 @@ EOS
         expect($output->fetch())->toBe(<<<EOS
 Name             : digitalkaoz/versioneye-php
 Description      : a php wrapper around the versioneye api
+Source           : http://lolcat.com
+Archive          : http://lolcat.com
 Key              : 1337
 Type             : composer
 License          : MIT

@@ -42,9 +42,24 @@ class Products extends BaseOutput
     public function show(OutputInterface $output, array $response)
     {
         $this->printList($output,
-            ['Name', 'Description', 'Key', 'Type', 'License', 'Version', 'Group', 'Updated At'],
-            ['name', 'description', 'prod_key', 'prod_type', 'license_info', 'version', 'group_id', 'updated_at'],
-            $response
+            ['Name', 'Description', 'Source', 'Archive', 'Key', 'Type', 'License', 'Version', 'Group', 'Updated At'],
+            ['name', 'description', 'links', 'archives', 'prod_key', 'prod_type', 'license_info', 'version', 'group_id', 'updated_at'],
+            $response,
+            function($heading, $value) {
+                if ('Source' === $heading) {
+                    $value = array_filter($value, function($link){ return 'Source' === $link['name'];});
+
+                    if ($value) {
+                        return array_pop($value)['link'];
+                    }
+                }
+
+                if ('Archive' === $heading) {
+                    return array_pop($value)['link'];
+                }
+
+                return $value;
+            }
         );
 
         $this->printTable($output,
