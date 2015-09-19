@@ -16,7 +16,8 @@
         "egeloen/http-adapter":                 "~0.8",
         "symfony/event-dispatcher":             "~2.7",
         "mattketmo/camel":                      "~1.1",
-        "rybakit/arguments-resolver":           "1.0.x-dev@dev"
+        "rybakit/arguments-resolver":           "1.0.x-dev@dev",
+        "ramsey/array_column":                  "~1.1"
     },
     "require-dev": {
         "phpspec/phpspec":                      "~2",

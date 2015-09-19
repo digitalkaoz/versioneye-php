@@ -110,6 +110,7 @@ class CommandFactory
         }
 
         $definition->addOption(new InputOption('token', null, InputOption::VALUE_REQUIRED, 'the auth token to use', $token));
+        $definition->addOption(new InputOption('debug', null, InputOption::VALUE_NONE, 'display raw response'));
 
         return $definition;
     }
@@ -138,7 +139,7 @@ class CommandFactory
 
             $response = call_user_func_array([$api, $methodName], $args);
 
-            if (method_exists($outputClass, $methodName)) {
+            if (method_exists($outputClass, $methodName) && false === $input->getOption('debug')) {
                 (new $outputClass())->{$methodName}($output, $response);
             } else {
                 $output->writeln(print_r($response, true));
