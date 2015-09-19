@@ -132,7 +132,7 @@ class Projects extends BaseOutput
             $response['dependencies'],
             function ($key, $value) {
                 if ('licenses' === $key) {
-                    return join(', ', array_column($value, 'name'));
+                    return implode(', ', array_column($value, 'name'));
                 }
                 if ('stable' === $key) {
                     return !$value ? '<error>No</error>' : '<info>Yes</info>';
@@ -142,7 +142,7 @@ class Projects extends BaseOutput
                 }
 
                 if ('security_vulnerabilities' === $key) {
-                    return count($value) === 0 ? '<info>No</info>' : '<error>'.join(', ', array_column($value, 'cve')).'</error>';
+                    return count($value) === 0 ? '<info>No</info>' : '<error>' . implode(', ', array_column($value, 'cve')) . '</error>';
                 }
 
                 return $value;

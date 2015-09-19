@@ -45,9 +45,9 @@ class Products extends BaseOutput
             ['Name', 'Description', 'Source', 'Archive', 'Key', 'Type', 'License', 'Version', 'Group', 'Updated At'],
             ['name', 'description', 'links', 'archives', 'prod_key', 'prod_type', 'license_info', 'version', 'group_id', 'updated_at'],
             $response,
-            function($heading, $value) {
+            function ($heading, $value) {
                 if ('Source' === $heading) {
-                    $value = array_filter($value, function($link){ return 'Source' === $link['name'];});
+                    $value = array_filter($value, function ($link) { return 'Source' === $link['name'];});
 
                     if ($value) {
                         return array_pop($value)['link'];

@@ -146,13 +146,13 @@ EOS
             'licenses_red'     => 7,
             'licenses_unknown' => 8,
             'dependencies'     => [[
-                'name'              => 'symfony/symfony',
-                'stable'            => true,
-                'outdated'          => false,
-                'version_current'   => '2.5.0',
-                'version_requested' => '2.5.0',
-                'licenses'          => [['name' => 'MIT']],
-                'security_vulnerabilities' => [['cve' => 'lolcat']]
+                'name'                     => 'symfony/symfony',
+                'stable'                   => true,
+                'outdated'                 => false,
+                'version_current'          => '2.5.0',
+                'version_requested'        => '2.5.0',
+                'licenses'                 => [['name' => 'MIT']],
+                'security_vulnerabilities' => [['cve'  => 'lolcat']],
             ]],
         ]);
 
