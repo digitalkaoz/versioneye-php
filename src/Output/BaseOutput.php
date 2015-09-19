@@ -46,14 +46,23 @@ abstract class BaseOutput
      * @param string          $success
      * @param string          $fail
      * @param bool            $value
+     * @param bool            $line
+     *
+     * @return string
      */
-    protected function printBoolean(OutputInterface $output, $success, $fail, $value)
+    protected function printBoolean(OutputInterface $output, $success, $fail, $value, $line = true)
     {
         if ($value) {
-            $output->writeln('<info>' . $success . '</info>');
+            $message = '<info>' . $success . '</info>';
         } else {
-            $output->writeln('<error>' . $fail . '</error>');
+            $message = '<error>' . $fail . '</error>';
         }
+
+        if (false === $line) {
+            return $message;
+        }
+
+        $output->writeln($message);
     }
 
     /**

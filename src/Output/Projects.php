@@ -24,7 +24,7 @@ class Projects extends BaseOutput
             ['Key', 'Name', 'Type', 'Public', 'Dependencies', 'Outdated', 'Updated At', 'Bad Licenses', 'Unknown Licenses'],
             ['project_key', 'name', 'project_type', 'public', 'dep_number', 'out_number', 'updated_at', 'licenses_red', 'licenses_unknown'],
             $response,
-            function ($key, $value) {
+            function ($key, $value) use ($output) {
                 if ('public' === $key) {
                     return $value === 1 ? 'Yes' : 'No';
                 }
@@ -33,7 +33,7 @@ class Projects extends BaseOutput
                     return $value;
                 }
 
-                return $value > 0 ? '<error>' . $value . '</error>' : '<info>No</info>';
+                return $this->printBoolean($output, $value, 'No', $value > 0, false);
             }
         );
     }
@@ -117,12 +117,12 @@ class Projects extends BaseOutput
             ['Name', 'Key', 'Type', 'Public', 'Outdated', 'Updated At', 'Bad Licenses', 'Unknown Licenses'],
             ['name', 'project_key', 'project_type', 'public', 'out_number', 'updated_at', 'licenses_red', 'licenses_unknown'],
             $response,
-            function ($key, $value) {
-                if (!in_array($key, ['Outdated', 'Bad Licenses', 'Unknown Licenses'], true)) {
-                    return $value;
+            function ($key, $value) use ($output) {
+                if (in_array($key, ['Outdated', 'Bad Licenses', 'Unknown Licenses'], true)) {
+                    return $this->printBoolean($output, $value, 'No', $value > 0, false);
                 }
 
-                return $value > 0 ? '<error>' . $value . '</error>' : '<info>No</info>';
+                return $value;
             }
         );
 
@@ -130,19 +130,19 @@ class Projects extends BaseOutput
             ['Name', 'Stable', 'Outdated', 'Current', 'Requested', 'Licenses', 'Vulnerabilities'],
             ['name', 'stable', 'outdated', 'version_current', 'version_requested', 'licenses', 'security_vulnerabilities'],
             $response['dependencies'],
-            function ($key, $value) {
+            function ($key, $value) use ($output) {
                 if ('licenses' === $key) {
                     return implode(', ', array_column($value, 'name'));
                 }
                 if ('stable' === $key) {
-                    return !$value ? '<error>No</error>' : '<info>Yes</info>';
+                    return $this->printBoolean($output, 'No', 'Yes', !$value, false);
                 }
                 if ('outdated' === $key) {
-                    return $value ? '<error>Yes</error>' : '<info>No</info>';
+                    return $this->printBoolean($output, 'Yes', 'No', $value, false);
                 }
 
                 if ('security_vulnerabilities' === $key) {
-                    return count($value) === 0 ? '<info>No</info>' : '<error>' . implode(', ', array_column($value, 'cve')) . '</error>';
+                    return $this->printBoolean($output, 'No', implode(', ', array_column($value, 'cve')), count($value) === 0, false);
                 }
 
                 return $value;
