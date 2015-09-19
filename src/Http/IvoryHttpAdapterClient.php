@@ -41,12 +41,7 @@ class IvoryHttpAdapterClient implements HttpClient
 
             return json_decode($response->getBody(), true);
         } catch (HttpAdapterException $e) {
-            $data    = $e->getResponse() ? json_decode($e->getResponse()->getBody(), true) : ['error' => $e->getMessage()];
-            $message = is_array($data) && isset($data['error']) ? $data['error'] : 'Server Error';
-
-            $status = $e->getResponse() ? $e->getResponse()->getStatusCode() : 500;
-
-            throw new CommunicationException(sprintf('%s : %s', $status, $message));
+            throw $this->buildRequestError($e);
         }
     }
 
@@ -71,5 +66,21 @@ class IvoryHttpAdapterClient implements HttpClient
         }
 
         return [$parameters, $files];
+    }
+
+    /**
+     * builds the error exception.
+     *
+     * @param HttpAdapterException $e
+     *
+     * @return CommunicationException
+     */
+    private function buildRequestError(HttpAdapterException $e)
+    {
+        $data    = $e->getResponse() ? json_decode($e->getResponse()->getBody(), true) : ['error' => $e->getMessage()];
+        $message = isset($data['error']) ? $data['error'] : 'Server Error';
+        $status  = $e->getResponse() ? $e->getResponse()->getStatusCode() : 500;
+
+        return new CommunicationException(sprintf('%s : %s', $status, $message));
     }
 }
