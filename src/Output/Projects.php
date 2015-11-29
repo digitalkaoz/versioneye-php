@@ -135,7 +135,7 @@ class Projects extends BaseOutput
                     return implode(', ', array_column($value, 'name'));
                 }
                 if ('stable' === $key) {
-                    return $this->printBoolean($output, 'No', 'Yes', $value, false);
+                    return $this->printBoolean($output, 'Yes', 'No', $value, false);
                 }
                 if ('outdated' === $key) {
                     return $this->printBoolean($output, 'No', 'Yes', !$value, false);

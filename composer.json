@@ -20,7 +20,7 @@
         "ramsey/array_column":                  "~1.1"
     },
     "require-dev": {
-        "phpspec/phpspec":                      "~2",
+        "phpspec/phpspec":                      "~2.4",
         "bossa/phpspec2-expect":                "~1"
     },
 
