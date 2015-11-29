@@ -27,14 +27,14 @@ abstract class BaseOutput
     {
         $table = $this->createTable($output);
 
-        $table->setHeaders($headings);
+        $table->setHeaders(array_map('trim', $headings));
 
         foreach ($data as $row) {
             $rowData = array_merge(array_flip($keys), array_intersect_key($row, array_flip($keys)));
             if ($callback) {
                 $rowData = array_map($callback, array_keys($rowData), $rowData);
             }
-            $table->addRow($rowData);
+            $table->addRow(array_map('trim', $rowData));
         }
 
         $table->render($output);
