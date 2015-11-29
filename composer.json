@@ -29,7 +29,7 @@
     },
 
     "scripts": {
-        "test" : "vendor/bin/phpspec run -fpretty -vv"
+        "test" : "vendor/bin/phpspec run -fpretty -vv --ansi"
     },
 
     "bin": ["bin/versioneye"]
