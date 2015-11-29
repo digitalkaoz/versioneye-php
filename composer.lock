@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4c936c713956c01fb21b10bebbff8612",
+    "hash": "e48732e2c3ded567221a09c6a80e9c93",
     "packages": [
         {
             "name": "egeloen/http-adapter",
@@ -1154,7 +1154,7 @@
     "stability-flags": {
         "rybakit/arguments-resolver": 20
     },
-    "prefer-stable": true,
+    "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.4"
