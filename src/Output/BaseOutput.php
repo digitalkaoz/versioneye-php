@@ -4,6 +4,7 @@ namespace Rs\VersionEye\Output;
 
 use Rs\VersionEye\Http\Pager;
 use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Helper\TableHelper;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -24,7 +25,7 @@ abstract class BaseOutput
      */
     protected function printTable(OutputInterface $output, array $headings, array $keys, $data, \Closure $callback = null)
     {
-        $table = new Table($output);
+        $table = $this->createTable($output);
 
         $table->setHeaders($headings);
 
@@ -36,7 +37,7 @@ abstract class BaseOutput
             $table->addRow($rowData);
         }
 
-        $table->render();
+        $table->render($output);
     }
 
     /**
@@ -131,5 +132,20 @@ abstract class BaseOutput
         }
 
         return $width + 5;
+    }
+
+    /**
+     * @param OutputInterface $output
+     * @return Table|TableHelper
+     */
+    protected function createTable(OutputInterface $output)
+    {
+        if (!class_exists('Symfony\Component\Console\Helper\Table')) {
+            $table = new TableHelper(false);
+        } else {
+            $table = new Table($output);
+        }
+
+        return $table;
     }
 }

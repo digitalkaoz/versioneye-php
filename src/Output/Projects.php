@@ -46,7 +46,7 @@ class Projects extends BaseOutput
      */
     public function licenses(OutputInterface $output, array $response)
     {
-        $table = new Table($output);
+        $table = $this->createTable($output);
         $table->setHeaders(['license', 'name']);
 
         foreach ($response['licenses'] as $license => $projects) {
@@ -58,7 +58,7 @@ class Projects extends BaseOutput
             }
         }
 
-        $table->render();
+        $table->render($output);
     }
 
     /**

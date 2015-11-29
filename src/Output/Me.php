@@ -2,7 +2,6 @@
 
 namespace Rs\VersionEye\Output;
 
-use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -64,7 +63,7 @@ class Me extends BaseOutput
      */
     public function comments(OutputInterface $output, array $response)
     {
-        $table = new Table($output);
+        $table = $this->createTable($output);
 
         $table->setHeaders(['Name', 'Language', 'Version', 'Type', 'Date', 'Comment']);
 
@@ -72,6 +71,6 @@ class Me extends BaseOutput
             $table->addRow([$comment['product']['name'], $comment['product']['language'], $comment['product']['version'], $comment['product']['prod_type'], $comment['created_at'], $comment['comment']]);
         }
 
-        $table->render();
+        $table->render($output);
     }
 }
