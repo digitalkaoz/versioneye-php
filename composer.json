@@ -11,7 +11,7 @@
 
     "require": {
         "php":                                  ">=5.4",
-        "symfony/console":                      "~2.3",
+        "symfony/console":                      "~2.4",
         "phpdocumentor/reflection-docblock":    "~2.0",
         "egeloen/http-adapter":                 "~0.8",
         "symfony/event-dispatcher":             "~2.7",
