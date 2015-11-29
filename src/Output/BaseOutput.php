@@ -136,6 +136,7 @@ abstract class BaseOutput
 
     /**
      * @param OutputInterface $output
+     *
      * @return Table|TableHelper
      */
     protected function createTable(OutputInterface $output)
