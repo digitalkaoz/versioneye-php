@@ -26,7 +26,7 @@ class Projects extends BaseOutput
             $response,
             function ($key, $value) use ($output) {
                 if ('public' === $key) {
-                    return $value == 1 ? 'Yes' : 'No';
+                    return $value === 1 ? 'Yes' : 'No';
                 }
 
                 if (!in_array($key, ['out_number', 'licenses_red', 'licenses_unknown'], true)) {
@@ -119,7 +119,7 @@ class Projects extends BaseOutput
             $response,
             function ($key, $value) use ($output) {
                 if (in_array($key, ['Outdated', 'Bad Licenses', 'Unknown Licenses'], true)) {
-                    return $this->printBoolean($output, $value == 0 ? 'No' : $value, $value, !$value, false);
+                    return $this->printBoolean($output, $value === 0 ? 'No' : $value, $value, !$value, false);
                 }
 
                 return $value;
@@ -145,6 +145,7 @@ class Projects extends BaseOutput
                     if (is_array($value)) {
                         return $this->printBoolean($output, 'No', implode(', ', array_column($value, 'cve')), count($value) === 0, false);
                     }
+
                     return $this->printBoolean($output, 'No', 'Yes', true, false);
                 }
 
