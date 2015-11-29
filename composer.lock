@@ -1154,7 +1154,7 @@
     "stability-flags": {
         "rybakit/arguments-resolver": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.4"
