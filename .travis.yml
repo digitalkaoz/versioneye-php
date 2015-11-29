@@ -13,8 +13,8 @@ php:
   - hhvm
 
 before_script:
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "5.6" ]; then phpenv config-rm xdebug.ini; fi;'
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "5.6" ]; then rm phpspec.yml.dist; fi;'
+  - bash -c 'if [[ "$TRAVIS_PHP_VERSION" != "5.6" && "$TRAVIS_PHP_VERSION" != "HHVM" ]]; then phpenv config-rm xdebug.ini; fi;'
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then cp phpspec.yml.coverage phpspec.yml.dist; fi;'
   - composer self-update
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then composer require --no-update --dev henrikbjorn/phpspec-code-coverage; fi;'
   - composer update
