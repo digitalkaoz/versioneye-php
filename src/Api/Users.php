@@ -20,7 +20,7 @@ class Users extends BaseApi implements Api
      */
     public function show($username)
     {
-        return $this->request('users/' . $username);
+        return $this->request('users/'.$username);
     }
 
     /**

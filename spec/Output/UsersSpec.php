@@ -21,7 +21,7 @@ class UsersSpec extends ObjectBehavior
             'email'    => 'robert.schoenthal@gmail.com',
         ]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 Fullname      : Robert Schönthal
 Username      : digitalkaoz
 
@@ -34,7 +34,7 @@ EOS
         $output = new BufferedOutput();
         $this->favorites($output, ['favorites' => [['name' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'version' => '1.0.0', 'prod_type' => 'composer']]]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 +----------------------------+----------+---------+----------+
 | Name                       | Language | Version | Type     |
 +----------------------------+----------+---------+----------+
@@ -50,7 +50,7 @@ EOS
         $output = new BufferedOutput();
         $this->notifications($output, ['notifications' => [['name' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'version' => '1.0.0', 'prod_type' => 'composer']]]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 +----------------------------+----------+---------+----------+
 | Name                       | Language | Version | Type     |
 +----------------------------+----------+---------+----------+
@@ -72,7 +72,7 @@ EOS
             ],
         ]]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 +----------------------------+----------+---------+----------+------------+---------+
 | Name                       | Language | Version | Type     | Date       | Comment |
 +----------------------------+----------+---------+----------+------------+---------+

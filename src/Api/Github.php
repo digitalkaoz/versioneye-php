@@ -48,7 +48,7 @@ class Github extends BaseApi implements Api
      */
     public function show($repository)
     {
-        return $this->request('github/' . $this->transform($repository));
+        return $this->request('github/'.$this->transform($repository));
     }
 
     /**

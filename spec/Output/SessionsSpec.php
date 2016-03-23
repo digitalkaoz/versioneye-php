@@ -21,7 +21,7 @@ class SessionsSpec extends ObjectBehavior
             'email'    => 'robert.schoenthal@gmail.com',
         ]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 Fullname       : Robert Schönthal
 API Token      : 1337
 
@@ -35,7 +35,7 @@ EOS
 
         $this->open($output, 'true');
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 OK
 
 EOS
@@ -48,7 +48,7 @@ EOS
 
         $this->close($output, ['message' => 'Session is closed now.']);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 OK
 
 EOS
