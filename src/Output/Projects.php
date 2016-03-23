@@ -50,7 +50,7 @@ class Projects extends BaseOutput
 
         foreach ($response['licenses'] as $license => $projects) {
             foreach ($projects as $project) {
-                $name    = $license === 'unknown' ? '<error>' . $project['name'] . '</error>' : $project['name'];
+                $name = $license === 'unknown' ? '<error>'.$project['name'].'</error>' : $project['name'];
                 $license = $license === 'unknown' ? '<error>unknown</error>' : $license;
 
                 $table->addRow([$license, $name]);

@@ -47,7 +47,7 @@ class Products extends BaseOutput
             $response,
             function ($heading, $value) {
                 if ('Source' === $heading) {
-                    $value = array_filter($value, function ($link) { return 'Source' === $link['name'];});
+                    $value = array_filter($value, function ($link) { return 'Source' === $link['name']; });
 
                     if (!empty($value)) {
                         return array_pop($value)['link'];

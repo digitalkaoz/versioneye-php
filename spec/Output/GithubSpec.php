@@ -18,7 +18,7 @@ class GithubSpec extends ObjectBehavior
 
         $this->sync($output, ['status' => 'done']);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 OK
 
 EOS
@@ -31,7 +31,7 @@ EOS
 
         $this->delete($output, ['success' => 'failure']);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 failure
 
 EOS
@@ -44,7 +44,7 @@ EOS
 
         $this->hook($output, ['success' => 'failure']);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 failure
 
 EOS
@@ -56,7 +56,7 @@ EOS
         $output = new BufferedOutput();
         $this->repos($output, ['repos' => [['fullname' => 'digitalkaoz/versioneye-php', 'language' => 'php', 'description' => 'wrapper around versioneye api', 'owner_login' => 'digitalkaoz', 'fork' => false, 'foo' => 'bazz']]]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 +----------------------------+----------+-------------------------------+-------------+------+
 | Name                       | Language | Description                   | Owner       | Fork |
 +----------------------------+----------+-------------------------------+-------------+------+
@@ -81,7 +81,7 @@ EOS
             'git_url'     => 'git@github.com:digitalkaoz/versioneye-php.git',
         ]]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 Name             : digitalkaoz/versioneye-php
 Homepage         : http://digitalkaoz.github.io/versioneye-php
 Language         : php
@@ -109,7 +109,7 @@ EOS
             'git_url'     => 'git@github.com:digitalkaoz/versioneye-php.git',
         ]]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 Name             : digitalkaoz/versioneye-php
 Homepage         : http://digitalkaoz.github.io/versioneye-php
 Language         : php
