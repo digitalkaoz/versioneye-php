@@ -46,12 +46,12 @@ class Client
      */
     public function api($name)
     {
-        $class = 'Rs\\VersionEye\\Api\\' . ucfirst($name);
+        $class = 'Rs\\VersionEye\\Api\\'.ucfirst($name);
 
         if (class_exists($class)) {
             return new $class($this->client, $this->token);
         } else {
-            throw new \InvalidArgumentException('unknown api "' . $name . '" requested');
+            throw new \InvalidArgumentException('unknown api "'.$name.'" requested');
         }
     }
 

@@ -30,7 +30,7 @@ class ProjectsSpec extends ObjectBehavior
             ],
         ]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 +------------------------------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
 | Key                          | Name                       | Type     | Public | Dependencies | Outdated | Updated At | Bad Licenses | Unknown Licenses |
 +------------------------------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
@@ -53,7 +53,7 @@ EOS
             ]],
         ]]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 +---------+----------------------------+
 | license | name                       |
 +---------+----------------------------+
@@ -86,7 +86,7 @@ EOS
 
         $this->delete($output, ['success' => true, 'message' => 'foo']);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 foo
 
 EOS
@@ -99,7 +99,7 @@ EOS
 
         $this->merge($output, ['success' => true]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 OK
 
 EOS
@@ -112,7 +112,7 @@ EOS
 
         $this->mergeGa($output, ['success' => true]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 OK
 
 EOS
@@ -125,7 +125,7 @@ EOS
 
         $this->unmerge($output, ['success' => false]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 FAIL
 
 EOS
@@ -156,7 +156,7 @@ EOS
             ]],
         ]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 Name                  : digitalkaoz/versioneye-php
 Key                   : digitalkaoz_versioneye-php_1
 Type                  : composer

@@ -24,7 +24,7 @@ class ProductsSpec extends ObjectBehavior
             ],
         ]]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 +----------------------------+----------+---------+----------+
 | Name                       | Language | Version | Type     |
 +----------------------------+----------+---------+----------+
@@ -49,7 +49,7 @@ EOS
                 ],
         ]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 Name          : digitalkaoz/versioneye-php
 Language      : php
 Key           : 2
@@ -78,7 +78,7 @@ EOS
             ],
         ]]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 +----------------------------+----------+---------+----------+
 | Name                       | Language | Version | Type     |
 +----------------------------+----------+---------+----------+
@@ -108,7 +108,7 @@ EOS
             ],
         ]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 Name             : digitalkaoz/versioneye-php
 Description      : a php wrapper around the versioneye api
 Source           : http://lolcat.com
@@ -135,7 +135,7 @@ EOS
 
         $this->followStatus($output, ['follows' => false]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 NO
 
 EOS
@@ -148,7 +148,7 @@ EOS
 
         $this->follow($output, ['follows' => true]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 OK
 
 EOS
@@ -161,7 +161,7 @@ EOS
 
         $this->unfollow($output, ['follows' => false]);
 
-        expect($output->fetch())->toBe(<<<EOS
+        expect($output->fetch())->toBe(<<<'EOS'
 OK
 
 EOS
