@@ -54,9 +54,9 @@ abstract class BaseOutput
     protected function printBoolean(OutputInterface $output, $success, $fail, $value, $line = true)
     {
         if ($value) {
-            $message = '<info>'.$success.'</info>';
+            $message = '<info>' . $success . '</info>';
         } else {
-            $message = '<error>'.$fail.'</error>';
+            $message = '<error>' . $fail . '</error>';
         }
 
         if (false === $line) {
@@ -78,7 +78,7 @@ abstract class BaseOutput
     protected function printList(OutputInterface $output, array $headings, array $keys, array $data, \Closure $callback = null)
     {
         $width = $this->getColumnWidth($headings);
-        $data = array_merge(array_flip($keys), array_intersect_key($data, array_flip($keys)));
+        $data  = array_merge(array_flip($keys), array_intersect_key($data, array_flip($keys)));
 
         foreach ($headings as $key => $heading) {
             $value = array_values($data)[$key];

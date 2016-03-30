@@ -25,7 +25,7 @@ abstract class BaseApi
     public function __construct(HttpClient $client, $token = null)
     {
         $this->client = $client;
-        $this->token = $token;
+        $this->token  = $token;
     }
 
     /**
@@ -78,7 +78,7 @@ abstract class BaseApi
     private function sanitizeQuery($query)
     {
         $parts = parse_url($query);
-        $path = $parts['path'];
+        $path  = $parts['path'];
 
         if (!isset($parts['query'])) {
             return $query;
@@ -101,7 +101,7 @@ abstract class BaseApi
             }
         }
 
-        return $path.'?'.http_build_query($final);
+        return $path . '?' . http_build_query($final);
     }
 
     /**

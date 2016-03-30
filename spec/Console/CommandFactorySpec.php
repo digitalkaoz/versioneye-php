@@ -136,7 +136,7 @@ EOS
             'onlyContainCommandInstances' => function ($subject) {
                 foreach ($subject as $command) {
                     if (!$command instanceof Command) {
-                        throw new FailureException('"'.get_class($command).'" is not a subtype of Symfony\Component\Console\Command\Command');
+                        throw new FailureException('"' . get_class($command) . '" is not a subtype of Symfony\Component\Console\Command\Command');
                     }
                 }
 

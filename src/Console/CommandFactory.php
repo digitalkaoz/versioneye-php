@@ -35,7 +35,7 @@ class CommandFactory
     public function __construct(Token $token, CaseTransformerInterface $transformer)
     {
         $this->transformer = $transformer;
-        $this->token = $token;
+        $this->token       = $token;
     }
 
     /**
@@ -47,8 +47,8 @@ class CommandFactory
      */
     public function generateCommands(array $classes = [])
     {
-        $classes = $this->readApis($classes);
-        $token = $this->token->read();
+        $classes  = $this->readApis($classes);
+        $token    = $this->token->read();
         $commands = [];
 
         foreach ($classes as $class) {
@@ -56,7 +56,7 @@ class CommandFactory
 
             foreach ($api->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
                 if (0 !== strpos($method->getName(), '__')) { //skip magics
-                    $command = $this->generateCommand($api->getShortName(), $method, $token);
+                    $command                       = $this->generateCommand($api->getShortName(), $method, $token);
                     $commands[$command->getName()] = $command;
                 }
             }
@@ -78,7 +78,7 @@ class CommandFactory
     {
         $methodName = $this->transformer->transform($method->getName());
 
-        $command = new Command(strtolower($name.':'.$methodName));
+        $command  = new Command(strtolower($name . ':' . $methodName));
         $docBlock = new DocBlock($method->getDocComment());
 
         $command->setDefinition($this->buildDefinition($method, $token));
@@ -133,9 +133,9 @@ class CommandFactory
                 $client->authorize($input->getOption('token'));
             }
 
-            $methodName = $method->getName();
-            $api = $client->api(strtolower($name));
-            $args = (new NamedArgumentsResolver($method))->resolve(array_merge($input->getOptions(), $input->getArguments()));
+            $methodName  = $method->getName();
+            $api         = $client->api(strtolower($name));
+            $args        = (new NamedArgumentsResolver($method))->resolve(array_merge($input->getOptions(), $input->getArguments()));
             $outputClass = $this->generateOutputClassFromApiClass($api);
 
             $response = call_user_func_array([$api, $methodName], $args);
@@ -181,9 +181,9 @@ class CommandFactory
     private function generateOutputClassFromApiClass(Api $api)
     {
         $classParts = explode('\\', get_class($api));
-        $apiName = array_pop($classParts);
+        $apiName    = array_pop($classParts);
         array_pop($classParts);
 
-        return implode('\\', $classParts).'\\Output\\'.$apiName;
+        return implode('\\', $classParts) . '\\Output\\' . $apiName;
     }
 }

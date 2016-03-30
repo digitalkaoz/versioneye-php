@@ -152,7 +152,7 @@ EOS
                 'version_current'          => '2.5.0',
                 'version_requested'        => '2.5.0',
                 'licenses'                 => [['name' => 'MIT']],
-                'security_vulnerabilities' => [['cve'  => 'lolcat']],
+                'security_vulnerabilities' => [['cve' => 'lolcat']],
             ]],
         ]);
 
