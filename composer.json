@@ -13,7 +13,7 @@
         "php":                                  ">=5.4",
         "symfony/console":                      "2.4 - 3",
         "phpdocumentor/reflection-docblock":    "~2.0",
-        "egeloen/http-adapter":                 "~0.8",
+        "egeloen/http-adapter":                 "~0.8 || ~1.0",
         "symfony/event-dispatcher":             "2.7 - 3",
         "mattketmo/camel":                      "~1.1",
         "rybakit/arguments-resolver":           "~0.5.0",
