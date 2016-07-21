@@ -2,11 +2,9 @@
 
 namespace Rs\VersionEye\Http;
 
-use Http\Client\Common\HttpMethodsClient;
 use Http\Client\Exception\HttpException as PlugException;
 use Http\Client\HttpClient as PlugClient;
-use Http\Discovery\MessageFactoryDiscovery;
-use Http\Discovery\StreamFactoryDiscovery;
+use Http\Message\MessageFactory;
 use Http\Message\MultipartStream\MultipartStreamBuilder;
 use Psr\Http\Message\RequestInterface;
 
@@ -18,20 +16,32 @@ use Psr\Http\Message\RequestInterface;
 class HttpPlugHttpAdapterClient implements HttpClient
 {
     /**
-     * @var HttpMethodsClient
+     * @var PlugClient
      */
     private $adapter;
 
     private $url;
+    /**
+     * @var MessageFactory
+     */
+    private $factory;
+    /**
+     * @var MultipartStreamBuilder
+     */
+    private $multipartStreamBuilder;
 
     /**
-     * @param PlugClient $adapter
-     * @param string     $url
+     * @param PlugClient             $adapter
+     * @param string                 $url
+     * @param MessageFactory         $factory
+     * @param MultipartStreamBuilder $multipartStreamBuilder
      */
-    public function __construct(PlugClient $adapter, $url)
+    public function __construct(PlugClient $adapter, $url, MessageFactory $factory, MultipartStreamBuilder $multipartStreamBuilder)
     {
-        $this->adapter = $adapter;
-        $this->url     = $url;
+        $this->adapter                = $adapter;
+        $this->url                    = $url;
+        $this->factory                = $factory;
+        $this->multipartStreamBuilder = $multipartStreamBuilder;
     }
 
     /**
@@ -43,8 +53,8 @@ class HttpPlugHttpAdapterClient implements HttpClient
         $url                  = $this->url . $path;
 
         try {
-            $request  = $this->createBody($params, $files, $method, $url);
-            $response = $request ? $this->adapter->sendRequest($request) : $this->adapter->send($method, $url);
+            $request  = $this->createRequest($params, $files, $method, $url);
+            $response = $this->adapter->sendRequest($request);
 
             return json_decode($response->getBody(), true);
         } catch (PlugException $e) {
@@ -97,16 +107,15 @@ class HttpPlugHttpAdapterClient implements HttpClient
      * @param string $method
      * @param string $url
      *
-     * @return null|RequestInterface
+     * @return RequestInterface
      */
-    private function createBody(array $params, array $files, $method, $url)
+    private function createRequest(array $params, array $files, $method, $url)
     {
         if (!count($params) && !count($files)) {
-            return;
+            return $this->factory->createRequest($method, $url);
         }
 
-        $streamFactory = StreamFactoryDiscovery::find();
-        $builder       = new MultipartStreamBuilder($streamFactory);
+        $builder = clone $this->multipartStreamBuilder;
 
         foreach ($params as $k => $v) {
             $builder->addResource($k, $v);
@@ -116,7 +125,7 @@ class HttpPlugHttpAdapterClient implements HttpClient
             $builder->addResource($k, fopen($file, 'r'), ['filename' => $file]);
         }
 
-        return MessageFactoryDiscovery::find()->createRequest(
+        return $this->factory->createRequest(
             $method,
             $url,
             ['Content-Type' => 'multipart/form-data; boundary=' . $builder->getBoundary()],

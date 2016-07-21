@@ -2,16 +2,11 @@
 
 namespace Rs\VersionEye\Http;
 
-use Http\Client\Common\HttpMethodsClient;
-use Http\Client\Plugin\AuthenticationPlugin;
-use Http\Client\Plugin\DecoderPlugin;
-use Http\Client\Plugin\ErrorPlugin;
-use Http\Client\Plugin\PluginClient;
-use Http\Client\Plugin\RedirectPlugin;
-use Http\Client\Plugin\RetryPlugin;
-use Http\Discovery\HttpClientDiscovery;
-use Http\Discovery\MessageFactoryDiscovery;
+use Http\Client\Common\Plugin;
+use Http\Client\Common\PluginClient;
+use Http\Discovery;
 use Http\Message\Authentication\QueryParam;
+use Http\Message\MultipartStream\MultipartStreamBuilder;
 
 /**
  * Factory for creating Http Client.
@@ -29,23 +24,22 @@ class ClientFactory
     public static function create($url, $token)
     {
         $plugins = [
-            new RedirectPlugin(),
-            new RetryPlugin(['retries' => 5]),
-            new DecoderPlugin(),
-            new ErrorPlugin(),
+            new Plugin\RedirectPlugin(),
+            new Plugin\RetryPlugin(['retries' => 5]),
+            new Plugin\DecoderPlugin(),
+            new Plugin\ErrorPlugin(),
         ];
 
         if ($token) {
-            $plugins[] = new AuthenticationPlugin(new QueryParam([
+            $plugins[] = new Plugin\AuthenticationPlugin(new QueryParam([
                 'api_key' => $token,
             ]));
         }
 
-        $client = new HttpMethodsClient(
-            new PluginClient(HttpClientDiscovery::find(), $plugins),
-            MessageFactoryDiscovery::find()
-        );
+        $client        = new PluginClient(Discovery\HttpClientDiscovery::find(), $plugins);
+        $streamFactory = Discovery\StreamFactoryDiscovery::find();
+        $builder       = new MultipartStreamBuilder($streamFactory);
 
-        return new HttpPlugHttpAdapterClient($client, $url);
+        return new HttpPlugHttpAdapterClient($client, $url, Discovery\MessageFactoryDiscovery::find(), $builder);
     }
 }

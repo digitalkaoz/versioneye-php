@@ -3,13 +3,14 @@
 namespace spec\Rs\VersionEye\Output;
 
 use PhpSpec\ObjectBehavior;
+use Rs\VersionEye\Output\Products;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 class ProductsSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Output\Products');
+        $this->shouldHaveType(Products::class);
     }
 
     public function it_prints_a_table_on_search()

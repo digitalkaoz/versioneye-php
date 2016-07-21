@@ -3,6 +3,9 @@
 namespace spec\Rs\VersionEye\Api;
 
 use PhpSpec\ObjectBehavior;
+use Rs\VersionEye\Api\Api;
+use Rs\VersionEye\Api\BaseApi;
+use Rs\VersionEye\Api\Sessions;
 use Rs\VersionEye\Http\HttpClient as Client;
 
 class SessionsSpec extends ObjectBehavior
@@ -14,9 +17,9 @@ class SessionsSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Api\Sessions');
-        $this->shouldHaveType('Rs\VersionEye\Api\BaseApi');
-        $this->shouldHaveType('Rs\VersionEye\Api\Api');
+        $this->shouldHaveType(Sessions::class);
+        $this->shouldHaveType(BaseApi::class);
+        $this->shouldHaveType(Api::class);
     }
 
     public function it_calls_the_correct_url_on_show(Client $client)

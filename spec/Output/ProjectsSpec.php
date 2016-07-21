@@ -3,13 +3,14 @@
 namespace spec\Rs\VersionEye\Output;
 
 use PhpSpec\ObjectBehavior;
+use Rs\VersionEye\Output\Projects;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 class ProjectsSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Output\Projects');
+        $this->shouldHaveType(Projects::class);
     }
 
     public function it_prints_a_table_on_all()

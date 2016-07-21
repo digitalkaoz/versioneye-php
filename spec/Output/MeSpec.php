@@ -3,13 +3,14 @@
 namespace spec\Rs\VersionEye\Output;
 
 use PhpSpec\ObjectBehavior;
+use Rs\VersionEye\Output\Me;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 class MeSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Output\Me');
+        $this->shouldHaveType(Me::class);
     }
 
     public function it_prints_a_list_on_profile()

@@ -3,6 +3,8 @@
 namespace spec\Rs\VersionEye\Authentication;
 
 use PhpSpec\ObjectBehavior;
+use Rs\VersionEye\Authentication\RubyConfigFileToken;
+use Rs\VersionEye\Authentication\Token;
 
 class RubyConfigFileTokenSpec extends ObjectBehavior
 {
@@ -23,8 +25,8 @@ class RubyConfigFileTokenSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Authentication\RubyConfigFileToken');
-        $this->shouldHaveType('Rs\VersionEye\Authentication\Token');
+        $this->shouldHaveType(RubyConfigFileToken::class);
+        $this->shouldHaveType(Token::class);
     }
 
     public function it_reads_the_token_from_a_file()

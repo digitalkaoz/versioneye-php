@@ -3,13 +3,14 @@
 namespace spec\Rs\VersionEye\Output;
 
 use PhpSpec\ObjectBehavior;
+use Rs\VersionEye\Output\Github;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 class GithubSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Output\Github');
+        $this->shouldHaveType(Github::class);
     }
 
     public function it_prints_a_boolean_on_sync()

@@ -4,6 +4,7 @@ namespace spec\Rs\VersionEye\Http;
 
 use PhpSpec\ObjectBehavior;
 use Rs\VersionEye\Http\HttpClient;
+use Rs\VersionEye\Http\Pager;
 
 class PagerSpec extends ObjectBehavior
 {
@@ -20,8 +21,8 @@ class PagerSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Http\Pager');
-        $this->shouldHaveType('\Iterator');
+        $this->shouldHaveType(Pager::class);
+        $this->shouldHaveType(\Iterator::class);
     }
 
     public function it_fetches_next_pages_until_all_are_results_are_fetched(HttpClient $client)

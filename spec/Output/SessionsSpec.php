@@ -3,13 +3,14 @@
 namespace spec\Rs\VersionEye\Output;
 
 use PhpSpec\ObjectBehavior;
+use Rs\VersionEye\Output\Sessions;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 class SessionsSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Output\Sessions');
+        $this->shouldHaveType(Sessions::class);
     }
 
     public function it_prints_a_list_on_show()

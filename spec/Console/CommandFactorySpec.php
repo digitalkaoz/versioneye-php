@@ -9,7 +9,9 @@ use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\Exception\Example\NotEqualException;
 use PhpSpec\ObjectBehavior;
 use Rs\VersionEye\Api\Api;
+use Rs\VersionEye\Api\Services;
 use Rs\VersionEye\Authentication\Token;
+use Rs\VersionEye\Console\CommandFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -59,7 +61,7 @@ class CommandFactorySpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Console\CommandFactory');
+        $this->shouldHaveType(CommandFactory::class);
     }
 
     public function it_returns_an_array_of_Commands()
@@ -75,12 +77,12 @@ class CommandFactorySpec extends ObjectBehavior
     public function it_generates_a_runnable_command()
     {
         $output = new BufferedOutput();
-        $result = $this->generateCommands(['Rs\VersionEye\Api\Services']);
+        $result = $this->generateCommands([Services::class]);
 
         $result->shouldBeArray();
         $result->shouldHaveCount(count(self::$commands));
 
-        $result['services:ping']->shouldHaveType('Symfony\Component\Console\Command\Command');
+        $result['services:ping']->shouldHaveType(Command::class);
         $result['services:ping']->getName()->shouldBe('services:ping');
         $result['services:ping']->run(new ArrayInput([]), $output);
 
@@ -93,13 +95,13 @@ EOS
 
     public function it_generates_correct_Commands_from_an_Api()
     {
-        $result = $this->generateCommands(['spec\Rs\VersionEye\Console\Test']);
+        $result = $this->generateCommands([Test::class]);
 
         $result->shouldBeArray();
         $result->shouldHaveCount(count(self::$commands) + 1);
 
         $command = $result['test:bazz'];
-        $command->shouldHaveType('Symfony\Component\Console\Command\Command');
+        $command->shouldHaveType(Command::class);
         $command->getName()->shouldBe('test:bazz');
         $command->getDescription()->shouldBe('awesome.');
 

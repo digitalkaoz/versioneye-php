@@ -3,13 +3,14 @@
 namespace spec\Rs\VersionEye\Output;
 
 use PhpSpec\ObjectBehavior;
+use Rs\VersionEye\Output\Users;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 class UsersSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Rs\VersionEye\Output\Users');
+        $this->shouldHaveType(Users::class);
     }
 
     public function it_prints_a_list_on_show()
