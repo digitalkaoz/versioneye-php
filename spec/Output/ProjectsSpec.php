@@ -18,7 +18,6 @@ class ProjectsSpec extends ObjectBehavior
         $this->all($output, [
             [
                 'id'               => '1337',
-                'project_key'      => 'digitalkaoz_versioneye-php_1',
                 'name'             => 'digitalkaoz/versioneye-php',
                 'project_type'     => 'composer',
                 'public'           => false,
@@ -31,11 +30,11 @@ class ProjectsSpec extends ObjectBehavior
         ]);
 
         expect($output->fetch())->toBe(<<<'EOS'
-+------------------------------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
-| Key                          | Name                       | Type     | Public | Dependencies | Outdated | Updated At | Bad Licenses | Unknown Licenses |
-+------------------------------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
-| digitalkaoz_versioneye-php_1 | digitalkaoz/versioneye-php | composer | No     | 47           | 13       | 25.05.1981 | No           | 1                |
-+------------------------------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
++------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
+| Key  | Name                       | Type     | Public | Dependencies | Outdated | Updated At | Bad Licenses | Unknown Licenses |
++------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
+| 1337 | digitalkaoz/versioneye-php | composer | No     | 47           | 13       | 25.05.1981 | No           | 1                |
++------+----------------------------+----------+--------+--------------+----------+------------+--------------+------------------+
 
 EOS
         );
@@ -138,7 +137,6 @@ EOS
         $this->{$method}($output, [
             'name'             => 'digitalkaoz/versioneye-php',
             'id'               => '1337',
-            'project_key'      => 'digitalkaoz_versioneye-php_1',
             'project_type'     => 'composer',
             'public'           => true,
             'out_number'       => 7,
@@ -158,7 +156,7 @@ EOS
 
         expect($output->fetch())->toBe(<<<'EOS'
 Name                  : digitalkaoz/versioneye-php
-Key                   : digitalkaoz_versioneye-php_1
+Key                   : 1337
 Type                  : composer
 Public                : Yes
 Outdated              : 7

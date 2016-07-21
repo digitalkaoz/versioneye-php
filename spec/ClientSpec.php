@@ -45,13 +45,11 @@ class ClientSpec extends ObjectBehavior
     public function it_creates_authorized_apis_if_client_is_authorized(Client $client)
     {
         $this->beConstructedWith($client);
-        $this->authorize('lolcat');
+        $this->authorize('lolcat'); //mh cant test it as the auth will be injected by http-plug/plugins auth
 
-        $client->request('GET', 'me?api_key=lolcat', [])->shouldBeCalled();
+        $client->request('GET', 'me', [])->shouldBeCalled();
 
-        $api = $this->api('me');
-
-        $api->profile();
+        $this->api('me')->profile();
     }
 
     public function it_doesnt_exposes_a_unknown_api()

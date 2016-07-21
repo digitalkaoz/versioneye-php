@@ -5,28 +5,28 @@ EOF;
 
 //Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
 
-$finder = Symfony\CS\Finder\DefaultFinder::create()
-    ->exclude('vendor', 'Resources', 'docker', 'bin')
-    ->in(__DIR__)
-;
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('vendor')
+    ->exclude('bin')
+    ->in(__DIR__);
 
-return Symfony\CS\Config\Config::create()
-    ->setUsingCache(true)
-    ->level(Symfony\CS\FixerInterface::SYMFONY_LEVEL)
-    ->fixers([
-        'header_comment',
-        'short_array_syntax',
-        'ordered_use',
-        'strict',
-        'strict_param',
-        'phpdoc_order',
-        'newline_after_open_tag',
-        'multiline_spaces_before_semicolon',
-        'header_comment',
-        'ereg_to_preg',
-        'concat_with_spaces',
-        'align_equals',
-        'align_double_arrow',
+return PhpCsFixer\Config::create()
+    ->setRules([
+        '@Symfony'              => true,
+        '@PSR2'                 => true,
+        '@PSR1'                 => true,
+        'short_array_syntax'    => true,
+        'ordered_imports'       => true,
+        'strict_comparison'     => true,
+        'strict_param'          => true,
+        'phpdoc_order'          => true,
+        'no_useless_return'     => true,
+        'ereg_to_preg'          => true,
+        'concat_with_spaces'    => true,
+        'concat_without_spaces' => false,
+        'align_double_arrow'    => true,
+        'align_equals'          => true
     ])
+    //->setUsingLinter(false)
     ->finder($finder)
-;
+    ->setUsingCache(true);

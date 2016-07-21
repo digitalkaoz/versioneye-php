@@ -21,7 +21,7 @@ class Projects extends BaseOutput
     {
         $this->printTable($output,
             ['Key', 'Name', 'Type', 'Public', 'Dependencies', 'Outdated', 'Updated At', 'Bad Licenses', 'Unknown Licenses'],
-            ['project_key', 'name', 'project_type', 'public', 'dep_number', 'out_number', 'updated_at', 'licenses_red', 'licenses_unknown'],
+            ['id', 'name', 'project_type', 'public', 'dep_number', 'out_number', 'updated_at', 'licenses_red', 'licenses_unknown'],
             $response,
             function ($key, $value) use ($output) {
                 if ('public' === $key) {
@@ -114,7 +114,7 @@ class Projects extends BaseOutput
     {
         $this->printList($output,
             ['Name', 'Key', 'Type', 'Public', 'Outdated', 'Updated At', 'Bad Licenses', 'Unknown Licenses'],
-            ['name', 'project_key', 'project_type', 'public', 'out_number', 'updated_at', 'licenses_red', 'licenses_unknown'],
+            ['name', 'id', 'project_type', 'public', 'out_number', 'updated_at', 'licenses_red', 'licenses_unknown'],
             $response,
             function ($key, $value) use ($output) {
                 if (in_array($key, ['Outdated', 'Bad Licenses', 'Unknown Licenses'], true)) {

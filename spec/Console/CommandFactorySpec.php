@@ -91,7 +91,7 @@ EOS
         );
     }
 
-    public function it_generated_correct_Commands_from_an_Api()
+    public function it_generates_correct_Commands_from_an_Api()
     {
         $result = $this->generateCommands(['spec\Rs\VersionEye\Console\Test']);
 

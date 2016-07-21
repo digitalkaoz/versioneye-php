@@ -4,7 +4,7 @@ namespace Rs\VersionEye\Console;
 
 use ArgumentsResolver\NamedArgumentsResolver;
 use Camel\CaseTransformerInterface;
-use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\DocBlockFactory;
 use Rs\VersionEye\Api\Api;
 use Rs\VersionEye\Authentication\Token;
 use Rs\VersionEye\Client;
@@ -79,10 +79,10 @@ class CommandFactory
         $methodName = $this->transformer->transform($method->getName());
 
         $command  = new Command(strtolower($name . ':' . $methodName));
-        $docBlock = new DocBlock($method->getDocComment());
+        $docBlock = DocBlockFactory::createInstance()->create($method->getDocComment());
 
         $command->setDefinition($this->buildDefinition($method, $token));
-        $command->setDescription($docBlock->getShortDescription());
+        $command->setDescription($docBlock->getSummary());
         $command->setCode($this->createCode($name, $method));
 
         return $command;

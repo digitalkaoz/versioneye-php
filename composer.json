@@ -1,36 +1,46 @@
 {
-    "name": "digitalkaoz/versioneye-php",
-    "description": "PHP CLI for the VersionEye API",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Robert Schönthal",
-            "email": "robert.schoenthal@gmail.com"
-        }
-    ],
-
-    "require": {
-        "php":                                  ">=5.4",
-        "symfony/console":                      "2.4 - 3",
-        "phpdocumentor/reflection-docblock":    "~2.0 || ~3.0",
-        "egeloen/http-adapter":                 "~0.8 || ~1.0",
-        "symfony/event-dispatcher":             "2.7 - 3",
-        "mattketmo/camel":                      "~1.1",
-        "rybakit/arguments-resolver":           "~0.5.0",
-        "ramsey/array_column":                  "~1.1"
-    },
-    "require-dev": {
-        "phpspec/phpspec":                      "~2.4",
-        "bossa/phpspec2-expect":                "~1"
-    },
-
-    "autoload" : {
-        "psr-4" : {"Rs\\VersionEye\\" : "src"}
-    },
-
-    "scripts": {
-        "test" : "vendor/bin/phpspec run -fpretty -vv --ansi"
-    },
-
-    "bin": ["bin/versioneye"]
+  "name": "digitalkaoz/versioneye-php",
+  "description": "PHP CLI for the VersionEye API",
+  "license": "MIT",
+  "minimum-stability": "beta",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Robert Schönthal",
+      "email": "robert.schoenthal@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "symfony/console": "^2.4 | ^3",
+    "symfony/event-dispatcher": "^2.7 | ^3",
+    "phpdocumentor/reflection-docblock": "^2.0 | ^3",
+    "mattketmo/camel": "^1.1",
+    "rybakit/arguments-resolver": "^0.5",
+    "ramsey/array_column": "^1.1",
+    "php-http/httplug": "^1.0",
+    "php-http/client-common": "^1.0",
+    "php-http/message": "^1.0",
+    "php-http/plugins": "^1.0",
+    "php-http/discovery": "^1.0",
+    "php-http/client-implementation": "^1.0",
+    "puli/composer-plugin": "^1.0",
+    "php-http/multipart-stream-builder": "^0.1.0"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^2.4",
+    "bossa/phpspec2-expect": "^1",
+    "php-http/guzzle6-adapter": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rs\\VersionEye\\": "src"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpspec run -fpretty -vv --ansi"
+  },
+  "bin": [
+    "bin/versioneye"
+  ]
 }

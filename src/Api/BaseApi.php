@@ -16,16 +16,13 @@ abstract class BaseApi
      * @var HttpClient
      */
     protected $client;
-    private $token;
 
     /**
      * @param HttpClient $client
-     * @param string     $token
      */
-    public function __construct(HttpClient $client, $token = null)
+    public function __construct(HttpClient $client)
     {
         $this->client = $client;
-        $this->token  = $token;
     }
 
     /**
@@ -39,12 +36,6 @@ abstract class BaseApi
      */
     protected function request($url, $method = 'GET', array $params = [])
     {
-        if (null !== $this->token) {
-            $delimiter = strstr($url, '?') ? '&' : '?';
-
-            $url = sprintf('%s%sapi_key=%s', $url, $delimiter, $this->token);
-        }
-
         $url = $this->sanitizeQuery($url);
 
         $response = $this->client->request($method, $url, $params);

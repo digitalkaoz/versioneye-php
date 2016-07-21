@@ -2,15 +2,9 @@
 
 namespace Rs\VersionEye;
 
-use Ivory\HttpAdapter\Event\Subscriber\RedirectSubscriber;
-use Ivory\HttpAdapter\Event\Subscriber\RetrySubscriber;
-use Ivory\HttpAdapter\Event\Subscriber\StatusCodeSubscriber;
-use Ivory\HttpAdapter\EventDispatcherHttpAdapter;
-use Ivory\HttpAdapter\HttpAdapterFactory;
 use Rs\VersionEye\Api\Api;
+use Rs\VersionEye\Http\ClientFactory;
 use Rs\VersionEye\Http\HttpClient;
-use Rs\VersionEye\Http\IvoryHttpAdapterClient;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * Client for interacting with the API.
@@ -25,6 +19,10 @@ class Client
     private $client;
 
     private $token;
+    /**
+     * @var string
+     */
+    private $url;
 
     /**
      * @param HttpClient $client
@@ -32,7 +30,8 @@ class Client
      */
     public function __construct(HttpClient $client = null, $url = 'https://www.versioneye.com/api/v2/')
     {
-        $this->initializeClient($url, $client);
+        $this->client = $client;
+        $this->url    = $url;
     }
 
     /**
@@ -46,10 +45,12 @@ class Client
      */
     public function api($name)
     {
+        $this->initializeClient($this->url, $this->client);
+
         $class = 'Rs\\VersionEye\\Api\\' . ucfirst($name);
 
         if (class_exists($class)) {
-            return new $class($this->client, $this->token);
+            return new $class($this->client);
         } else {
             throw new \InvalidArgumentException('unknown api "' . $name . '" requested');
         }
@@ -85,21 +86,10 @@ class Client
     /**
      * @param string $url
      *
-     * @throws \Ivory\HttpAdapter\HttpAdapterException
-     *
-     * @return IvoryHttpAdapterClient
+     * @return HttpClient
      */
     private function createDefaultHttpClient($url)
     {
-        $eventDispatcher = new EventDispatcher();
-        $eventDispatcher->addSubscriber(new RedirectSubscriber());
-        $eventDispatcher->addSubscriber(new RetrySubscriber());
-        $eventDispatcher->addSubscriber(new StatusCodeSubscriber());
-
-        $adapter = new EventDispatcherHttpAdapter(HttpAdapterFactory::guess(), $eventDispatcher);
-        $adapter->getConfiguration()->setTimeout(30);
-        $adapter->getConfiguration()->setUserAgent('versioneye-php');
-
-        return new IvoryHttpAdapterClient($adapter, $url);
+        return ClientFactory::create($url, $this->token);
     }
 }

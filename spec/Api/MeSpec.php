@@ -28,9 +28,7 @@ class MeSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_profile_with_auth(Client $client)
     {
-        $this->beConstructedWith($client, 'lolcat');
-
-        $client->request('GET', 'me?api_key=lolcat', [])->willReturn([]);
+        $client->request('GET', 'me', [])->willReturn([]);
 
         $this->profile()->shouldBeArray();
     }
