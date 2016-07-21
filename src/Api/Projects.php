@@ -14,11 +14,14 @@ class Projects extends BaseApi implements Api
     /**
      * shows user`s projects.
      *
+     * @param string $orgaName
+     * @param string $teamName
+     *
      * @return array
      */
-    public function all()
+    public function all($orgaName, $teamName = null)
     {
-        return $this->request('projects');
+        return $this->request('projects', 'GET', ['orga_name' => $orgaName, 'team_name' => $teamName]);
     }
 
     /**

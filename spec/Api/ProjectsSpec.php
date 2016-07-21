@@ -24,9 +24,9 @@ class ProjectsSpec extends ObjectBehavior
 
     public function it_calls_the_correct_url_on_all(Client $client)
     {
-        $client->request('GET', 'projects', [])->willReturn([]);
+        $client->request('GET', 'projects', ['orga_name' => 'foo', 'team_name' => 'bar'])->willReturn([]);
 
-        $this->all()->shouldBeArray();
+        $this->all('foo', 'bar')->shouldBeArray();
     }
 
     public function it_calls_the_correct_url_on_show_and_has_a_Pager_injected(Client $client)

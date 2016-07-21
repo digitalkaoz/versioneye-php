@@ -18,7 +18,7 @@ class ProjectsSpec extends ObjectBehavior
         $output = new BufferedOutput();
         $this->all($output, [
             [
-                'id'               => '1337',
+                'ids'              => '1337',
                 'name'             => 'digitalkaoz/versioneye-php',
                 'project_type'     => 'composer',
                 'public'           => false,
