@@ -36,8 +36,7 @@ now you can run `~/.composer/vendor/bin/versioneye` maybe add this folder to you
 
 ### Install from source code
 
-first you have to decide which `http adapter` to use. The library supports all adapters supported by [egeloen/ivory-http-adapter](https://github.com/egeloen/ivory-http-adapter)
-Where `fopen` is last resort if even `curl` is missing.
+first you have to decide which `http adapter` to use. The library supports all adapters supported by [php-http/httpplug](http://php-http.readthedocs.io/en/latest/clients.html)
 
 ```
 $ composer require digitalkaoz/versioneye-php
