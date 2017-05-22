@@ -4,12 +4,13 @@ suites:
         psr4_prefix: Rs\VersionEye
 
 extensions:
-    - PhpSpec\Extension\CodeCoverageExtension
+    PhpSpecCodeCoverage\CodeCoverageExtension:
+      whitelist: [src]
+      format:
+        - text
+        - clover
+        - html
 
-code_coverage:
-  whitelist: [src]
-  format:
-    - text
-    - clover
-  output:
-    clover: coverage.xml
+      output:
+        clover: coverage.xml
+        html: coverage
