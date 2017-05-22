@@ -1,4 +1,4 @@
-#a PHP CLI/Library for the VersionEye API
+# a PHP CLI/Library for the VersionEye API
 
 see https://www.versioneye.com/api/ for API documentation
 
@@ -11,7 +11,7 @@ see https://www.versioneye.com/api/ for API documentation
 [![Total Downloads](https://img.shields.io/packagist/dt/digitalkaoz/versioneye-php.svg?style=flat-square)](https://packagist.org/packages/digitalkaoz/versioneye-php)
 [![StyleCI](https://styleci.io/repos/23851520/shield)](https://styleci.io/repos/23851520)
 
-##Installation
+## Installation
 
 There are 2 ways to install it: 
  
