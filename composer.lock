@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "216a353971905d05a4832bac92e9627b",
+    "content-hash": "25a2ec3dc8badc21a515ce8452c38b7e",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -2249,26 +2249,32 @@
     "packages-dev": [
         {
             "name": "bossa/phpspec2-expect",
-            "version": "1.0.2",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BossaConsulting/phpspec2-expect.git",
-                "reference": "c7e38fb9dc1c87bc69b008559fb98bd25335d66c"
+                "reference": "5c35c32dea8aa2c1124a1130b664be370936af14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BossaConsulting/phpspec2-expect/zipball/c7e38fb9dc1c87bc69b008559fb98bd25335d66c",
-                "reference": "c7e38fb9dc1c87bc69b008559fb98bd25335d66c",
+                "url": "https://api.github.com/repos/BossaConsulting/phpspec2-expect/zipball/5c35c32dea8aa2c1124a1130b664be370936af14",
+                "reference": "5c35c32dea8aa2c1124a1130b664be370936af14",
                 "shasum": ""
             },
             "require": {
-                "phpspec/phpspec": ">=2.0.0-RC3"
+                "phpspec/phpspec": "~3.2 <3.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.4"
             },
             "type": "library",
             "autoload": {
                 "files": [
                     "expect.php"
-                ]
+                ],
+                "psr-0": {
+                    "Bossa\\PhpSpec\\Expect\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2288,7 +2294,7 @@
                 "spec",
                 "specification"
             ],
-            "time": "2014-02-21T11:29:39+00:00"
+            "time": "2017-04-27T15:49:58+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -2384,16 +2390,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "3.4.0",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "2e969c7d8c6437490b7aa0ab51a3302d15bb7211"
+                "reference": "1c77d11878c4bd475bc66f0eaa2686df0fcfa30f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/2e969c7d8c6437490b7aa0ab51a3302d15bb7211",
-                "reference": "2e969c7d8c6437490b7aa0ab51a3302d15bb7211",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/1c77d11878c4bd475bc66f0eaa2686df0fcfa30f",
+                "reference": "1c77d11878c4bd475bc66f0eaa2686df0fcfa30f",
                 "shasum": ""
             },
             "require": {
@@ -2462,7 +2468,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2017-05-12T06:16:46+00:00"
+            "time": "2017-04-27T12:40:39+00:00"
         },
         {
             "name": "phpspec/prophecy",
